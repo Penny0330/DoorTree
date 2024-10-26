@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    label {
+        @apply text-sm text-slate-500 mb-1.5;
+    }
+    input {
+        @apply text-sm border py-2 px-4 rounded focus-visible:outline-none focus:border-gray-500;
+    }
+}
+
+@layer components {
+    .a-btn {
+        @apply inline-block py-4 pr-4 w-full border-b border-solid border-gray-400
+    }
+    .btn {
+        @apply py-2 px-4 rounded w-full;
+        // === 樣式 ===
+        // 實心
+        &-solid {
+            @apply text-white
+        }
+        // 空心
+        &-hollow {
+            @apply text-slate-900
+        }
+        // === 外框線條
+        &-outline-default {
+            @apply border;
+        }
+        // === bg ===
+        &-bg-main-blue {
+            @apply bg-main-blue;
+        }
+    }
+}
+
+@layer utilities {
+    .-top-23px {
+        top: -23px;
+    }
+}
