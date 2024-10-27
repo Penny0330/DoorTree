@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MenuIcon from '@/assets/icon/menu.svg'
-import CloseIcon from '@/assets/icon/close.svg'
+import { X } from 'lucide-vue-next'
+import MenuIcon from '@/assets/icon/MenuIcon.vue'
 
 const props = defineProps({
   showMenu: {
@@ -22,10 +22,13 @@ const onToggleMenu = (_event: MouseEvent) => {
 
 <template>
   <div
-    class="bg-main-red w-16 flex justify-center items-center rounded-bl-3xl"
+    class="bg-main-blue w-16 flex justify-center items-center rounded-bl-3xl"
     @click="onToggleMenu"
   >
-    <img :src="props.showMenu ? CloseIcon : MenuIcon" alt="MENU" />
+    <component
+      :is="props.showMenu ? X : MenuIcon"
+      class="stroke-white"
+    ></component>
   </div>
 </template>
 

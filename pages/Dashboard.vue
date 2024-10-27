@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
 import dayjs from 'dayjs'
-import type { DashboardItem } from '~/types/interfaces'
+import type { DashboardItem } from '~/types/DashboardType'
 import { useFirestore } from '@/composables/useFirestore'
 
-const nuxtApp = useNuxtApp()
 const store = useStore()
 const {
   setDocument,

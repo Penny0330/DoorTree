@@ -1,4 +1,3 @@
-// Dashboard
 export interface DashboardItem {
   id: string
   title: string
@@ -9,5 +8,3 @@ export interface DashboardItem {
 export interface DashboardData {
   dashboardList: DashboardItem[]
 }
-
-// doorItemDetail

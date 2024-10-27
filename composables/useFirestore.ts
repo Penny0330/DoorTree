@@ -9,11 +9,15 @@ import {
 } from 'firebase/firestore'
 
 export const useFirestore = () => {
-  const nuxtApp = useNuxtApp()
+  const { $db } = useNuxtApp()
 
-  const setDocument = async (collection: string, id: string, data: object) => {
+  const setDocument = async (
+    collection: string,
+    id: string,
+    data: object,
+  ): Promise<void> => {
     try {
-      const docRef = doc(nuxtApp.$db, collection, id)
+      const docRef = doc($db, collection, id)
       await setDoc(docRef, data)
     } catch (e) {
       console.error('Error setDocument: ', e)
@@ -22,7 +26,7 @@ export const useFirestore = () => {
 
   const getDocument = async (collection: string, id: string) => {
     try {
-      const docRef = doc(nuxtApp.$db, collection, id)
+      const docRef = doc($db, collection, id)
       const docSnapshot = await getDoc(docRef)
 
       if (!docSnapshot.exists()) {
@@ -43,7 +47,7 @@ export const useFirestore = () => {
     newItem: any,
   ): Promise<void> => {
     try {
-      const docRef = doc(nuxtApp.$db, collectionName, docId)
+      const docRef = doc($db, collectionName, docId)
       await updateDoc(docRef, {
         [arrayField]: arrayUnion(newItem),
       })
@@ -57,7 +61,7 @@ export const useFirestore = () => {
     docId: string,
   ): Promise<void> => {
     try {
-      const docRef = doc(nuxtApp.$db, collectionName, docId)
+      const docRef = doc($db, collectionName, docId)
       await deleteDoc(docRef)
     } catch (error) {
       console.error('Error deleteDocumentArray:', error)
@@ -71,7 +75,7 @@ export const useFirestore = () => {
     newItem: any,
   ): Promise<void> => {
     try {
-      const docRef = doc(nuxtApp.$db, collectionName, docId)
+      const docRef = doc($db, collectionName, docId)
       await updateDoc(docRef, {
         [arrayField]: arrayRemove(newItem),
       })

@@ -1,5 +1,5 @@
 import { useFirestore } from '@/composables/useFirestore'
-import type { DashboardData } from '~/types/interfaces'
+import type { DashboardData } from '~/types/DashboardType'
 
 const { setDocument } = useFirestore()
 
