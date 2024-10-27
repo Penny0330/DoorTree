@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useAuth } from '@/composables/useAuth'
+
+const { handleLogout } = useAuth()
 const store = useStore()
 
 const props = defineProps({
@@ -29,7 +32,7 @@ const onToggleAuthModal = (_event: MouseEvent) => {
 }
 
 const onLogout = (_event: MouseEvent) => {
-  store.onLogout()
+  handleLogout()
   props.onToggleMenu()
 }
 

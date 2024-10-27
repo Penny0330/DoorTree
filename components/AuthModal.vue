@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import CloseGrayIcon from '@/assets/icon/close-gray.svg'
+import { LoaderCircle, X } from 'lucide-vue-next'
 import GoogleIcon from '@/assets/icon/google.png'
+import { useAuth } from '@/composables/useAuth'
 
-const store = useStore()
+const {
+  email,
+  password,
+  isLoading,
+  handleLogin,
+  handleSignup,
+  handleLoginUseGoogle,
+} = useAuth()
 
 const props = defineProps({
   showAuthModal: {
@@ -55,14 +63,11 @@ const onOverlayClick = (_event: MouseEvent) => {
   }
 }
 
-const email = ref<string | null>(null)
-const password = ref<any>(null)
-
 const onSubmit = () => {
   if (props.isLoginAction) {
-    store.onLogin(email.value, password.value)
+    handleLogin()
   } else {
-    store.onSignup(email.value, password.value)
+    handleSignup()
   }
 }
 </script>
@@ -76,10 +81,8 @@ const onSubmit = () => {
       <header class="text-xl text-center my-4">
         {{ toggleTitle }}
       </header>
-      <img
-        :src="CloseGrayIcon"
-        alt="CLOSE-BUTTON"
-        class="absolute top-3 right-4"
+      <X
+        class="absolute top-3 right-4 stroke-gray-400"
         @click="onToggleAuthModal"
       />
       <section>
@@ -92,6 +95,7 @@ const onSubmit = () => {
               type="email"
               name="email"
               placeholder="Please enter your email"
+              :disabled="isLoading"
             />
           </div>
           <div class="flex flex-col">
@@ -102,14 +106,17 @@ const onSubmit = () => {
               type="password"
               name="password"
               placeholder="Please enter your password"
+              :disabled="isLoading"
             />
           </div>
         </form>
         <button
           class="btn btn-solid btn-bg-main-blue mt-10 mb-2"
+          :disabled="isLoading"
           @click="onSubmit"
         >
-          {{ toggleTitle }}
+          <LoaderCircle v-if="isLoading" class="animate-spin h-6 w-6 m-auto" />
+          <p v-else>{{ toggleTitle }}</p>
         </button>
         <div class="flex items-center justify-center">
           <span class="border-b flex-1"></span>
@@ -118,7 +125,8 @@ const onSubmit = () => {
         </div>
         <button
           class="btn btn-hollow btn-outline-default mt-2 mb-8 flex justify-center items-center gap-4"
-          @click="store.onLoginUseGoogle"
+          :disabled="isLoading"
+          @click="handleLoginUseGoogle"
         >
           <img :src="GoogleIcon" alt="Google-Icon" class="w-6" />
           {{ toggleGoogleButtonText }}
