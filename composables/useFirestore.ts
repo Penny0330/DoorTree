@@ -6,11 +6,16 @@ import {
   deleteDoc,
   arrayUnion,
   arrayRemove,
+  collection,
+  getDocs,
+  query,
+  where,
 } from 'firebase/firestore'
 
 export const useFirestore = () => {
   const { $db } = useNuxtApp()
 
+  // create
   const setDocument = async (
     collection: string,
     id: string,
@@ -24,6 +29,7 @@ export const useFirestore = () => {
     }
   }
 
+  // get
   const getDocument = async (collection: string, id: string) => {
     try {
       const docRef = doc($db, collection, id)
@@ -40,6 +46,7 @@ export const useFirestore = () => {
     }
   }
 
+  // update: Array
   const updateDocumentArray = async (
     collectionName: string,
     docId: string,
@@ -56,6 +63,7 @@ export const useFirestore = () => {
     }
   }
 
+  // delete
   const deleteDocument = async (
     collectionName: string,
     docId: string,
@@ -68,6 +76,7 @@ export const useFirestore = () => {
     }
   }
 
+  // delete: Array
   const deleteDocumentArray = async (
     collectionName: string,
     docId: string,
@@ -84,11 +93,40 @@ export const useFirestore = () => {
     }
   }
 
+  interface DocumentData {
+    id: string
+    [key: string]: any // TODO 待添加後，移至 /types
+  }
+
+  const getDocumentByLink = async (
+    collectionName: string,
+    link: string,
+  ): Promise<DocumentData[]> => {
+    try {
+      const q = query(
+        collection($db, collectionName),
+        where('link', '==', link),
+      )
+      const querySnapshot = await getDocs(q)
+
+      const results: DocumentData[] = []
+      querySnapshot.forEach((doc) => {
+        results.push({ id: doc.id, ...doc.data() })
+      })
+
+      return results
+    } catch (error) {
+      console.error('Error deleteDocumentArray:', error)
+      return []
+    }
+  }
+
   return {
     setDocument,
     getDocument,
     updateDocumentArray,
     deleteDocument,
     deleteDocumentArray,
+    getDocumentByLink,
   }
 }

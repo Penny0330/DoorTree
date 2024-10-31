@@ -12,10 +12,9 @@ export default {
       colors: {
         'main-blue': '#002F7B',
         'main-red': '#ED1F1D',
-        'main-overlay': 'rgba(0, 0, 0, 60%)',
+        'main-overlay': 'rgba(0, 0, 0, 45%)',
       },
     },
   },
   plugins: [],
-  darkMode: false,
 }
