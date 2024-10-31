@@ -13,10 +13,10 @@ const {
 } = useAuth()
 
 const props = defineProps({
-  showAuthModal: {
-    type: Boolean,
-    default: false,
-  },
+  // showAuthModal: {
+  //   type: Boolean,
+  //   default: false,
+  // },
   isLoginAction: {
     type: Boolean,
     default: true,
@@ -111,7 +111,7 @@ const onSubmit = () => {
           </div>
         </form>
         <button
-          class="btn btn-solid btn-bg-main-blue mt-10 mb-2"
+          class="btn btn-solid btn-bg-main-blue mt-10 mb-2 w-full"
           :disabled="isLoading"
           @click="onSubmit"
         >
@@ -124,7 +124,7 @@ const onSubmit = () => {
           <span class="border-b flex-1"></span>
         </div>
         <button
-          class="btn btn-hollow btn-outline-default mt-2 mb-8 flex justify-center items-center gap-4"
+          class="btn btn-hollow btn-outline-default mt-2 mb-8 flex justify-center items-center gap-4 w-full"
           :disabled="isLoading"
           @click="handleLoginUseGoogle"
         >
@@ -150,4 +150,11 @@ const onSubmit = () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+label {
+  @apply text-sm text-slate-500 mb-1.5;
+}
+input {
+  @apply text-sm border py-2 px-4 rounded focus-visible:outline-none focus:border-gray-500;
+}
+</style>
