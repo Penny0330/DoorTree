@@ -22,7 +22,7 @@ const onToggleMenu = (_event: MouseEvent) => {
 
 <template>
   <div
-    class="bg-main-blue w-16 flex justify-center items-center rounded-bl-3xl"
+    class="bg-main-blue w-16 flex justify-center items-center rounded-bl-3xl md:hidden"
     @click="onToggleMenu"
   >
     <component

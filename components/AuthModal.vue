@@ -75,14 +75,14 @@ const onSubmit = () => {
 <template>
   <div class="w-full h-dvh fixed z-30 bg-main-overlay" @click="onOverlayClick">
     <div
-      class="w-4/5 bg-white rounded-2xl m-auto mt-10 py-4 px-5 relative"
+      class="w-4/5 bg-white rounded-2xl m-auto mt-10 py-4 px-5 relative max-w-md"
       @click.stop
     >
       <header class="text-xl text-center my-4">
         {{ toggleTitle }}
       </header>
       <X
-        class="absolute top-3 right-4 stroke-gray-400"
+        class="absolute top-3 right-4 stroke-gray-400 cursor-pointer"
         @click="onToggleAuthModal"
       />
       <section>
@@ -131,7 +131,7 @@ const onSubmit = () => {
           <img :src="GoogleIcon" alt="Google-Icon" class="w-6" />
           {{ toggleGoogleButtonText }}
         </button>
-        <div class="my-2 text-center">
+        <div class="my-2 text-center flex flex-col">
           <button
             v-if="isLoginAction"
             class="text-sm underline text-slate-500 mb-2"

@@ -40,8 +40,14 @@ watch(
 </script>
 
 <template>
-  <nav class="flex justify-between fixed z-10 w-full">
-    <NavLogo :has-box-shadow="true" :has-border="true" />
+  <nav class="flex justify-between fixed z-10 w-full md:top-4">
+    <NavLogo
+      :has-box-shadow="true"
+      :has-border="true"
+      :show-auth-modal="showAuthModal"
+      :on-toggle-menu="onToggleMenu"
+      :on-toggle-auth-modal="onToggleAuthModal"
+    />
     <MenuButton :show-menu="showMenu" :on-toggle-menu="onToggleMenu" />
   </nav>
   <transition name="fade">

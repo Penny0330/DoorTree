@@ -109,14 +109,14 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white pt-24 pb-8 min-h-[calc(100vh-5rem)] flex flex-col items-center"
+    class="bg-white pt-20 pb-8 min-h-[calc(100vh-5rem)] flex flex-col items-center sm:pt-32"
   >
     <section
-      class="flex flex-col items-center flex-wrap gap-4 w-11/12 sm:flex-row sm:items-stretch"
+      class="max-w-[1440px] w-11/12 grid items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <div
         v-if="!isGetLoading"
-        class="bg-main-blue text-white w-full p-4 rounded flex justify-center items-center my-6 cursor-pointer sm:basis-[calc(50%-1rem)] sm:my-0 sm:text-2xl xl:basis-[calc(33.33%-1rem)]"
+        class="bg-main-blue text-white w-full p-4 rounded-2xl flex justify-center items-center mt-6 mb-4 cursor-pointer sm:h-full sm:my-0 sm:text-2xl"
         @click="onShowCreateLinkModal"
       >
         <DoorOpen class="stroke-white mr-4 sm:w-8 sm:h-8" />
@@ -125,7 +125,7 @@ onMounted(() => {
       <div
         v-for="item in dashboardList"
         :key="item.id"
-        class="border rounded w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(33.33%-1rem)] xl:py-8"
+        class="border rounded-2xl w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(25%-1rem)] xl:py-6"
         @click="onEdit(item.id)"
       >
         <img
@@ -134,7 +134,7 @@ onMounted(() => {
         />
         <div>
           <p class="text-xl">{{ item.title }}</p>
-          <p class="text-sm text-gray-400">updated：{{ item.updateTime }}</p>
+          <p class="text-xs text-gray-400">updated {{ item.updateTime }}</p>
           <div class="mt-4 flex flex-col gap-2">
             <div class="flex items-center gap-2">
               <Pencil class="w-4 h-4 stroke-gray-500" />
