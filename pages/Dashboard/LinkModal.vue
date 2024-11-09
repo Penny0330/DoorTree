@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import debounce from 'lodash/debounce'
+import { checkLinkTransformType } from './transform'
+import { useFirestore } from '@/composables/useFirestore'
+
+const { getDocumentByLink } = useFirestore()
+
 const props = defineProps({
   showCreateLinkModal: {
     type: Boolean,
@@ -24,8 +30,15 @@ const props = defineProps({
 
 const link = ref<string>('')
 const domain = ref<string>('door-tree/')
+const hasExistLink = ref<boolean>(false)
+const isCheckLoading = ref<boolean>(false)
+const resultType = ref<string>('')
 
-const isCreateDisabled = computed(() => !link.value)
+const isCreateDisabled = computed(
+  () => !link.value || link.value.length < 3 || !linkRegex.test(link.value),
+)
+
+const linkRegex = /^[a-zA-Z0-9._]+$/
 
 const onToggleCreateLinkModal = (_event: MouseEvent) => {
   props.onToggleCreateLinkModal()
@@ -34,6 +47,40 @@ const onToggleCreateLinkModal = (_event: MouseEvent) => {
 const onCreateLink = (_event: MouseEvent, link: string) => {
   props.onCreateLink(link)
 }
+
+const handleCheckLinkExist = debounce(async () => {
+  try {
+    isCheckLoading.value = true
+    resultType.value = 'loading'
+    const data = await getDocumentByLink('doorItemDetail', link.value)
+
+    hasExistLink.value = Array.isArray(data) && data.length > 0
+    resultType.value = hasExistLink.value ? 'exist' : 'success'
+  } catch (error) {
+    console.error('Error fetching handleCheckLinkExist:', error)
+    hasExistLink.value = false
+  } finally {
+    isCheckLoading.value = false
+  }
+}, 300)
+
+const handleCheckLinkCount = debounce((newLink: string) => {
+  if (newLink.length < 3) {
+    resultType.value = 'error'
+  } else if (!linkRegex.test(newLink)) {
+    resultType.value = 'invalid'
+  } else {
+    resultType.value = ''
+  }
+}, 500)
+
+watch(link, (newLink) => {
+  handleCheckLinkCount(newLink)
+  if (!isCreateDisabled.value) {
+    isCheckLoading.value = true
+    handleCheckLinkExist()
+  }
+})
 </script>
 
 <template>
@@ -61,7 +108,18 @@ const onCreateLink = (_event: MouseEvent, link: string) => {
             class="flex-1 px-3 py-2"
             placeholder="Enter a custom link"
           />
+          <component
+            :is="checkLinkTransformType[resultType].icon"
+            v-if="resultType"
+            class="w-5 h-5 mr-2"
+          />
         </div>
+        <p
+          v-if="resultType && !isCheckLoading"
+          class="text-red-500 text-sm ml-2"
+        >
+          {{ checkLinkTransformType[resultType].text }}
+        </p>
       </section>
       <footer class="flex justify-end gap-4 mt-8">
         <button
@@ -71,7 +129,7 @@ const onCreateLink = (_event: MouseEvent, link: string) => {
           cancel
         </button>
         <button
-          :disabled="isCreateDisabled || isCreateLoading"
+          :disabled="isCreateDisabled || isCreateLoading || hasExistLink"
           class="btn btn-solid btn-bg-main-blue w-[78px] cursor-pointer"
           @click="onCreateLink($event, link)"
         >

@@ -8,3 +8,10 @@ export interface DashboardItem {
 export interface DashboardData {
   dashboardList: DashboardItem[]
 }
+
+export interface CheckLinkTransform {
+  [key: string]: {
+    icon: () => VNode
+    text: string
+  }
+}

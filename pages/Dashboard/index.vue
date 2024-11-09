@@ -14,7 +14,6 @@ const {
   updateDocumentArray,
   deleteDocument,
   deleteDocumentArray,
-  // getDocumentByLink,
 } = useFirestore()
 // const showGlobalToast = useShowGlobalToast()
 
@@ -24,6 +23,7 @@ definePageMeta({
 
 const dashboardList = ref<DashboardItem[]>([])
 const isGetLoading = ref<boolean>(true)
+// create Link
 const showCreateLinkModal = ref<boolean>(false)
 const isCreateLoading = ref<boolean>(false)
 
@@ -33,12 +33,6 @@ const getDashboardData = async (): Promise<void> => {
   dashboardList.value = data?.dashboardList as DashboardItem[]
   isGetLoading.value = false
 }
-
-// 用 link 取得 id
-// const getShareData = async () => {
-//   const data = await getDocumentByLink('doorItemDetail', 'cat')
-//   console.log('data: ', data)
-// }
 
 // create
 const onShowCreateLinkModal = () => {
