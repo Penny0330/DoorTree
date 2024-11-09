@@ -11,9 +11,9 @@
     "lint": "eslint --ext .ts,.vue ."
   },
   "dependencies": {
+    "@nuxt/icon": "^1.6.1",
     "dayjs": "^1.11.13",
     "firebase": "^10.14.0",
-    "lucide-vue-next": "^0.453.0",
     "nanoid": "^5.0.7",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",

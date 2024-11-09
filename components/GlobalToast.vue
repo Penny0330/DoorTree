@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CircleX, Info, CircleCheck } from 'lucide-vue-next'
+import { Icon } from '#components'
 
 const props = defineProps({
   message: {
@@ -15,15 +15,15 @@ const props = defineProps({
 const transformType = {
   success: {
     bgColor: 'bg-green-500',
-    icon: CircleCheck,
+    icon: () => h(Icon, { name: 'lets-icons:check-ring' }),
   },
   error: {
     bgColor: 'bg-red-500',
-    icon: CircleX,
+    icon: () => h(Icon, { name: 'ix:error' }),
   },
   info: {
     bgColor: 'bg-blue-500',
-    icon: Info,
+    icon: () => h(Icon, { name: 'bx:error-circle' }),
   },
 }
 </script>

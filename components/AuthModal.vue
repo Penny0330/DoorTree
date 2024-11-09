@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { LoaderCircle, X } from 'lucide-vue-next'
-import GoogleIcon from '@/assets/icon/google.png'
 import { useAuth } from '@/composables/useAuth'
 
 const {
@@ -81,8 +79,9 @@ const onSubmit = () => {
       <header class="text-xl text-center my-4">
         {{ toggleTitle }}
       </header>
-      <X
-        class="absolute top-3 right-4 stroke-gray-400 cursor-pointer"
+      <Icon
+        name="iconamoon:close"
+        class="absolute top-3 right-4 text-2xl text-gray-400 cursor-pointer"
         @click="onToggleAuthModal"
       />
       <section>
@@ -115,7 +114,11 @@ const onSubmit = () => {
           :disabled="isLoading"
           @click="onSubmit"
         >
-          <LoaderCircle v-if="isLoading" class="animate-spin h-6 w-6 m-auto" />
+          <Icon
+            v-if="isLoading"
+            name="eos-icons:loading"
+            class="text-2xl m-auto align-middle"
+          />
           <p v-else>{{ toggleTitle }}</p>
         </button>
         <div class="flex items-center justify-center">
@@ -128,7 +131,7 @@ const onSubmit = () => {
           :disabled="isLoading"
           @click="handleLoginUseGoogle"
         >
-          <img :src="GoogleIcon" alt="Google-Icon" class="w-6" />
+          <Icon name="logos:google-icon" class="text-xl" />
           {{ toggleGoogleButtonText }}
         </button>
         <div class="my-2 text-center flex flex-col">

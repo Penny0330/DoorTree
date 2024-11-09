@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
 import dayjs from 'dayjs'
-import { CirclePlus, Pencil, Share2, Trash2, DoorOpen } from 'lucide-vue-next'
 import LinkModal from './LinkModal.vue'
 import type { DashboardItem } from '~/types/DashboardType'
 import { useFirestore } from '@/composables/useFirestore'
@@ -109,7 +108,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white pt-20 pb-8 min-h-[calc(100vh-5rem)] flex flex-col items-center sm:pt-32"
+    class="bg-white pt-20 pb-8 min-h-[calc(100dvh-24px)] flex flex-col items-center sm:pt-32"
   >
     <section
       class="max-w-[1440px] w-11/12 grid items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
@@ -119,7 +118,10 @@ onMounted(() => {
         class="bg-main-blue text-white w-full p-4 rounded-2xl flex justify-center items-center mt-6 mb-4 cursor-pointer sm:h-full sm:my-0 sm:text-2xl"
         @click="onShowCreateLinkModal"
       >
-        <DoorOpen class="stroke-white mr-4 sm:w-8 sm:h-8" />
+        <Icon
+          name="lucide:door-open"
+          class="text-white text-2xl mr-4 md:text-3xl"
+        />
         Create New
       </div>
       <div
@@ -134,33 +136,41 @@ onMounted(() => {
         />
         <div>
           <p class="text-xl">{{ item.title }}</p>
-          <p class="text-xs text-gray-400">updated {{ item.updateTime }}</p>
+          <div class="flex items-center gap-1 mt-1">
+            <Icon
+              name="material-symbols:update"
+              class="text-gray-400 text-sm"
+            />
+            <span class="text-xs text-gray-400">{{ item.updateTime }}</span>
+          </div>
           <div class="mt-4 flex flex-col gap-2">
             <div class="flex items-center gap-2">
-              <Pencil class="w-4 h-4 stroke-gray-500" />
+              <Icon name="hugeicons:pencil" class="text-gray-500 text-lg" />
               <span>Edit</span>
             </div>
             <div
               class="flex items-center gap-2"
               @click="onShareLink(item.link)"
             >
-              <Share2 class="w-4 h-4 stroke-gray-500" />
+              <Icon name="mage:share" class="text-gray-500 text-lg" />
               <span>Share Link</span>
             </div>
             <div class="flex items-center gap-2" @click.stop="onDelete(item)">
-              <Trash2 class="w-4 h-4 stroke-gray-500" />
+              <Icon
+                name="fluent:delete-32-regular"
+                class="text-gray-500 text-lg"
+              />
               <span>Delete</span>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <div class="fixed bottom-12 right-4 bg-main-blue rounded-full">
-      <CirclePlus
-        class="w-10 h-10 stroke-white cursor-pointer"
-        @click="onShowCreateLinkModal"
-      />
-    </div>
+    <Icon
+      name="carbon:add-alt"
+      class="text-main-blue text-4xl fixed bottom-12 right-4 cursor-pointer"
+      @click="onShowCreateLinkModal"
+    />
 
     <LinkModal
       v-if="showCreateLinkModal"

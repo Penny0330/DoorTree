@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { X } from 'lucide-vue-next'
-import MenuIcon from '@/assets/icon/MenuIcon.vue'
-
 const props = defineProps({
   showMenu: {
     type: Boolean,
@@ -26,8 +23,9 @@ const onToggleMenu = (_event: MouseEvent) => {
     @click="onToggleMenu"
   >
     <component
-      :is="props.showMenu ? X : MenuIcon"
-      class="stroke-white"
+      :is="'Icon'"
+      :name="props.showMenu ? 'iconamoon:close' : 'gg:menu-right-alt'"
+      class="text-white text-[28px]"
     ></component>
   </div>
 </template>

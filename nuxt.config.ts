@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
+    '@nuxt/icon',
   ],
   pinia: {
     autoImports: ['defineStore'], // 全域引入

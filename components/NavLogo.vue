@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { DoorOpen } from 'lucide-vue-next'
 import { useAuth } from '@/composables/useAuth'
 
 const { handleLogout } = useAuth()
@@ -48,7 +47,10 @@ const isLogin = computed(() => store.isLogin)
   >
     <div class="w-full flex justify-between">
       <div class="flex items-center gap-x-2">
-        <DoorOpen class="stroke-main-blue md:w-7 md:h-7" />
+        <Icon
+          name="lucide:door-open"
+          class="text-main-blue text-2xl md:text-[28px]"
+        />
         <a href="/" class="text-base font-semibold text-main-blue md:text-xl"
           >DoorTree</a
         >

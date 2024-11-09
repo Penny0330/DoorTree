@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { X, LoaderCircle } from 'lucide-vue-next'
-
 const props = defineProps({
   showCreateLinkModal: {
     type: Boolean,
@@ -47,8 +45,9 @@ const onCreateLink = (_event: MouseEvent, link: string) => {
       <header class="text-xl text-center my-8">
         Create Your Custom Share Link
       </header>
-      <X
-        class="absolute top-3 right-4 stroke-gray-400 cursor-pointer"
+      <Icon
+        name="iconamoon:close"
+        class="absolute top-3 right-4 text-gray-400 text-2xl cursor-pointer"
         @click="onToggleCreateLinkModal"
       />
       <section>
@@ -60,7 +59,7 @@ const onCreateLink = (_event: MouseEvent, link: string) => {
             v-model="link"
             type="text"
             class="flex-1 px-3 py-2"
-            placeholder="Enter a custom link name"
+            placeholder="Enter a custom link"
           />
         </div>
       </section>
@@ -76,9 +75,10 @@ const onCreateLink = (_event: MouseEvent, link: string) => {
           class="btn btn-solid btn-bg-main-blue w-[78px] cursor-pointer"
           @click="onCreateLink($event, link)"
         >
-          <LoaderCircle
+          <Icon
             v-if="isCreateLoading"
-            class="animate-spin h-4 w-4 m-auto"
+            name="eos-icons:loading"
+            class="text-2xl m-auto align-middle"
           />
           <p v-else>create</p>
         </button>
