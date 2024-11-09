@@ -40,7 +40,7 @@ watch(
 </script>
 
 <template>
-  <nav class="flex justify-between fixed z-10 w-full md:top-4">
+  <nav class="flex justify-between fixed z-10 w-full sm:top-4">
     <NavLogo
       :has-box-shadow="true"
       :has-border="true"

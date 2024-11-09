@@ -110,7 +110,7 @@ const onSubmit = () => {
           </div>
         </form>
         <button
-          class="btn btn-solid btn-bg-main-blue mt-10 mb-2 w-full"
+          class="btn btn-solid btn-bg-main-blue mt-10 mb-2 w-full h-[40px]"
           :disabled="isLoading"
           @click="onSubmit"
         >

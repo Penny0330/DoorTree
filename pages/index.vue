@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="h-full pt-24 md:pt-32 md:flex md:justify-center">
+  <div class="h-full pt-24 sm:pt-32 sm:flex sm:justify-center">
     <section
-      class="bg-white ml-4 rounded-tl-3xl rounded-bl-3xl p-8 relative md:max-w-[1440px + 1rem] md:h-dvh"
+      class="bg-white ml-4 rounded-tl-3xl rounded-bl-3xl p-8 relative sm:max-w-[1440px + 1rem] sm:h-dvh"
     >
       <img
         src="../assets/icon/bg-home.svg"

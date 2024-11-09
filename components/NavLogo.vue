@@ -41,7 +41,7 @@ const isLogin = computed(() => store.isLogin)
 <template>
   <div
     :class="[
-      ' w-3/4 rounded-full py-2 px-4 flex justify-between items-center bg-white mt-4 ml-4 md:py-6 md:px-10 md:m-auto md:w-11/12 max-w-[1440px]',
+      ' w-3/4 rounded-full py-2 px-4 flex justify-between items-center bg-white mt-4 ml-4 sm:py-6 sm:px-10 sm:m-auto sm:w-11/12 max-w-[1440px]',
       { 'shadow-md': props.hasBoxShadow, border: props.hasBorder },
     ]"
   >
@@ -49,13 +49,13 @@ const isLogin = computed(() => store.isLogin)
       <div class="flex items-center gap-x-2">
         <Icon
           name="lucide:door-open"
-          class="text-main-blue text-2xl md:text-[28px]"
+          class="text-main-blue text-2xl sm:text-[28px]"
         />
-        <a href="/" class="text-base font-semibold text-main-blue md:text-xl"
+        <a href="/" class="text-base font-semibold text-main-blue sm:text-xl"
           >DoorTree</a
         >
       </div>
-      <div class="hidden md:flex md:gap-4 text-gray-500 font-semibold">
+      <div class="hidden sm:flex sm:gap-4 text-gray-500 font-semibold">
         <template v-if="!isLogin">
           <a
             href="/"
