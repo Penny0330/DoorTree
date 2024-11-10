@@ -75,6 +75,7 @@ const handleCheckLinkCount = debounce((newLink: string) => {
 }, 500)
 
 watch(link, (newLink) => {
+  link.value = newLink.toLowerCase()
   handleCheckLinkCount(newLink)
   if (!isCreateDisabled.value) {
     isCheckLoading.value = true
@@ -105,7 +106,7 @@ watch(link, (newLink) => {
           <input
             v-model="link"
             type="text"
-            class="flex-1 px-3 py-2"
+            class="flex-1 pl-1 pr-3 py-2"
             placeholder="Enter a custom link"
           />
           <component
