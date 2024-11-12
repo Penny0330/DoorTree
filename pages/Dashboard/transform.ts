@@ -1,4 +1,4 @@
-import type { CheckLinkTransform } from '~/types/DashboardType'
+import type { CheckLinkTransform } from '@/types/DashboardType'
 import { Icon } from '#components'
 
 export const checkLinkTransformType: CheckLinkTransform = {

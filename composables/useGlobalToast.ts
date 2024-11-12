@@ -1,4 +1,4 @@
-import type { GlobalToastOptions } from '~/types/GlobalToastType'
+import type { GlobalToastOptions } from '@/types/GlobalToastType'
 
 export function useGlobalToast() {
   const showToast = ref<boolean>(false)

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import ErrorPage from '../error.vue'
-import Loading from '../../assets/icon/Loading.gif'
 import { useFirestore } from '@/composables/useFirestore'
 import { useHandleError } from '@/composables/useHandleError'
+import GlobalLoading from '@/components/GlobalLoading.vue'
 import ProfileBlock from '@/components/door/ProfileBlock.vue'
 
-import type { EditDetail } from '~/types/MainType'
+import type { EditDetail } from '@/types/MainType'
 
 definePageMeta({
   layout: 'share',
@@ -47,9 +47,9 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white pt-20 pb-8 min-h-[calc(100dvh-24px)] flex flex-col items-center sm:pt-32"
+    class="bg-white pb-8 min-h-[calc(100dvh-40px)] flex flex-col items-center"
   >
-    <img v-if="isLoading" :src="Loading" alt="" class="w-12" />
+    <GlobalLoading v-if="isLoading" />
     <div v-else>
       <div v-if="hasExistLink">
         <ProfileBlock />

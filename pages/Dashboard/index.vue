@@ -2,9 +2,9 @@
 import { nanoid } from 'nanoid'
 import dayjs from 'dayjs'
 import LinkModal from './LinkModal.vue'
-import type { DashboardItem } from '~/types/DashboardType'
+import type { DashboardItem } from '@/types/DashboardType'
 import { useFirestore } from '@/composables/useFirestore'
-import GlobalLoading from '~/components/GlobalLoading.vue'
+import GlobalLoading from '@/components/GlobalLoading.vue'
 
 // import { useShowGlobalToast } from '@/composables/useGlobalToast'
 
@@ -104,7 +104,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white pt-20 pb-8 min-h-[calc(100dvh-24px)] flex flex-col items-center sm:pt-32"
+    class="bg-white pt-20 pb-8 min-h-[calc(100dvh-40px)] flex flex-col items-center sm:pt-32"
   >
     <GlobalLoading v-if="isGetLoading" />
     <section

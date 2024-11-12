@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Loading from '../../assets/icon/Loading.gif'
+import Loading from '@/assets/icon/Loading.gif'
 </script>
 
 <template>

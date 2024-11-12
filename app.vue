@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import GlobalToast from '~/components/GlobalToast.vue'
-import { useGlobalToast } from '~/composables/useGlobalToast'
+import GlobalToast from '@/components/GlobalToast.vue'
+import { useGlobalToast } from '@/composables/useGlobalToast'
 
 const { showToast, toastMessage, toastType, toastTime, showGlobalToast } =
   useGlobalToast()
