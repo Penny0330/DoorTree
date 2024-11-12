@@ -49,7 +49,13 @@ const isLogin = computed(() => store.isLogin)
       <ul class="p-10">
         <li>
           <template v-if="isLogin">
-            <a href="/Dashboard" class="a-btn">Dashboard</a>
+            <nuxt-link
+              to="/Dashboard"
+              class="a-btn"
+              active-class="text-main-blue font-bold"
+            >
+              Dashboard
+            </nuxt-link>
             <a href="/" class="a-btn" @click.prevent="onLogout">Logout</a>
           </template>
           <template v-else>

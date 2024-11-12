@@ -74,14 +74,16 @@ const isLogin = computed(() => store.isLogin)
           >
         </template>
         <template v-else>
-          <a
-            href="/Dashboard"
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80 cursor-pointer"
-            >Dashboard</a
+          <nuxt-link
+            to="/Dashboard"
+            class="hover:text-main-blue px-2 transition ease-in-out delay-80"
+            active-class="text-main-blue font-bold"
           >
+            Dashboard
+          </nuxt-link>
           <a
             href="/"
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80 cursor-pointer"
+            class="hover:text-main-blue px-2 transition ease-in-out delay-80"
             @click="onLogout"
             >Logout</a
           >
