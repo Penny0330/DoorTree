@@ -1,14 +1,54 @@
 <script setup lang="ts">
+import ShareLinkBlock from './ShareLinkBlock.vue'
+import ProfileBlock from '@/components/door/ProfileBlock.vue'
+import GlobalLoading from '~/components/GlobalLoading.vue'
+
+import { useFirestore } from '@/composables/useFirestore'
+import type { EditDetail } from '~/types/MainType'
+
 definePageMeta({
   middleware: 'auth',
 })
 
+const { getDocument } = useFirestore()
+
 const route = useRoute()
+const id = ref<string | string[]>(route.params.id)
 console.log(route.params.id)
+const isLoading = ref<boolean>(true)
+const data = ref<EditDetail | null>(null)
+
+// get data
+const getDetailData = async (): Promise<void> => {
+  isLoading.value = true
+  const docId = Array.isArray(id.value) ? id.value[0] : id.value
+  const resp = await getDocument('doorItemDetail', docId)
+  if (!resp)
+    throw showError({
+      statusCode: 502,
+      statusMessage: 'Page Not Found',
+      fatal: true,
+    })
+  data.value = resp as EditDetail
+  console.log(data.value)
+  isLoading.value = false
+}
+
+onMounted(() => {
+  getDetailData()
+})
 </script>
 
 <template>
-  <div>
-    <h1>Edit page</h1>
+  <div
+    class="bg-white pt-20 pb-8 min-h-[calc(100dvh-24px)] flex flex-col items-center sm:pt-32"
+  >
+    <GlobalLoading v-if="isLoading" />
+    <section v-else class="w-11/12">
+      <ShareLinkBlock :link="data?.link" />
+      <main class="mt-8">
+        <ProfileBlock :is-edit="true" />
+      </main>
+    </section>
   </div>
 </template>

@@ -39,6 +39,19 @@
             @apply bg-main-blue;
         }
     }
+    .common {
+        &-boxShadow {
+            box-shadow: 0 0 8px 0 rgba(0,0,0,0.1);
+        }
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* 為了兼容性 */
+    .hide-scrollbar {
+        -ms-overflow-style: none; /* IE 和 Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 }
 
 @layer utilities {

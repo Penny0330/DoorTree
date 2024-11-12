@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import LinkModal from './LinkModal.vue'
 import type { DashboardItem } from '~/types/DashboardType'
 import { useFirestore } from '@/composables/useFirestore'
+import GlobalLoading from '~/components/GlobalLoading.vue'
 
 // import { useShowGlobalToast } from '@/composables/useGlobalToast'
 
@@ -29,6 +30,7 @@ const isCreateLoading = ref<boolean>(false)
 
 // get data
 const getDashboardData = async (): Promise<void> => {
+  isGetLoading.value = true
   const data = await getDocument('dashboard', store.uid as string)
   dashboardList.value = data?.dashboardList as DashboardItem[]
   isGetLoading.value = false
@@ -104,11 +106,12 @@ onMounted(() => {
   <div
     class="bg-white pt-20 pb-8 min-h-[calc(100dvh-24px)] flex flex-col items-center sm:pt-32"
   >
+    <GlobalLoading v-if="isGetLoading" />
     <section
+      v-else
       class="max-w-[1440px] w-11/12 grid items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <div
-        v-if="!isGetLoading"
         class="bg-main-blue text-white w-full p-4 rounded-2xl flex justify-center items-center mt-6 mb-4 cursor-pointer sm:h-full sm:my-0 sm:text-2xl"
         @click="onShowCreateLinkModal"
       >
