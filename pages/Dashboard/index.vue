@@ -141,18 +141,23 @@ onMounted(() => {
             <span class="text-xs text-gray-400">{{ item.updateTime }}</span>
           </div>
           <div class="mt-4 flex flex-col gap-2">
-            <div class="flex items-center gap-2">
+            <div
+              class="flex items-center gap-2 hover:underline hover:text-main-blue"
+            >
               <Icon name="hugeicons:pencil" class="text-gray-500 text-lg" />
               <span>Edit</span>
             </div>
             <div
-              class="flex items-center gap-2"
+              class="flex items-center gap-2 hover:underline hover:text-main-blue"
               @click="onShareLink(item.link)"
             >
               <Icon name="mage:share" class="text-gray-500 text-lg" />
               <span>Share Link</span>
             </div>
-            <div class="flex items-center gap-2" @click.stop="onDelete(item)">
+            <div
+              class="flex items-center gap-2 hover:underline hover:text-red-500"
+              @click.stop="onDelete(item)"
+            >
               <Icon
                 name="fluent:delete-32-regular"
                 class="text-gray-500 text-lg"
