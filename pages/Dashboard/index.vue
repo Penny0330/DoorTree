@@ -82,7 +82,7 @@ const onEdit = (id: string) => {
 
 // go to share page
 const onShareLink = (link: string) => {
-  navigateTo(`/share/${link}`)
+  navigateTo(`/${link}`)
 }
 
 // delete
