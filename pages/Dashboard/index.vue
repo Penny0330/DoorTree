@@ -60,7 +60,7 @@ const onCreateLink = async (link: string) => {
     'dashboardList',
     newDashboardItem,
   )
-  createDetail(newDashboardItem.id, link)
+  await createDetail(newDashboardItem.id, link)
   isCreateLoading.value = false
   onToggleCreateLinkModal()
   navigateTo(`/edit/${newDashboardItem.id}`)
