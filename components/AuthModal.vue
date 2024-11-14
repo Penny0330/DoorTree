@@ -110,7 +110,7 @@ const onSubmit = () => {
           </div>
         </form>
         <button
-          class="btn btn-solid btn-bg-main-blue mt-10 mb-2 w-full h-[40px]"
+          class="btn-primary mt-10 mb-2 w-full"
           :disabled="isLoading"
           @click="onSubmit"
         >
@@ -127,7 +127,7 @@ const onSubmit = () => {
           <span class="border-b flex-1"></span>
         </div>
         <button
-          class="btn btn-hollow btn-outline-default mt-2 mb-8 flex justify-center items-center gap-4 w-full"
+          class="btn-default mt-2 mb-8 flex justify-center items-center gap-4 w-full"
           :disabled="isLoading"
           @click="handleLoginUseGoogle"
         >

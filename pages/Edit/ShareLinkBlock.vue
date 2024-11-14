@@ -30,7 +30,7 @@ const onCopyLink = async () => {
 
 <template>
   <div
-    class="common-boxShadow flex items-center justify-between px-4 py-3 rounded-lg"
+    class="shadow-around-light flex items-center justify-between px-4 py-3 rounded-lg"
   >
     <span
       class="text-zinc-500 text-nowrap overflow-x-auto overscroll-none hide-scrollbar mr-4"

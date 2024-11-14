@@ -75,4 +75,8 @@ const isLogin = computed(() => store.isLogin)
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-btn {
+  @apply btn-link w-full h-auto py-4 pr-4 pl-0;
+}
+</style>

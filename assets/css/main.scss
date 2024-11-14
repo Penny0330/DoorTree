@@ -3,47 +3,40 @@
 @tailwind utilities;
 
 @layer base {
-    // label {
-    //     @apply text-sm text-slate-500 mb-1.5;
-    // }
     input {
         @apply focus-visible:outline-none focus:border-gray-500;
-    }
-
-    button:disabled {
-        @apply opacity-70
     }
 }
 
 @layer components {
     .a-btn {
-        @apply inline-block py-4 pr-4 w-full border-b border-solid border-gray-400
+        @apply inline-block py-4 pr-4 w-full border-b border-solid border-gray-400;
     }
-    .btn {
-        @apply py-2 px-4 rounded;
-        // === 樣式 ===
-        // 實心
-        &-solid {
-            @apply text-white
-        }
-        // 空心
-        &-hollow {
-            @apply text-slate-900
-        }
-        // === 外框線條
-        &-outline-default {
-            @apply border;
-        }
-        // === bg ===
-        &-bg-main-blue {
-            @apply bg-main-blue;
-        }
+
+    // btn 大小
+    .btn-sm {
+        @apply py-2 px-4 w-[78px] h-[40px];
     }
-    .common {
-        &-boxShadow {
-            box-shadow: 0 0 8px 0 rgba(0,0,0,0.1);
-        }
+
+    // btn 樣式
+    .btn-default {
+        @apply btn-sm;
+        @apply text-slate-900 border rounded;
+        @apply hover:border-main-blue hover:text-main-blue hover-transition;
     }
+    .btn-primary {
+        @apply btn-sm;
+        @apply text-white bg-main-blue rounded;
+        @apply hover:opacity-80;
+        @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+    .btn-link {
+        @apply btn-sm;
+        @apply inline-block border-b border-solid border-gray-400
+    }
+}
+
+@layer utilities {
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
     }
@@ -52,10 +45,7 @@
         -ms-overflow-style: none; /* IE 和 Edge */
         scrollbar-width: none; /* Firefox */
     }
-}
-
-@layer utilities {
-    .-top-23px {
-        top: -23px;
+    .hover-transition {
+        @apply transition ease-in duration-200 delay-[120]
     }
 }

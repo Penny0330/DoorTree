@@ -59,16 +59,16 @@ const isLogin = computed(() => store.isLogin)
         <template v-if="!isLogin">
           <a
             href="/"
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80 cursor-pointer"
+            class="hover:text-main-blue px-2 hover-transition cursor-pointer"
             >Feature</a
           >
           <a
             href="/"
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80 cursor-pointer"
+            class="hover:text-main-blue px-2 transition hover-transition cursor-pointer"
             >Templates</a
           >
           <a
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80 cursor-pointer"
+            class="hover:text-main-blue px-2 transition hover-transition cursor-pointer"
             @click="onToggleAuthModal"
             >Login</a
           >
@@ -76,14 +76,14 @@ const isLogin = computed(() => store.isLogin)
         <template v-else>
           <nuxt-link
             to="/Dashboard"
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80"
+            class="hover:text-main-blue px-2 hover-transition"
             active-class="text-main-blue font-bold"
           >
             Dashboard
           </nuxt-link>
           <a
             href="/"
-            class="hover:text-main-blue px-2 transition ease-in-out delay-80"
+            class="hover:text-main-blue px-2 hover-transition"
             @click="onLogout"
             >Logout</a
           >

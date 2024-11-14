@@ -2,6 +2,7 @@
 import debounce from 'lodash/debounce'
 import { checkLinkTransformType } from './transform'
 import { useFirestore } from '@/composables/useFirestore'
+import CommonDialog from '@/components/CommonDialog.vue'
 
 const { getDocumentByLink } = useFirestore()
 
@@ -30,7 +31,7 @@ const props = defineProps({
 
 const link = ref<string>('')
 const domain = ref<string>('door-tree/')
-const hasExistLink = ref<boolean>(false)
+const hasExistLink = ref<boolean>(true)
 const isCheckLoading = ref<boolean>(false)
 const resultType = ref<string>('')
 
@@ -85,63 +86,48 @@ watch(link, (newLink) => {
 </script>
 
 <template>
-  <div class="w-full h-dvh fixed top-0 z-30 bg-main-overlay">
-    <div
-      class="w-11/12 bg-white rounded-2xl m-auto mt-[50%] py-4 px-5 relative sm:mt-[10%] sm:max-w-[500px]"
-      @click.stop
-    >
-      <header class="text-xl text-center my-8">
-        Create Your Custom Share Link
-      </header>
-      <Icon
-        name="iconamoon:close"
-        class="absolute top-3 right-4 text-gray-400 text-2xl cursor-pointer"
-        @click="onToggleCreateLinkModal"
-      />
-      <section>
-        <div class="flex items-center border rounded-md overflow-hidden">
-          <span class="pl-3 text-gray-500 cursor-pointer text-nowrap">
-            {{ domain }}
-          </span>
-          <input
-            v-model="link"
-            type="text"
-            class="flex-1 pl-1 pr-3 py-2"
-            placeholder="Enter a custom link"
-          />
-          <component
-            :is="checkLinkTransformType[resultType].icon"
-            v-if="resultType"
-            class="w-5 h-5 mr-2"
-          />
-        </div>
-        <p
-          v-if="resultType && !isCheckLoading"
-          class="text-red-500 text-sm ml-2"
-        >
-          {{ checkLinkTransformType[resultType].text }}
-        </p>
-      </section>
-      <footer class="flex justify-end gap-4 mt-8">
-        <button
-          class="btn btn-hollow btn-outline-default cursor-pointer"
-          @click="onToggleCreateLinkModal"
-        >
-          cancel
-        </button>
-        <button
-          :disabled="isCreateDisabled || isCreateLoading || hasExistLink"
-          class="btn btn-solid btn-bg-main-blue w-[78px] cursor-pointer"
-          @click="onCreateLink($event, link)"
-        >
-          <Icon
-            v-if="isCreateLoading"
-            name="eos-icons:loading"
-            class="text-2xl m-auto align-middle"
-          />
-          <p v-else>create</p>
-        </button>
-      </footer>
-    </div>
-  </div>
+  <CommonDialog
+    :show-dialog="showCreateLinkModal"
+    :dialog-title="'Create Your Custom Share Link'"
+    @on-close-dialog="onToggleCreateLinkModal"
+  >
+    <template #modal-body>
+      <div class="flex items-center border rounded-md overflow-hidden">
+        <span class="pl-3 text-gray-500 cursor-pointer text-nowrap">
+          {{ domain }}
+        </span>
+        <input
+          v-model="link"
+          type="text"
+          class="flex-1 pl-1 pr-3 py-2"
+          placeholder="Enter a custom link"
+        />
+        <component
+          :is="checkLinkTransformType[resultType].icon"
+          v-if="resultType"
+          class="w-5 h-5 mr-2"
+        />
+      </div>
+      <p v-if="resultType && !isCheckLoading" class="text-red-500 text-sm ml-2">
+        {{ checkLinkTransformType[resultType].text }}
+      </p>
+    </template>
+    <template #modal-footer>
+      <button class="btn-default" @click="onToggleCreateLinkModal">
+        cancel
+      </button>
+      <button
+        :disabled="isCreateDisabled || isCreateLoading || hasExistLink"
+        class="btn-primary flex"
+        @click="onCreateLink($event, link)"
+      >
+        <Icon
+          v-if="isCreateLoading"
+          name="eos-icons:loading"
+          class="text-2xl m-auto align-middle"
+        />
+        <p v-else>create</p>
+      </button>
+    </template>
+  </CommonDialog>
 </template>

@@ -8,7 +8,7 @@
       <img
         src="../assets/icon/bg-home.svg"
         alt="BG-HOME"
-        class="absolute right-0 -top-23px"
+        class="absolute right-0 top-[-23px]"
       />
       <p class="text-2xl font-bold">Everything you are.</p>
       <p class="text-2xl font-bold pb-4">In one, simple link in bio.</p>

@@ -14,6 +14,9 @@ export default {
         'main-red': '#ED1F1D',
         'main-overlay': 'rgba(0, 0, 0, 45%)',
       },
+      boxShadow: {
+        'around-light': '0 0 8px 0 rgba(0,0,0,0.1)',
+      },
     },
   },
   plugins: [],

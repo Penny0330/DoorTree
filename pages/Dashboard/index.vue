@@ -175,7 +175,7 @@ onMounted(() => {
     />
 
     <LinkModal
-      v-if="showCreateLinkModal"
+      :show-create-link-modal="showCreateLinkModal"
       :is-create-loading="isCreateLoading"
       :on-toggle-create-link-modal="onToggleCreateLinkModal"
       :on-create-link="onCreateLink"
