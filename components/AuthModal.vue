@@ -33,6 +33,10 @@ const props = defineProps({
   },
 })
 
+const isDisabledLogin = computed(() => {
+  return !email.value || !password.value
+})
+
 const toggleTitle = computed(() => {
   return props.isLoginAction ? 'Login' : 'Sign up'
 })
@@ -68,6 +72,11 @@ const onSubmit = () => {
     handleSignup()
   }
 }
+
+const handleInput = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  target.value = target.value.replace(/\s+/g, '')
+}
 </script>
 
 <template>
@@ -95,6 +104,7 @@ const onSubmit = () => {
               name="email"
               placeholder="Please enter your email"
               :disabled="isLoading"
+              @input="handleInput"
             />
           </div>
           <div class="flex flex-col">
@@ -106,12 +116,13 @@ const onSubmit = () => {
               name="password"
               placeholder="Please enter your password"
               :disabled="isLoading"
+              @input="handleInput"
             />
           </div>
         </form>
         <button
           class="btn-primary mt-10 mb-2 w-full"
-          :disabled="isLoading"
+          :disabled="isDisabledLogin || isLoading"
           @click="onSubmit"
         >
           <Icon
