@@ -109,7 +109,7 @@ onMounted(() => {
     <GlobalLoading v-if="isGetLoading" />
     <section
       v-else
-      class="max-w-[1440px] w-11/12 grid items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      class="max-w-[1440px] w-11/12 grid grid-rows-1 items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <div
         class="bg-main-blue text-white w-full p-4 rounded-2xl flex justify-center items-center mt-6 mb-4 cursor-pointer sm:h-full sm:my-0 sm:text-2xl"

@@ -51,7 +51,9 @@ const isLogin = computed(() => store.isLogin)
           name="lucide:door-open"
           class="text-main-blue text-2xl sm:text-[28px]"
         />
-        <a href="/" class="text-base font-semibold text-main-blue sm:text-xl"
+        <a
+          href="/"
+          class="text-base font-semibold font-mono text-main-blue sm:text-xl"
           >DoorTree</a
         >
       </div>
