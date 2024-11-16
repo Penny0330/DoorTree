@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import GlobalToast from '@/components/GlobalToast.vue'
+import CommonConfirmModal from '@/components/CommonConfirmModal.vue'
 import { useGlobalToast } from '@/composables/useGlobalToast'
+import { useConfirmModal } from '@/composables/useConfirmModal'
 
 const { showToast, toastMessage, toastType, toastTime, showGlobalToast } =
   useGlobalToast()
+const { showModal, confirmModalOptions, closeConfirmModal, showConfirmModal } =
+  useConfirmModal()
 
 provide('showGlobalToast', showGlobalToast)
+provide('showConfirmModal', showConfirmModal)
 </script>
 
 <template>
@@ -16,6 +21,11 @@ provide('showGlobalToast', showGlobalToast)
         :message="toastMessage"
         :type="toastType"
         :time="toastTime"
+      />
+      <CommonConfirmModal
+        v-if="showModal"
+        :confirm-modal-options="confirmModalOptions"
+        @close-confirm-modal="closeConfirmModal"
       />
       <NuxtPage />
     </NuxtLayout>

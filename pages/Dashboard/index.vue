@@ -5,8 +5,8 @@ import LinkModal from './LinkModal.vue'
 import type { DashboardItem } from '@/types/DashboardType'
 import { useFirestore } from '@/composables/useFirestore'
 import GlobalLoading from '@/components/GlobalLoading.vue'
-
-// import { useShowGlobalToast } from '@/composables/useGlobalToast'
+import { useShowConfirmModal } from '@/composables/useConfirmModal'
+import { useShowGlobalToast } from '@/composables/useGlobalToast'
 
 const store = useStore()
 const {
@@ -16,7 +16,8 @@ const {
   deleteDocument,
   deleteDocumentArray,
 } = useFirestore()
-// const showGlobalToast = useShowGlobalToast()
+const showConfirmModal = useShowConfirmModal()
+const showGlobalToast = useShowGlobalToast()
 
 definePageMeta({
   middleware: 'auth',
@@ -86,7 +87,18 @@ const onShareLink = (link: string) => {
 }
 
 // delete
-const onDelete = async (removeItem: DashboardItem) => {
+const onDelete = (item: DashboardItem, idx: number) => {
+  showConfirmModal({
+    modalTitle: `Delete「${item.link}」`,
+    content: 'Are you sure you want to delete? This action cannot be undone.',
+    okBtnText: 'delete',
+    isDanger: true,
+    confirmLoading: true,
+    onOk: () => handleDelete(item, idx),
+  })
+}
+
+const handleDelete = async (removeItem: DashboardItem, idx: number) => {
   await deleteDocumentArray(
     'dashboard',
     store.uid as string,
@@ -94,7 +106,8 @@ const onDelete = async (removeItem: DashboardItem) => {
     removeItem,
   )
   await deleteDocument('doorItemDetail', removeItem.id)
-  getDashboardData()
+  dashboardList.value.splice(idx, 1)
+  showGlobalToast({ message: 'Deleted successfully', type: 'success' })
 }
 
 onMounted(() => {
@@ -122,7 +135,7 @@ onMounted(() => {
         Create New
       </div>
       <div
-        v-for="item in dashboardList"
+        v-for="(item, idx) in dashboardList"
         :key="item.id"
         class="border rounded-2xl w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(25%-1rem)] xl:py-6"
         @click="onEdit(item.id)"
@@ -156,7 +169,7 @@ onMounted(() => {
             </div>
             <div
               class="flex items-center gap-2 hover:underline hover:text-red-500"
-              @click.stop="onDelete(item)"
+              @click.stop="onDelete(item, idx)"
             >
               <Icon
                 name="fluent:delete-32-regular"
