@@ -36,17 +36,25 @@ const isCheckLoading = ref<boolean>(false)
 const resultType = ref<string>('')
 
 const isCreateDisabled = computed(
-  () => !link.value || link.value.length < 3 || !linkRegex.test(link.value),
+  () => link.value.length < 3 || !linkRegex.test(link.value),
 )
 
 const linkRegex = /^[a-zA-Z0-9._]+$/
 
 const onToggleCreateLinkModal = (_event: MouseEvent) => {
+  resetModalState()
   props.onToggleCreateLinkModal()
 }
 
 const onCreateLink = (_event: MouseEvent, link: string) => {
   props.onCreateLink(link)
+}
+
+const resetModalState = () => {
+  link.value = ''
+  resultType.value = ''
+  hasExistLink.value = true
+  isCheckLoading.value = false
 }
 
 const handleCheckLinkExist = debounce(async () => {
@@ -76,12 +84,14 @@ const handleCheckLinkCount = debounce((newLink: string) => {
 }, 500)
 
 watch(link, (newLink) => {
-  hasExistLink.value = true
-  link.value = newLink.toLowerCase()
-  handleCheckLinkCount(newLink)
-  if (!isCreateDisabled.value) {
-    isCheckLoading.value = true
-    handleCheckLinkExist()
+  if (newLink) {
+    hasExistLink.value = true
+    link.value = newLink.toLowerCase()
+    handleCheckLinkCount(newLink)
+    if (!isCreateDisabled.value) {
+      isCheckLoading.value = true
+      handleCheckLinkExist()
+    }
   }
 })
 </script>
