@@ -51,24 +51,29 @@ const isLogin = computed(() => store.isLogin)
           <template v-if="isLogin">
             <nuxt-link
               to="/Dashboard"
-              class="a-btn"
+              class="a-btn btn-link"
               active-class="text-main-blue font-bold"
             >
               Dashboard
             </nuxt-link>
-            <a href="/" class="a-btn" @click.prevent="onLogout">Logout</a>
+            <a href="/" class="a-btn btn-link" @click.prevent="onLogout"
+              >Logout</a
+            >
           </template>
           <template v-else>
-            <a href="/" class="a-btn" @click.prevent="onToggleAuthModal"
+            <a
+              href="/"
+              class="a-btn btn-link"
+              @click.prevent="onToggleAuthModal"
               >Login</a
             >
           </template>
         </li>
         <li v-if="!isLogin">
-          <a href="/" class="a-btn">Feature</a>
+          <a href="/" class="a-btn btn-link">Feature</a>
         </li>
         <li v-if="!isLogin">
-          <a href="/" class="a-btn">Templates</a>
+          <a href="/" class="a-btn btn-link">Templates</a>
         </li>
       </ul>
     </section>
@@ -77,6 +82,6 @@ const isLogin = computed(() => store.isLogin)
 
 <style scoped>
 .a-btn {
-  @apply btn-link w-full h-auto py-4 pr-4 pl-0;
+  @apply w-full h-auto py-4 pr-4 pl-0;
 }
 </style>

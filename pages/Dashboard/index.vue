@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
 import dayjs from 'dayjs'
-import LinkModal from './LinkModal.vue'
+import EmptyCard from './components/EmptyCard.vue'
+import DoorCard from './components/DoorCard.vue'
+import LinkModal from './components/LinkModal.vue'
 import type { DashboardItem } from '@/types/DashboardType'
 import { useFirestore } from '@/composables/useFirestore'
 import GlobalLoading from '@/components/GlobalLoading.vue'
@@ -120,67 +122,22 @@ onMounted(() => {
     class="bg-white pt-20 pb-8 min-h-[calc(100dvh-40px)] flex flex-col items-center sm:pt-32"
   >
     <GlobalLoading v-if="isGetLoading" />
-    <section
-      v-else
-      class="max-w-[1440px] w-11/12 grid grid-rows-1 items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-    >
-      <div
-        class="bg-main-blue text-white w-full p-4 rounded-2xl flex justify-center items-center mt-6 mb-4 cursor-pointer sm:h-full sm:my-0 sm:text-2xl"
-        @click="onShowCreateLinkModal"
-      >
-        <Icon
-          name="lucide:door-open"
-          class="text-white text-2xl mr-4 md:text-3xl"
-        />
-        Create New
-      </div>
-      <div
-        v-for="(item, idx) in dashboardList"
-        :key="item.id"
-        class="border rounded-2xl w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(25%-1rem)] xl:py-6"
-        @click="onEdit(item.id)"
-      >
-        <img
-          src="https://fakeimg.pl/100x100/"
-          class="rounded-full w-4/12 h-1/3 sm:h-auto"
-        />
-        <div>
-          <p class="text-xl">{{ item.title }}</p>
-          <div class="flex items-center gap-1 mt-1">
-            <Icon
-              name="material-symbols:update"
-              class="text-gray-400 text-sm"
-            />
-            <span class="text-xs text-gray-400">{{ item.updateTime }}</span>
-          </div>
-          <div class="mt-4 flex flex-col gap-2">
-            <div
-              class="flex items-center gap-2 hover:underline hover:text-main-blue"
-            >
-              <Icon name="hugeicons:pencil" class="text-gray-500 text-lg" />
-              <span>Edit</span>
-            </div>
-            <div
-              class="flex items-center gap-2 hover:underline hover:text-main-blue"
-              @click="onShareLink(item.link)"
-            >
-              <Icon name="mage:share" class="text-gray-500 text-lg" />
-              <span>Share Link</span>
-            </div>
-            <div
-              class="flex items-center gap-2 hover:underline hover:text-red-500"
-              @click.stop="onDelete(item, idx)"
-            >
-              <Icon
-                name="fluent:delete-32-regular"
-                class="text-gray-500 text-lg"
-              />
-              <span>Delete</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <template v-else>
+      <!-- empty status -->
+      <EmptyCard
+        v-if="!dashboardList.length"
+        @on-show-create-link-modal="onShowCreateLinkModal"
+      />
+      <!-- has data -->
+      <DoorCard
+        v-else
+        :dashboard-list="dashboardList"
+        @on-show-create-link-modal="onShowCreateLinkModal"
+        @on-edit="onEdit"
+        @on-share-link="onShareLink"
+        @on-delete="onDelete"
+      />
+    </template>
     <Icon
       name="carbon:add-alt"
       class="text-main-blue text-4xl fixed bottom-12 right-4 cursor-pointer"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import debounce from 'lodash/debounce'
-import { checkLinkTransformType } from './transform'
+import { checkLinkTransformType } from '../transform'
 import { useFirestore } from '@/composables/useFirestore'
 import CommonDialog from '@/components/CommonDialog.vue'
 
@@ -76,6 +76,7 @@ const handleCheckLinkCount = debounce((newLink: string) => {
 }, 500)
 
 watch(link, (newLink) => {
+  hasExistLink.value = true
   link.value = newLink.toLowerCase()
   handleCheckLinkCount(newLink)
   if (!isCreateDisabled.value) {
