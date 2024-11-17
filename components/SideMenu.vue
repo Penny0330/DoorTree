@@ -53,6 +53,7 @@ const isLogin = computed(() => store.isLogin)
               to="/Dashboard"
               class="a-btn btn-link"
               active-class="text-main-blue font-bold"
+              @click="onToggleMenu"
             >
               Dashboard
             </nuxt-link>
