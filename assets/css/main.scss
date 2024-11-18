@@ -32,6 +32,9 @@
     .btn-link {
         @apply btn-sm inline-block border-b border-solid border-gray-400
     }
+    .btn-white {
+        @apply btn-sm text-main-blue bg-white rounded btn-hoverable btn-disabled;
+    }
     .btn-danger {
         @apply btn-sm text-white bg-red-500 rounded btn-hoverable btn-disabled;
     }

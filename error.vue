@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
   >
     <div class="flex flex-col items-center">
       <div ref="lottieContainer" class="w-[350px]"></div>
-      <nuxt-link to="/" class="btn btn-hollow bg-white">回到首頁</nuxt-link>
+      <nuxt-link to="/" class="btn-white">回到首頁</nuxt-link>
     </div>
     <LayoutHomeFooter />
   </div>
