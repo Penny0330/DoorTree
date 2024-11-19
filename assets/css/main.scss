@@ -10,12 +10,19 @@
 
 @layer components {
     // btn 大小
-    .btn-sm {
+    .btn-small {
+        @apply py-1 px-3 flex items-center justify-center text-sm;
+    }
+    .btn-medium {
         @apply min-w-[78px] h-[40px] py-2 px-4 flex items-center justify-center;
     }
 
     .btn-hoverable {
-        @apply hover:opacity-85;
+        @apply hover:opacity-85 hover-transition;
+    }
+
+    .btn-circle-hoverable {
+        @apply hover:text-main-blue hover:bg-white hover-transition;
     }
 
     .btn-disabled {
@@ -24,19 +31,22 @@
 
     // btn 樣式
     .btn-default {
-        @apply btn-sm text-gray-500 border border-gray-300 rounded hover:border-main-blue hover:text-main-blue hover-transition;
+        @apply btn-medium text-gray-500 border border-gray-300 rounded hover:border-main-blue hover:text-main-blue hover-transition;
     }
     .btn-primary {
-        @apply btn-sm text-white bg-main-blue rounded btn-hoverable btn-disabled;
+        @apply btn-medium text-white bg-main-blue rounded btn-hoverable btn-disabled;
     }
     .btn-link {
-        @apply btn-sm inline-block border-b border-solid border-gray-400
+        @apply btn-medium inline-block border-b border-solid border-gray-400
+    }
+    .btn-circle {
+        @apply btn-small text-white bg-main-blue border rounded-full btn-circle-hoverable btn-disabled;
     }
     .btn-white {
-        @apply btn-sm text-main-blue bg-white rounded btn-hoverable btn-disabled;
+        @apply btn-small text-main-blue bg-white rounded btn-hoverable btn-disabled;
     }
     .btn-danger {
-        @apply btn-sm text-white bg-red-500 rounded btn-hoverable btn-disabled;
+        @apply btn-medium text-white bg-red-500 rounded btn-hoverable btn-disabled;
     }
 }
 
