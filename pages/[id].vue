@@ -48,11 +48,11 @@ onMounted(() => {
 
 <template>
   <div class="bg-white pb-8 min-h-[calc(100dvh-40px)]">
-    <GlobalLoading v-if="!isLoading" />
+    <GlobalLoading v-if="isLoading" class="pt-40" />
     <div v-else>
       <div
         v-if="hasExistLink"
-        class="flex flex-col gap-4 px-4 m-auto mt-8 max-w-[500px]"
+        class="flex flex-col gap-4 px-4 m-auto pt-8 max-w-[500px]"
       >
         <TopButtonBlock :data="doorItem[0]" />
         <ProfileBlock :data="doorItem[0]" />
