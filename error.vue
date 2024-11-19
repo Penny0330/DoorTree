@@ -14,7 +14,7 @@ const lottieContainer = ref(null)
 let lottieInstance: AnimationItem | null = null
 const lottiePaths: Record<number, string> = {
   404: 'https://lottie.host/5ca2899b-2dba-4967-a077-7b5e7a01d469/30emq2HEix.json',
-  500: 'https://lottie.host/913c8f2c-6985-4ff7-8e10-13b79dde5271/RZO8I4U2g9.json',
+  500: 'https://lottie.host/1f208967-50d1-4b3f-8efc-1a013a79f32c/bD89Uc6GLI.json',
 }
 
 onMounted(() => {
