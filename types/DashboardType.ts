@@ -1,7 +1,8 @@
 export interface DashboardItem {
   id: string
-  title: string
   link: string
+  title: string
+  avatar: string
   updateTime: number
 }
 

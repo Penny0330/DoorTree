@@ -18,7 +18,7 @@ defineEmits(['onEdit', 'onShareLink', 'onDelete', 'onShowCreateLinkModal'])
 
 <template>
   <section
-    class="max-w-[1440px] w-11/12 grid grid-rows-1 items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    class="max-w-[1440px] w-10/12 grid grid-rows-1 items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
     <!-- add button -->
     <div
@@ -35,15 +35,20 @@ defineEmits(['onEdit', 'onShareLink', 'onDelete', 'onShowCreateLinkModal'])
     <div
       v-for="(item, idx) in dashboardList"
       :key="item.id"
-      class="border rounded-2xl w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(25%-1rem)] xl:py-6"
+      class="border rounded-2xl shadow-md w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(25%-1rem)] xl:py-6"
       @click="$emit('onEdit', item.id)"
     >
-      <img
-        src="https://fakeimg.pl/100x100/"
-        class="rounded-full w-4/12 h-1/3 sm:h-auto"
-      />
+      <div v-if="item.avatar">
+        <img :src="item.avatar" class="rounded-full mb-6" />
+      </div>
+      <div
+        v-else
+        class="bg-gray-300 rounded-full w-28 h-28 flex items-center justify-center text-white text-2xl"
+      >
+        {{ item.title[0].toUpperCase() }}
+      </div>
       <div>
-        <p class="text-xl">{{ item.title }}</p>
+        <p class="text-xl">{{ item.link }}</p>
         <div class="flex items-center gap-1 mt-1">
           <Icon name="material-symbols:update" class="text-gray-400 text-sm" />
           <span class="text-xs text-gray-400">{{ item.updateTime }}</span>

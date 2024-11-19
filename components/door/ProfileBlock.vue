@@ -37,7 +37,7 @@ const handleEdit = () => {
       </div>
       <div
         v-else
-        class="bg-gray-400 rounded-full w-24 h-24 flex items-center justify-center text-white text-2xl"
+        class="bg-gray-300 rounded-full w-24 h-24 flex items-center justify-center text-white text-2xl"
       >
         {{ profile.title[0].toUpperCase() }}
       </div>
