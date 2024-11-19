@@ -29,7 +29,7 @@ const getData = async () => {
       route.params.id as string,
     )
     console.log('resp', resp)
-    // doorItem.value = resp as EditDetail[]
+    doorItem.value = resp as EditDetail[]
 
     hasExistLink.value = Array.isArray(resp) && resp.length > 0
     console.log('hasExistLink: ', hasExistLink.value)
