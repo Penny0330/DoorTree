@@ -72,8 +72,14 @@ const onCreateLink = async (link: string) => {
 const createDetail = async (itemId: string, link: string) => {
   const newItem = {
     id: itemId,
-    title: link,
     link,
+    showQRCodeBtn: true,
+    showShareBtn: true,
+    profile: {
+      title: link,
+      description: 'Welcome to my DoorTree!',
+      avatar: '',
+    },
   }
   await setDocument('doorItemDetail', itemId, newItem)
 }
