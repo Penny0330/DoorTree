@@ -114,7 +114,7 @@ const handleDelete = async (removeItem: DashboardItem, idx: number) => {
     'dashboardList',
     removeItem,
   )
-  await deleteDocument('doorItemDetail', removeItem.id)
+  await deleteDocument('doorItemDetail', removeItem.id as string)
   dashboardList.value.splice(idx, 1)
   showGlobalToast({ message: 'Deleted successfully', type: 'success' })
 }

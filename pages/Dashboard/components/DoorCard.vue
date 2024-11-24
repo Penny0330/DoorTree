@@ -39,7 +39,10 @@ defineEmits(['onEdit', 'onShareLink', 'onDelete', 'onShowCreateLinkModal'])
       @click="$emit('onEdit', item.id)"
     >
       <div v-if="item.avatar">
-        <img :src="item.avatar" class="rounded-full mb-6" />
+        <img
+          :src="item.avatar"
+          class="w-28 h-28 rounded-full object-cover mb-6"
+        />
       </div>
       <div
         v-else

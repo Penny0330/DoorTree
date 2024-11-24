@@ -1,9 +1,9 @@
 export interface DashboardItem {
-  id: string
-  link: string
-  title: string
-  avatar: string
-  updateTime: number
+  id?: string
+  link?: string
+  title?: string
+  avatar?: string
+  updateTime?: string
 }
 
 export interface DashboardData {

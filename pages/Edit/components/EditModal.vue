@@ -18,21 +18,17 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  originalData: {
+    type: Object,
+    default: () => {},
+  },
+  isSaveLoading: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-defineEmits(['onSave', 'onPreview', 'onCancel'])
-
-// const onCancel = () => {
-//   console.log('onCancel')
-// }
-
-// const onSave = () => {
-//   console.log('onSave')
-// }
-
-const onPreview = () => {
-  console.log('onPreview')
-}
+defineEmits(['onSave', 'onPreview', 'onCancel', 'onSave'])
 
 const settingComponent = computed(
   () => settingTypeComponent[props.type] || null,
@@ -53,12 +49,23 @@ const settingComponent = computed(
       >
         <button
           class="btn-small text-white btn-hoverable"
+          :disabled="isSaveLoading"
           @click="$emit('onCancel')"
         >
           Cancel
         </button>
         <p class="text-white">{{ title }}</p>
-        <button class="btn-circle" @click="$emit('onSave')">Save</button>
+        <button
+          class="btn-circle btn-circle-hoverable"
+          @click="$emit('onSave')"
+        >
+          <Icon
+            v-if="isSaveLoading"
+            name="eos-icons:loading"
+            class="mr-1.5 hover:text-main-blue"
+          />
+          <p>Save</p>
+        </button>
       </header>
       <!-- setting content -->
       <main class="overflow-y-auto h-[calc(100%-54px-60px)] p-4">
@@ -70,7 +77,7 @@ const settingComponent = computed(
       </main>
       <!-- preview -->
       <footer class="p-2.5">
-        <button class="btn-primary w-full gap-2" @click="onPreview">
+        <button class="btn-primary w-full gap-2" @click="$emit('onPreview')">
           <Icon name="icon-park-outline:preview-open" />
           <p>Preview</p>
         </button>

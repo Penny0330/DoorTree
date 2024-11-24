@@ -46,6 +46,20 @@ export const useFirestore = () => {
     }
   }
 
+  // update:
+  const updateDocument = async (
+    collectionName: string,
+    docId: string,
+    newItem: any,
+  ): Promise<void> => {
+    try {
+      const docRef = doc($db, collectionName, docId)
+      await updateDoc(docRef, newItem)
+    } catch (error) {
+      console.error('Error updateDocument:', error)
+    }
+  }
+
   // update: Array
   const updateDocumentArray = async (
     collectionName: string,
@@ -72,7 +86,7 @@ export const useFirestore = () => {
       const docRef = doc($db, collectionName, docId)
       await deleteDoc(docRef)
     } catch (error) {
-      console.error('Error deleteDocumentArray:', error)
+      console.error('Error deleteDocument:', error)
     }
   }
 
@@ -116,7 +130,7 @@ export const useFirestore = () => {
 
       return results
     } catch (error) {
-      console.error('Error deleteDocumentArray:', error)
+      console.error('Error getDocumentByLink:', error)
       return []
     }
   }
@@ -124,6 +138,7 @@ export const useFirestore = () => {
   return {
     setDocument,
     getDocument,
+    updateDocument,
     updateDocumentArray,
     deleteDocument,
     deleteDocumentArray,
