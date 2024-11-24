@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-white pb-8 min-h-[calc(100dvh-40px)]">
+  <div class="bg-white pb-8 min-h-[calc(100dvh-32px)]">
     <GlobalLoading v-if="isLoading" class="pt-40" />
     <div v-else>
       <div

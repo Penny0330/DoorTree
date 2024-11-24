@@ -126,7 +126,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white pt-20 pb-20 min-h-[calc(100dvh-40px)] flex flex-col items-center sm:pt-32"
+    class="bg-white pt-20 pb-20 min-h-[calc(100dvh-32px)] flex flex-col items-center sm:pt-32"
   >
     <GlobalLoading v-if="isGetLoading" />
     <template v-else>
