@@ -55,6 +55,7 @@ const currentModalType = ref<string>('')
 const currentModalData = ref<EditDetail>(defaultEditDetail)
 const isSaveLoading = ref<boolean>(false)
 const showPreview = ref<boolean>(false)
+const showAddBlockModal = ref<boolean>(false)
 
 // get data
 const getDetailData = async (): Promise<void> => {
@@ -137,6 +138,10 @@ const onTogglePreview = () => {
   showPreview.value = !showPreview.value
 }
 
+const onToggleAddBlockModal = () => {
+  showAddBlockModal.value = !showAddBlockModal.value
+}
+
 onMounted(() => {
   getDetailData()
   getDashboardData()
@@ -148,22 +153,95 @@ onMounted(() => {
     class="bg-white pt-20 pb-8 min-h-[calc(100dvh-32px)] flex flex-col items-center sm:pt-32"
   >
     <GlobalLoading v-if="isLoading" />
-    <section v-else class="w-11/12">
-      <ShareLinkBlock :link="editData?.link" />
-      <main class="mt-8">
-        <div class="flex flex-col">
-          <TopButtonBlock
-            :is-edit="true"
-            :data="editData"
-            @on-edit="handleEdit"
-          />
-          <ProfileBlock
-            :is-edit="true"
-            :data="editData"
-            @on-edit="handleEdit"
-          />
+    <section v-if="!isLoading" class="w-11/12 px-0 md:px-2 md:grid md:grid-cols-[1fr_3fr] md:gap-4 md:max-w-[1440px] lg:px-8">
+      <!-- <PC> add block -->
+      <div class="hidden py-8 px-6 bg-main-blue rounded-2xl w-[290px] mt-16 shadow-[0_7px_29px_0_rgba(100,100,111,0.4)] md:block">
+        <div class="bg-[#EEE0C9] text-black text-xs text-center px-2 py-1 rounded-md mb-8">拖曳新增區塊至右方的編排區</div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="add-block btn-hoverable">
+            <Icon name="ion:text-outline" class="add-block__icon"/>
+            <p class="add-block__text">Text</p>
+          </div>
+          <div class="add-block btn-hoverable">
+            <Icon name="fluent-mdl2:line-style" class="add-block__icon"/>
+            <p class="add-block__text">Divider</p>
+          </div>
+          <div class="add-block btn-hoverable">
+            <Icon name="ph:wall" class="add-block__icon"/>
+            <p class="add-block__text">Logo Wall</p>
+          </div>
+          <div class="add-block btn-hoverable">
+            <Icon name="ph:image-square" class="add-block__icon"/>
+            <p class="add-block__text">Square(single)</p>
+          </div>
+          <div class="add-block btn-hoverable">
+            <Icon name="basil:menu-solid" class="add-block__icon"/>
+            <p class="add-block__text">Button</p>
+          </div>
+          <div class="add-block btn-hoverable">
+            <Icon name="ph:images-square" class="add-block__icon"/>
+            <p class="add-block__text">Square(double)</p>
+          </div>
+          <div class="add-block btn-hoverable">
+            <Icon name="mynaui:image-rectangle" class="add-block__icon"/>
+            <p class="add-block__text">Rectangle</p>
+          </div>
+          <!-- <div class="add-block">
+            <Icon name="fluent-mdl2:line-style" class="add-block__icon"/>
+            <p class="add-block__text">Divider</p>
+          </div> -->
+        </div>
+      </div>
+      <!-- <MOB> add block -->
+      <div v-if="showAddBlockModal" class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex items-end justify-center md:hidden">
+        <div class="bg-white rounded-2xl w-11/12 max-w-[580px] h-4/6 p-4 mb-12 relative animate-slide-up">
+          <div class="text-center text-lg py-3 border-b-2">Add to DoorTree</div>
+          <Icon name="mingcute:close-fill" class="absolute right-4 top-4 text-lg text-gray-500"
+            @click="onToggleAddBlockModal"/>
+          <div class="flex items-center gap-4 py-3 px-4 border-b">
+            <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
+            <div>
+              <div class="text-lg">Text</div>
+              <div class="text-sm text-gray-500">header / paragraph</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 py-3 px-4 border-b">
+            <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
+            <div>
+              <div class="text-lg">Text</div>
+              <div class="text-sm text-gray-500">header / paragraph</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 py-3 px-4 border-b">
+            <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
+            <div>
+              <div class="text-lg">Text</div>
+              <div class="text-sm text-gray-500">header / paragraph</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <main class="md:justify-self-center">
+        <ShareLinkBlock :link="editData?.link" />
+        <div class="mt-8">
+          <div class="flex flex-col">
+            <TopButtonBlock
+              :is-edit="true"
+              :data="editData"
+              @on-edit="handleEdit"
+            />
+            <ProfileBlock
+              :is-edit="true"
+              :data="editData"
+              @on-edit="handleEdit"
+            />
+          </div>
         </div>
       </main>
+      <div class="w-12 h-12 bg-main-blue opacity-85 rounded-full shadow-around-light flex justify-center items-center fixed bottom-12 md:hidden"
+        @click="onToggleAddBlockModal">
+        <Icon name="mingcute:add-fill" class="text-white text-2xl"/>
+      </div>
     </section>
     <EditModal
       :show-edit-modal="showEditModal"
@@ -184,3 +262,15 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<style>
+.add-block {
+  @apply p-4 bg-white text-center rounded-2xl cursor-pointer;
+}
+.add-block__icon {
+  @apply text-main-blue text-4xl;
+}
+.add-block__text {
+  @apply text-gray-600 text-xs;
+}
+</style>
