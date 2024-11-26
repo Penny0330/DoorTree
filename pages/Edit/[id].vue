@@ -254,12 +254,19 @@ onMounted(() => {
       @on-save="onSave"
       @on-preview="onTogglePreview"
     />
-    <Preview
-      :show-preview="showPreview"
-      :is-edit="false"
-      :data="currentModalData"
-      @on-preview="onTogglePreview"
-    />
+    <!-- <MOB> preview -->
+    <div v-if="showPreview"
+      class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex"
+      >
+      <div class="bg-white rounded-2xl w-11/12 h-4/5 m-auto relative">
+        <Preview
+          :show-preview="showPreview"
+          :is-edit="false"
+          :data="currentModalData"
+          @on-preview="onTogglePreview"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
