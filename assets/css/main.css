@@ -1,63 +1,74 @@
-@charset "UTF-8";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
-  input {
-    @apply focus-visible:outline-none focus:border-gray-500;
-  }
+    input {
+        @apply focus-visible:outline-none focus:border-gray-500;
+    }
 }
+
 @layer components {
-  .btn-small {
-    @apply py-1 px-3 flex items-center justify-center text-sm;
-  }
-  .btn-medium {
-    @apply min-w-[78px] h-[40px] py-2 px-4 flex items-center justify-center;
-  }
-  .btn-hoverable {
-    @apply hover:opacity-85 hover-transition;
-  }
-  .btn-circle-hoverable {
-    @apply hover:text-main-blue hover:bg-white hover-transition;
-  }
-  .btn-disabled {
-    @apply disabled:opacity-70 disabled:cursor-not-allowed;
-  }
-  .btn-default {
-    @apply btn-medium text-gray-500 border border-gray-300 rounded hover:border-main-blue hover:text-main-blue hover-transition;
-  }
-  .btn-primary {
-    @apply btn-medium text-white bg-main-blue rounded btn-hoverable btn-disabled;
-  }
-  .btn-link {
-    @apply btn-medium inline-block border-b border-solid border-gray-400;
-  }
-  .btn-circle {
-    @apply btn-small text-white bg-main-blue border rounded-full btn-circle-hoverable btn-disabled;
-  }
-  .btn-white {
-    @apply btn-small text-main-blue bg-white rounded btn-hoverable btn-disabled;
-  }
-  .btn-danger {
-    @apply btn-medium text-white bg-red-500 rounded btn-hoverable btn-disabled;
-  }
-  .edit-row {
-    @apply flex items-center gap-4;
-  }
-  .edit-input {
-    @apply border border-gray-300 bg-gray-100 px-3 py-2 rounded-lg w-full;
-  }
+    .btn-hoverable {
+        @apply hover:opacity-85 hover-transition;
+    }
+
+    .btn-circle-hoverable {
+        @apply hover:text-main-blue hover:bg-white hover-transition;
+    }
+
+    .btn-disabled {
+        @apply disabled:opacity-70 disabled:cursor-not-allowed;
+    }
+
+     /* btn 樣式 */
+    .btn-default {
+        @apply btn-medium text-gray-500 border border-gray-300 rounded hover:border-main-blue hover:text-main-blue hover-transition;
+    }
+    .btn-primary {
+        @apply btn-medium text-white bg-main-blue rounded btn-hoverable btn-disabled;
+    }
+    .btn-link {
+        @apply btn-medium inline-block border-b border-solid border-gray-400
+    }
+    .btn-circle {
+        @apply btn-small text-white bg-main-blue border rounded-full btn-disabled;
+    }
+    .btn-white {
+        @apply btn-small text-main-blue bg-white rounded btn-hoverable btn-disabled;
+    }
+    .btn-danger {
+        @apply btn-medium text-white bg-red-500 rounded btn-hoverable btn-disabled;
+    }
+
+    /* btn 大小 */
+    .btn-small {
+        @apply py-1 px-3 flex items-center justify-center text-sm;
+    }
+    .btn-medium {
+        @apply min-w-[78px] h-[40px] py-2 px-4 flex items-center justify-center;
+    }
+
+    /* edit */
+    .edit-row {
+        @apply flex items-center gap-4;
+    }
+    .edit-input {
+        @apply border border-gray-300 bg-gray-100 px-3 py-2 rounded-lg w-full;
+    }
+
 }
+
 @layer utilities {
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  /* 為了兼容性 */
-  .hide-scrollbar {
-    -ms-overflow-style: none; /* IE 和 Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .hover-transition {
-    @apply transition ease-in duration-200 delay-[120];
-  }
-}/*# sourceMappingURL=main.css.map */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* 為了兼容性 */
+    .hide-scrollbar {
+        -ms-overflow-style: none; /* IE 和 Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+    .hover-transition {
+        @apply transition ease-in duration-200 delay-[120]
+    }
+}

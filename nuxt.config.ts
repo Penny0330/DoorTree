@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     },
   },
   tailwindcss: {
-    cssPath: '~/assets/css/main.scss',
+    cssPath: '~/assets/css/main.css',
   },
   runtimeConfig: {
     public: {
