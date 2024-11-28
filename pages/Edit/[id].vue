@@ -241,6 +241,7 @@ onMounted(() => {
               group="shared"
               item-key="type"
               animation="200"
+              handle=".drag-btn"
               :class="{ 'h-32': !editData.section.length }"
               @change="onChangeSection"
             >

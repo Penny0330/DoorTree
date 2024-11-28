@@ -44,7 +44,7 @@ watch(
     <div class="flex gap-3">
       <Icon
         name="lsicon:drag-filled"
-        class="text-2xl text-gray-500 cursor-pointer"
+        class="text-2xl text-gray-500 cursor-pointer drag-btn"
       />
       <Icon
         :name="section[idx].isShow ? 'ri:toggle-fill' : 'ri:toggle-line'"
