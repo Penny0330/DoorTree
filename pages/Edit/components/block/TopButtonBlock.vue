@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Tooltip from '../GlobalTooltip.vue'
+import Tooltip from '@/components/GlobalTooltip.vue'
 
 const props = defineProps({
   isEdit: {
@@ -33,7 +33,6 @@ const handleEdit = () => {
   emit('onEdit', {
     type: 'Profile',
     title: 'Profile Edit',
-    data: props.data,
   })
 }
 

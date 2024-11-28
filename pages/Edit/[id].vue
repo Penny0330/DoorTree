@@ -1,21 +1,28 @@
 <script setup lang="ts">
 import _ from 'lodash'
 import dayjs from 'dayjs'
+import Draggable from 'vuedraggable'
 
-import ShareLinkBlock from './components/ShareLinkBlock.vue'
+import { nanoid } from 'nanoid'
+import ShareLinkBlock from './components/block/ShareLinkBlock.vue'
 import GlobalLoading from '@/components/GlobalLoading.vue'
 import EditModal from '@/pages/Edit/components/EditModal.vue'
 import Preview from '@/pages/Edit/components/Preview.vue'
-import TopButtonBlock from '@/components/door/TopButtonBlock.vue'
-import ProfileBlock from '@/components/door/ProfileBlock.vue'
+import AddBlock from '@/pages/Edit/components/AddBlock.vue'
+import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
+import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'
+import ToolBar from '@/pages/Edit/components/block/ToolBar.vue'
+import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
 
 import { useFirestore } from '@/composables/useFirestore'
 import { useHandleError } from '@/composables/useHandleError'
 import { useShowGlobalToast } from '@/composables/useGlobalToast'
 import { useUploadImage } from '@/composables/useUploadImage'
+
 import type { EditDetail, EditModalParams } from '@/types/MainType'
 import type { DashboardItem } from '@/types/DashboardType'
-import { useEditModal } from '@/pages/Edit/transform/index'
+
+import { useEditModal, createNewSection } from '@/pages/Edit/transform/index'
 
 definePageMeta({
   middleware: 'auth',
@@ -43,6 +50,7 @@ const defaultEditDetail: EditDetail = {
     description: '',
     avatar: '',
   },
+  section: [],
 }
 
 const route = useRoute()
@@ -53,9 +61,11 @@ const dashboardItem = ref<DashboardItem>({})
 const currentModalTitle = ref<string>('')
 const currentModalType = ref<string>('')
 const currentModalData = ref<EditDetail>(defaultEditDetail)
+const currentModalDataIdx = ref<number>(0)
 const isSaveLoading = ref<boolean>(false)
 const showPreview = ref<boolean>(false)
 const showAddBlockModal = ref<boolean>(false)
+const isAddLoading = ref<boolean>(false)
 
 // get data
 const getDetailData = async (): Promise<void> => {
@@ -75,38 +85,13 @@ const getDashboardData = async (): Promise<void> => {
 }
 
 const handleEdit = (params: EditModalParams) => {
-  const { title, type, data } = params
+  console.log(params)
+  const { title, type, idx } = params
   currentModalTitle.value = title
   currentModalType.value = type
-  currentModalData.value = _.cloneDeep(data as EditDetail)
+  currentModalDataIdx.value = idx
+  currentModalData.value = _.cloneDeep(editData.value as EditDetail)
   openModal()
-}
-
-const onSave = async () => {
-  isSaveLoading.value = true
-  const uploadedImageUrl = await onUploadAvatar()
-  if (uploadedImageUrl) {
-    currentModalData.value.profile.avatar = uploadedImageUrl
-  }
-  editData.value = _.cloneDeep(currentModalData.value as EditDetail)
-  delete editData.value.profile.previewImage
-  delete editData.value.profile.selectedImage
-
-  // update dashboardList
-  await updateDashboardList()
-  // update doorDetail
-  await updateDocument('doorItemDetail', id.value as string, editData.value)
-  isSaveLoading.value = false
-  closeModal()
-  showGlobalToast({ message: 'Updated successfully', type: 'success' })
-}
-
-const onUploadAvatar = async () => {
-  if (!currentModalData.value.profile.selectedImage) return
-  const imageUrl = await uploadImage(
-    currentModalData.value.profile.selectedImage,
-  )
-  return imageUrl
 }
 
 const updateDashboardList = async () => {
@@ -134,12 +119,85 @@ const updateDashboardList = async () => {
   )
 }
 
+const onUploadAvatar = async () => {
+  const imageUrl = await uploadImage(
+    currentModalData.value.profile.selectedImage,
+  )
+  if (imageUrl) {
+    currentModalData.value.profile.avatar = imageUrl
+  }
+  editData.value = _.cloneDeep(currentModalData.value as EditDetail)
+  delete editData.value.profile.previewImage
+  delete editData.value.profile.selectedImage
+}
+
+const handleUpdate = async () => {
+  // update dashboardList
+  await updateDashboardList()
+  // update doorDetail
+  await updateDocument('doorItemDetail', id.value as string, editData.value)
+}
+
+const onSave = async () => {
+  isSaveLoading.value = true
+  if (currentModalData.value.profile.selectedImage) {
+    await onUploadAvatar()
+  } else {
+    editData.value = _.cloneDeep(currentModalData.value as EditDetail)
+  }
+  await handleUpdate()
+  isSaveLoading.value = false
+  closeModal()
+  showGlobalToast({ message: 'Updated successfully', type: 'success' })
+}
+
 const onTogglePreview = () => {
   showPreview.value = !showPreview.value
 }
 
 const onToggleAddBlockModal = () => {
   showAddBlockModal.value = !showAddBlockModal.value
+}
+
+const onUpdateIsShow = async () => {
+  currentModalData.value = _.cloneDeep(editData.value)
+  console.log('editData: ', editData.value)
+  console.log('currentModalData: ', currentModalData.value)
+  await handleUpdate()
+}
+
+const onAddBlock = async (type: 'TEXT' | 'IMAGE' | 'BUTTON') => {
+  isAddLoading.value = true
+  const newSection = createNewSection(type)
+  editData.value.section.push(newSection)
+
+  await handleUpdate()
+  isAddLoading.value = false
+  onToggleAddBlockModal()
+}
+
+const onDelete = async (idx: number) => {
+  editData.value.section.splice(idx, 1)
+  await handleUpdate()
+  showGlobalToast({ message: 'Deleted successfully', type: 'success' })
+}
+
+const onCopy = async (idx: number) => {
+  const copyData = {
+    ...editData.value.section[idx],
+    id: nanoid(),
+  }
+  copyData.isShow = false
+  editData.value.section.splice(idx + 1, 0, copyData)
+  await handleUpdate()
+}
+
+const onChangeSection = async () => {
+  await handleUpdate()
+}
+
+const blockComponent = (type: string) => {
+  return BlockTypeComponent[type] || null
 }
 
 onMounted(() => {
@@ -153,75 +211,17 @@ onMounted(() => {
     class="bg-white pt-20 pb-8 min-h-[calc(100dvh-32px)] flex flex-col items-center sm:pt-32"
   >
     <GlobalLoading v-if="isLoading" />
-    <section v-if="!isLoading" class="w-11/12 px-0 md:px-2 md:grid md:grid-cols-[1fr_3fr] md:gap-4 md:max-w-[1440px] lg:px-8">
-      <!-- <PC> add block -->
-      <div class="hidden py-8 px-6 bg-main-blue rounded-2xl w-[290px] mt-16 shadow-[0_7px_29px_0_rgba(100,100,111,0.4)] md:block">
-        <div class="bg-[#EEE0C9] text-black text-xs text-center px-2 py-1 rounded-md mb-8">拖曳新增區塊至右方的編排區</div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="add-block btn-hoverable">
-            <Icon name="ion:text-outline" class="add-block__icon"/>
-            <p class="add-block__text">Text</p>
-          </div>
-          <div class="add-block btn-hoverable">
-            <Icon name="fluent-mdl2:line-style" class="add-block__icon"/>
-            <p class="add-block__text">Divider</p>
-          </div>
-          <div class="add-block btn-hoverable">
-            <Icon name="ph:wall" class="add-block__icon"/>
-            <p class="add-block__text">Logo Wall</p>
-          </div>
-          <div class="add-block btn-hoverable">
-            <Icon name="ph:image-square" class="add-block__icon"/>
-            <p class="add-block__text">Square(single)</p>
-          </div>
-          <div class="add-block btn-hoverable">
-            <Icon name="basil:menu-solid" class="add-block__icon"/>
-            <p class="add-block__text">Button</p>
-          </div>
-          <div class="add-block btn-hoverable">
-            <Icon name="ph:images-square" class="add-block__icon"/>
-            <p class="add-block__text">Square(double)</p>
-          </div>
-          <div class="add-block btn-hoverable">
-            <Icon name="mynaui:image-rectangle" class="add-block__icon"/>
-            <p class="add-block__text">Rectangle</p>
-          </div>
-          <!-- <div class="add-block">
-            <Icon name="fluent-mdl2:line-style" class="add-block__icon"/>
-            <p class="add-block__text">Divider</p>
-          </div> -->
-        </div>
-      </div>
-      <!-- <MOB> add block -->
-      <div v-if="showAddBlockModal" class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex items-end justify-center md:hidden">
-        <div class="bg-white rounded-2xl w-11/12 max-w-[580px] h-4/6 p-4 mb-12 relative animate-slide-up">
-          <div class="text-center text-lg py-3 border-b-2">Add to DoorTree</div>
-          <Icon name="mingcute:close-fill" class="absolute right-4 top-4 text-lg text-gray-500"
-            @click="onToggleAddBlockModal"/>
-          <div class="flex items-center gap-4 py-3 px-4 border-b">
-            <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
-            <div>
-              <div class="text-lg">Text</div>
-              <div class="text-sm text-gray-500">header / paragraph</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 py-3 px-4 border-b">
-            <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
-            <div>
-              <div class="text-lg">Text</div>
-              <div class="text-sm text-gray-500">header / paragraph</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 py-3 px-4 border-b">
-            <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
-            <div>
-              <div class="text-lg">Text</div>
-              <div class="text-sm text-gray-500">header / paragraph</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <main class="md:justify-self-center">
+    <section
+      v-if="!isLoading"
+      class="w-11/12 px-0 flex justify-center md:grid md:px-2 md:grid-cols-[1fr_3fr] md:gap-4 md:max-w-[1440px] lg:px-8"
+    >
+      <AddBlock
+        :show-add-block-modal="showAddBlockModal"
+        :is-add-loading="isAddLoading"
+        @on-toggle-add-block-modal="onToggleAddBlockModal"
+        @on-add-block="onAddBlock"
+      />
+      <main class="md:justify-self-center w-full sm:max-w-[500px]">
         <ShareLinkBlock :link="editData?.link" />
         <div class="mt-8">
           <div class="flex flex-col">
@@ -235,12 +235,40 @@ onMounted(() => {
               :data="editData"
               @on-edit="handleEdit"
             />
+            <Draggable
+              :list="editData.section"
+              group="shared"
+              item-key="type"
+              animation="200"
+              @change="onChangeSection"
+            >
+              <template #item="{ element, index }">
+                <div class="rounded-2xl bg-white shadow-around-light-025 mt-10">
+                  <ToolBar
+                    :data="editData"
+                    :idx="index"
+                    @on-update-is-show="onUpdateIsShow"
+                    @on-edit="handleEdit"
+                    @on-delete="onDelete"
+                    @on-copy="onCopy"
+                  />
+                  <component
+                    :is="blockComponent(element.type)"
+                    :data="editData"
+                    :idx="index"
+                    :is-edit="true"
+                  />
+                </div>
+              </template>
+            </Draggable>
           </div>
         </div>
       </main>
-      <div class="w-12 h-12 bg-main-blue opacity-85 rounded-full shadow-around-light flex justify-center items-center fixed bottom-12 md:hidden"
-        @click="onToggleAddBlockModal">
-        <Icon name="mingcute:add-fill" class="text-white text-2xl"/>
+      <div
+        class="w-12 h-12 bg-main-blue opacity-85 rounded-full shadow-around-light flex justify-center items-center fixed bottom-12 left-5 md:hidden"
+        @click="onToggleAddBlockModal"
+      >
+        <Icon name="mingcute:add-fill" class="text-white text-2xl" />
       </div>
     </section>
     <EditModal
@@ -248,36 +276,23 @@ onMounted(() => {
       :title="currentModalTitle"
       :type="currentModalType"
       :data="currentModalData"
-      :original-data="editData"
+      :idx="currentModalDataIdx"
       :is-save-loading="isSaveLoading"
       @on-cancel="closeModal"
       @on-save="onSave"
       @on-preview="onTogglePreview"
     />
     <!-- <MOB> preview -->
-    <div v-if="showPreview"
+    <div
+      v-if="showPreview"
       class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex"
-      >
-      <div class="bg-white rounded-2xl w-11/12 h-4/5 m-auto relative">
-        <Preview
-          :show-preview="showPreview"
-          :is-edit="false"
-          :data="currentModalData"
-          @on-preview="onTogglePreview"
-        />
-      </div>
+    >
+      <Preview
+        :show-preview="showPreview"
+        :is-edit="false"
+        :data="currentModalData"
+        @on-preview="onTogglePreview"
+      />
     </div>
   </div>
 </template>
-
-<style>
-.add-block {
-  @apply p-4 bg-white text-center rounded-2xl cursor-pointer;
-}
-.add-block__icon {
-  @apply text-main-blue text-4xl;
-}
-.add-block__text {
-  @apply text-gray-600 text-xs;
-}
-</style>

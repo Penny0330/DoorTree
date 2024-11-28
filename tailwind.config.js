@@ -16,6 +16,7 @@ export default {
       },
       boxShadow: {
         'around-light': '0 0 8px 0 rgba(0,0,0,0.1)',
+        'around-light-025': '0 0 8px 0 rgba(0,0,0,0.25)',
       },
       keyframes: {
         'slide-up': {

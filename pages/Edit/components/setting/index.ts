@@ -1,7 +1,10 @@
 import Profile from './ProfileSetting.vue'
-import Text from './TextSetting.vue'
+import TEXT from './TextSetting.vue'
 
-export const settingTypeComponent = {
+export const settingTypeComponent: Record<
+  string,
+  typeof Profile | typeof TEXT
+> = {
   Profile,
-  Text,
+  TEXT,
 }

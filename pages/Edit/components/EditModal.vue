@@ -19,9 +19,9 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
-  originalData: {
-    type: Object,
-    default: () => {},
+  idx: {
+    type: Number,
+    default: 0,
   },
   isSaveLoading: {
     type: Boolean,
@@ -43,7 +43,9 @@ const settingComponent = computed(
     class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex"
   >
     <!-- modal -->
-    <div class="bg-white rounded-2xl w-11/12 max-w-[900px] h-4/5 m-auto relative">
+    <div
+      class="bg-white rounded-2xl w-11/12 max-w-[900px] h-4/5 m-auto relative"
+    >
       <!-- header -->
       <header
         class="flex justify-between items-center bg-main-blue rounded-tl-2xl rounded-tr-2xl py-3 px-2"
@@ -68,27 +70,27 @@ const settingComponent = computed(
           <p>Save</p>
         </button>
       </header>
-      <main class="flex h-[calc(100%-54px-60px)] p-4 lg:h-[calc(100%-54px)]">
+      <main class="flex h-[calc(100%-54px-60px)] p-4 md:h-[calc(100%-54px)]">
         <!-- setting content -->
         <component
           :is="settingComponent"
           v-if="settingComponent"
           :data="data"
-          class="overflow-y-auto w-full lg:flex-1"
+          :idx="idx"
+          class="overflow-y-auto w-full md:flex-1"
         />
         <!-- <PC> preview -->
-        <section class="hidden lg:block lg:flex-1">
+        <section class="hidden md:block md:flex-1">
           <Preview
             :show-preview="true"
             :is-edit="false"
             :data="data"
-            :showFooter="false"
+            :show-footer="false"
           />
         </section>
-
       </main>
       <!-- <MOB> preview button -->
-      <footer class="p-2.5 lg:hidden">
+      <footer class="p-2.5 md:hidden">
         <button class="btn-primary w-full gap-2" @click="$emit('onPreview')">
           <Icon name="icon-park-outline:preview-open" />
           <p>Preview</p>

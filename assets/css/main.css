@@ -6,6 +6,9 @@
     input {
         @apply focus-visible:outline-none focus:border-gray-500;
     }
+    textarea {
+        @apply focus-visible:outline-none focus:border-gray-500;
+    }
 }
 
 @layer components {

@@ -20,7 +20,8 @@
     "nanoid": "^5.0.7",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
-    "vue": "latest"
+    "vue": "latest",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",

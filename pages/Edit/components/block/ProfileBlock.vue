@@ -18,7 +18,6 @@ const handleEdit = () => {
   emit('onEdit', {
     type: 'Profile',
     title: 'Profile Edit',
-    data: props.data,
   })
 }
 
