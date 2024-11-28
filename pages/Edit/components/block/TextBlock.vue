@@ -30,6 +30,6 @@ watch(
     v-if="isEdit || relativeData.section[idx].isShow"
     class="p-4 text-center"
   >
-    {{ relativeData.section[idx]?.text }} {{ relativeData.section[idx]?.id }}
+    {{ relativeData.section[idx]?.text }}
   </div>
 </template>

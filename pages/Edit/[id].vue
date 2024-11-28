@@ -170,7 +170,7 @@ const onAddBlock = async (type: 'TEXT' | 'IMAGE' | 'BUTTON') => {
   isAddLoading.value = true
   const newSection = createNewSection(type)
   editData.value.section.push(newSection)
-
+  currentModalData.value = _.cloneDeep(editData.value as EditDetail)
   await handleUpdate()
   isAddLoading.value = false
   onToggleAddBlockModal()
@@ -193,6 +193,7 @@ const onCopy = async (idx: number) => {
 }
 
 const onChangeSection = async () => {
+  currentModalData.value = _.cloneDeep(editData.value as EditDetail)
   await handleUpdate()
 }
 
