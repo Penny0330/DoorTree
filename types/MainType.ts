@@ -55,6 +55,22 @@ export interface EditDetail {
 export interface EditModalParams {
   title: string
   type: string
-  data: object
   idx: number
+}
+
+// 增加區塊按鈕
+export type AddBlockButtonType =
+  | 'TEXT'
+  | 'DIVIDER'
+  | 'SQUARE_SINGLE'
+  | 'SQUARE_DOUBLE'
+  | 'RECTANGLE'
+  | 'BUTTON'
+  | 'LOGO_WALL'
+
+export type AddBlockButton = {
+  type: AddBlockButtonType
+  icon: string
+  text: string
+  toolTip: string
 }

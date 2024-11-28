@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
-import { nanoid } from 'nanoid'
 import { createNewSection } from '@/pages/Edit/transform/index'
+import type { AddBlockButton } from '@/types/MainType'
 
 const props = defineProps({
   showAddBlockModal: {
@@ -22,63 +22,61 @@ const onOverlayClick = (_event: MouseEvent) => {
   }
 }
 
-const availableBlocks = ref([
-  { type: 'TEXT', icon: 'ion:text-outline', text: 'Text', isShow: false },
+const addBlockButtonList = ref<AddBlockButton[]>([
+  {
+    type: 'TEXT',
+    icon: 'ion:text-outline',
+    text: 'Text',
+    toolTip: 'header / paragraph',
+  },
   {
     type: 'DIVIDER',
     icon: 'fluent-mdl2:line-style',
     text: 'Divider',
-    isShow: false,
+    toolTip: 'header / paragraph',
   },
   {
     type: 'SQUARE_SINGLE',
     icon: 'ph:image-square',
     text: 'Square(single)',
-    isShow: false,
+    toolTip: 'header / paragraph',
   },
   {
     type: 'SQUARE_DOUBLE',
     icon: 'ph:images-square',
     text: 'Square(double)',
-    isShow: false,
+    toolTip: 'header / paragraph',
   },
   {
     type: 'RECTANGLE',
     icon: 'mynaui:image-rectangle',
     text: 'Rectangle',
-    isShow: false,
+    toolTip: 'header / paragraph',
   },
   {
     type: 'BUTTON',
     icon: 'basil:menu-solid',
     text: 'Button',
-    isShow: false,
+    toolTip: 'header / paragraph',
   },
   {
     type: 'LOGO_WALL',
     icon: 'ph:wall',
     text: 'Logo Wall',
-    isShow: false,
+    toolTip: 'header / paragraph',
   },
 ])
 
-const newDraggingType = ref(null)
-const cloneBlock = (block) => {
+const newDraggingType = ref<string | null>(null)
+const isDragging = ref<boolean>(false)
+
+const cloneBlock = (block: AddBlockButton) => {
   console.log('cloneBlock', block)
   newDraggingType.value = block.type
   const newSection = createNewSection(block.type)
   return {
     ...newSection,
   }
-}
-const isDragging = ref(false)
-const ontest = (e) => {
-  isDragging.value = true
-  console.log('log', e)
-}
-const onEnd = (e) => {
-  console.log('onEnd: ', e)
-  isDragging.value = false
 }
 </script>
 
@@ -94,15 +92,15 @@ const onEnd = (e) => {
         拖曳新增區塊至右方的編排區
       </div>
       <Draggable
-        :list="availableBlocks"
+        :list="addBlockButtonList"
         :group="{ name: 'shared', pull: 'clone', put: false }"
         :sort="false"
-        item-key="id"
+        item-key="type"
         :clone="cloneBlock"
         class="grid grid-cols-2 gap-4"
         ghost-class="dragging"
-        @move="ontest"
-        @end="onEnd"
+        @move="(isDragging = true)"
+        @end="(isDragging = false)"
       >
         <template #item="{ element }">
           <div
@@ -145,27 +143,15 @@ const onEnd = (e) => {
         />
         <!-- content -->
         <div
+          v-for="block in addBlockButtonList"
+          :key="block.type"
           class="flex items-center gap-4 py-3 px-4 border-b"
-          @click="$emit('onAddBlock', 'TEXT')"
+          @click="$emit('onAddBlock', block.type)"
         >
-          <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
+          <Icon :name="block.icon" class="text-3xl text-main-blue" />
           <div>
-            <div class="text-lg">Text</div>
-            <div class="text-sm text-gray-500">header / paragraph</div>
-          </div>
-        </div>
-        <div class="flex items-center gap-4 py-3 px-4 border-b">
-          <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
-          <div>
-            <div class="text-lg">Text</div>
-            <div class="text-sm text-gray-500">header / paragraph</div>
-          </div>
-        </div>
-        <div class="flex items-center gap-4 py-3 px-4 border-b">
-          <Icon name="ion:text-outline" class="text-3xl text-main-blue" />
-          <div>
-            <div class="text-lg">Text</div>
-            <div class="text-sm text-gray-500">header / paragraph</div>
+            <div class="text-lg">{{ block.text }}</div>
+            <div class="text-sm text-gray-500">{{ block.toolTip }}</div>
           </div>
         </div>
       </div>
