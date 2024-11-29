@@ -20,31 +20,25 @@ export function useEditModal() {
 }
 
 // TODO 待完成其他 type 的 params
-export function createNewSection(
-  type: 'TEXT' | 'IMAGE' | 'BUTTON',
-): SectionItem {
+export function createNewSection(type: 'TEXT' | 'DIVIDER'): SectionItem {
   switch (type) {
     case 'TEXT':
       return {
         type: 'TEXT',
         id: nanoid(),
+        isShow: false,
         text: 'header / paragraph',
-        isShow: false,
       }
-    case 'IMAGE':
+    case 'DIVIDER':
       return {
-        type: 'IMAGE',
+        type: 'DIVIDER',
         id: nanoid(),
-        src: '',
-        isShow: false,
-      }
-    case 'BUTTON':
-      return {
-        type: 'BUTTON',
-        id: nanoid(),
-        label: 'Button Text',
-        link: '',
-        isShow: false,
+        isShow: true,
+        style: {
+          type: 'border-solid',
+          width: 'border-b',
+          color: 'border-black',
+        },
       }
     default:
       throw new Error(`Invalid block type: ${type}`)

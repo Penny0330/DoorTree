@@ -18,26 +18,36 @@ interface TextSection extends BaseSection {
   }
 }
 
-interface ImageSection extends BaseSection {
-  type: 'IMAGE'
+interface DividerSection extends BaseSection {
+  type: 'DIVIDER'
   id: string
-  src: string
-  alt?: string
-}
-
-interface ButtonSection extends BaseSection {
-  type: 'BUTTON'
-  id: string
-  label: string
-  link: string
   style?: {
-    backgroundColor?: string
+    type?: 'border-solid' | 'border-dashed' | 'border-dotted' | 'border-double'
+    width?: 'border-b' | 'border-b-2' | 'border-b-4' | 'border-b-8'
     color?: string
-    borderRadius?: string
   }
 }
 
-export type SectionItem = TextSection | ImageSection | ButtonSection
+// interface ImageSection extends BaseSection {
+//   type: 'IMAGE'
+//   id: string
+//   src: string
+//   alt?: string
+// }
+
+// interface ButtonSection extends BaseSection {
+//   type: 'BUTTON'
+//   id: string
+//   label: string
+//   link: string
+//   style?: {
+//     backgroundColor?: string
+//     color?: string
+//     borderRadius?: string
+//   }
+// }
+
+export type SectionItem = TextSection | DividerSection
 
 export interface EditDetail {
   id: string
