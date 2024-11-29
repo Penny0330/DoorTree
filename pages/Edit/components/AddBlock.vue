@@ -135,23 +135,27 @@ const cloneBlock = (block: AddBlockButton) => {
           <Icon name="eos-icons:loading" class="text-2xl" />
         </div>
         <!-- header -->
-        <div class="text-center text-lg py-3 border-b-2">Add to DoorTree</div>
+        <div class="text-center text-lg font-medium py-3 border-b-2">
+          Add to DoorTree
+        </div>
         <Icon
           name="mingcute:close-fill"
           class="absolute right-4 top-4 text-lg text-gray-500"
           @click="$emit('onToggleAddBlockModal')"
         />
         <!-- content -->
-        <div
-          v-for="block in addBlockButtonList"
-          :key="block.type"
-          class="flex items-center gap-4 py-3 px-4 border-b"
-          @click="$emit('onAddBlock', block.type)"
-        >
-          <Icon :name="block.icon" class="text-3xl text-main-blue" />
-          <div>
-            <div class="text-lg">{{ block.text }}</div>
-            <div class="text-sm text-gray-500">{{ block.toolTip }}</div>
+        <div class="overflow-y-auto h-full max-h-[calc(100%-54px)]">
+          <div
+            v-for="block in addBlockButtonList"
+            :key="block.type"
+            class="flex items-center gap-4 py-3 px-4 border-b"
+            @click="$emit('onAddBlock', block.type)"
+          >
+            <Icon :name="block.icon" class="text-3xl text-main-blue" />
+            <div>
+              <div class="text-lg">{{ block.text }}</div>
+              <div class="text-sm text-gray-500">{{ block.toolTip }}</div>
+            </div>
           </div>
         </div>
       </div>
