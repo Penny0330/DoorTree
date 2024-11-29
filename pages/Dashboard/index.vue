@@ -81,6 +81,7 @@ const createDetail = async (itemId: string, link: string) => {
       description: 'Welcome to my DoorTree!',
       avatar: '',
     },
+    section: [],
   }
   await setDocument('doorItemDetail', itemId, newItem)
 }
