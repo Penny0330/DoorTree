@@ -28,7 +28,16 @@ watch(
 <template>
   <div
     v-if="isEdit || relativeData.section[idx].isShow"
-    class="p-4 text-center"
+    :class="[
+      'p-4',
+      `${relativeData.section[idx]?.style.fontSize}`,
+      `${relativeData.section[idx]?.style.textAlign}`,
+      {
+        italic: relativeData.section[idx]?.style.isItalic,
+        underline: relativeData.section[idx]?.style.isUnderline,
+        'font-bold': relativeData.section[idx]?.style.isBold,
+      },
+    ]"
   >
     {{ relativeData.section[idx]?.text }}
   </div>

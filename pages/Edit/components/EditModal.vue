@@ -44,7 +44,7 @@ const settingComponent = computed(
   >
     <!-- modal -->
     <div
-      class="bg-white rounded-2xl w-11/12 max-w-[900px] h-4/5 m-auto relative"
+      class="bg-white rounded-2xl w-11/12 max-w-[1200px] h-4/5 m-auto relative"
     >
       <!-- header -->
       <header

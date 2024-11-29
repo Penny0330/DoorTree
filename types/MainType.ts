@@ -10,10 +10,10 @@ interface TextSection extends BaseSection {
   text: string
   style?: {
     fontSize?: string
-    fontWeight?: string
-    textDecoration?: string
-    fontStyle?: string
-    textAlign?: 'left' | 'center' | 'right'
+    isBold?: boolean
+    isUnderline?: boolean
+    isItalic?: boolean
+    textAlign?: 'text-left' | 'text-center' | 'text-right'
     color?: string
   }
 }

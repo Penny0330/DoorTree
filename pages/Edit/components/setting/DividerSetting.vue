@@ -31,8 +31,8 @@ const widthOptions = [
   <div>
     <div class="edit-row pt-4">
       <Icon name="fluent-mdl2:line-style" class="text-gray-400 text-2xl" />
-      <div v-for="typeOption in typeOptions" :key="typeOption.value">
-        <label>
+      <div class="edit-select">
+        <label v-for="typeOption in typeOptions" :key="typeOption.value">
           <input
             v-model="relativeData.section[idx].style.type"
             type="radio"
@@ -47,8 +47,8 @@ const widthOptions = [
         name="material-symbols:line-weight"
         class="text-gray-400 text-2xl"
       />
-      <div v-for="widthOption in widthOptions" :key="widthOption.value">
-        <label>
+      <div class="edit-select">
+        <label v-for="widthOption in widthOptions" :key="widthOption.value">
           <input
             v-model="relativeData.section[idx].style.width"
             type="radio"
