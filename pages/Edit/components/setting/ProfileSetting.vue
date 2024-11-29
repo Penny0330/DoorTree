@@ -44,14 +44,7 @@ const onRemoveImage = () => {
       <Icon name="mdi:ios-share" class="text-gray-400 text-xl" />
       <p>show share button</p>
       <Icon
-        v-if="showShareBtn"
-        name="ri:toggle-fill"
-        class="text-3xl text-main-blue"
-        @click="onToggleShowShareBtn"
-      />
-      <Icon
-        v-else
-        name="ri:toggle-line"
+        :name="showShareBtn ? 'ri:toggle-fill' : 'ri:toggle-line'"
         class="text-3xl text-main-blue"
         @click="onToggleShowShareBtn"
       />
@@ -61,14 +54,7 @@ const onRemoveImage = () => {
       <Icon name="ant-design:qrcode-outlined" class="text-gray-400 text-xl" />
       <p>show QRcode button</p>
       <Icon
-        v-if="showQRCodeBtn"
-        name="ri:toggle-fill"
-        class="text-3xl text-main-blue"
-        @click="onToggleShowQRCodeBtn"
-      />
-      <Icon
-        v-else
-        name="ri:toggle-line"
+        :name="showQRCodeBtn ? 'ri:toggle-fill' : 'ri:toggle-line'"
         class="text-3xl text-main-blue"
         @click="onToggleShowQRCodeBtn"
       />

@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid'
 import type { SectionItem } from '@/types/MainType'
+import { sectionCreators } from '@/pages/Edit/modal/index'
 
 export function useEditModal() {
   const showEditModal = ref<boolean>(false)
@@ -20,37 +20,14 @@ export function useEditModal() {
 }
 
 // TODO 待完成其他 type 的 params
-export function createNewSection(type: 'TEXT' | 'DIVIDER'): SectionItem {
-  switch (type) {
-    case 'TEXT':
-      return {
-        type: 'TEXT',
-        id: nanoid(),
-        isShow: false,
-        text: 'header / paragraph',
-        style: {
-          fontSize: 'text-base',
-          isBold: false,
-          isUnderline: false,
-          isItalic: false,
-          textAlign: 'text-center',
-          color: 'text-black',
-        },
-      }
-    case 'DIVIDER':
-      return {
-        type: 'DIVIDER',
-        id: nanoid(),
-        isShow: true,
-        style: {
-          type: 'border-solid',
-          width: 'border-b',
-          color: 'border-black',
-        },
-      }
-    default:
-      throw new Error(`Invalid block type: ${type}`)
+export function createNewSection(
+  type: 'TEXT' | 'DIVIDER' | 'BUTTON',
+): SectionItem {
+  const createSection = sectionCreators[type]
+  if (!createSection) {
+    throw new Error(`Invalid block type: ${type}`)
   }
+  return createSection()
 }
 
 export const fontSizeOptions = [

@@ -50,7 +50,7 @@ watch(
   (newData) => {
     relativeData.value = { ...newData }
   },
-  { immediate: true },
+  { immediate: true, deep: true },
 )
 </script>
 

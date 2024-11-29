@@ -9,7 +9,7 @@ interface TextSection extends BaseSection {
   id: string
   text: string
   style?: {
-    fontSize?: string
+    fontSize?: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
     isBold?: boolean
     isUnderline?: boolean
     isItalic?: boolean
@@ -28,6 +28,19 @@ interface DividerSection extends BaseSection {
   }
 }
 
+interface ButtonSection extends BaseSection {
+  type: 'BUTTON'
+  id: string
+  text: string
+  link: string
+  showDescription: boolean
+  description: string
+  isFill: boolean
+  style?: {
+    fontSize?: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
+  }
+}
+
 // interface ImageSection extends BaseSection {
 //   type: 'IMAGE'
 //   id: string
@@ -35,19 +48,7 @@ interface DividerSection extends BaseSection {
 //   alt?: string
 // }
 
-// interface ButtonSection extends BaseSection {
-//   type: 'BUTTON'
-//   id: string
-//   label: string
-//   link: string
-//   style?: {
-//     backgroundColor?: string
-//     color?: string
-//     borderRadius?: string
-//   }
-// }
-
-export type SectionItem = TextSection | DividerSection
+export type SectionItem = TextSection | DividerSection | ButtonSection
 
 export interface EditDetail {
   id: string
@@ -72,10 +73,10 @@ export interface EditModalParams {
 export type AddBlockButtonType =
   | 'TEXT'
   | 'DIVIDER'
+  | 'BUTTON'
   | 'SQUARE_SINGLE'
   | 'SQUARE_DOUBLE'
   | 'RECTANGLE'
-  | 'BUTTON'
   | 'LOGO_WALL'
 
 export type AddBlockButton = {
