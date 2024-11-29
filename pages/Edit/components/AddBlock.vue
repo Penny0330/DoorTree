@@ -87,9 +87,10 @@ const cloneBlock = (block: AddBlockButton) => {
       class="hidden py-8 px-6 bg-main-blue rounded-2xl w-[290px] mt-16 shadow-[0_7px_29px_0_rgba(100,100,111,0.4)] md:block md:fixed"
     >
       <div
-        class="bg-[#EEE0C9] text-black text-xs text-center px-2 py-1 rounded-md mb-8"
+        class="bg-[#EEE0C9] text-black text-xs px-2 py-1 rounded-md mb-8 flex items-center justify-center gap-2"
       >
-        拖曳新增區塊至右方的編排區
+        <Icon name="hugeicons:drag-right-02" class="text-lg" />
+        <span>Drag blocks to the right layout</span>
       </div>
       <Draggable
         :list="addBlockButtonList"
