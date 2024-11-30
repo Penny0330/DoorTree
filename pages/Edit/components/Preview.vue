@@ -39,6 +39,9 @@ const blockComponent = (type: string) => {
         'h-[calc(100%-60px)]',
         'p-4',
         'rounded-2xl',
+        'flex',
+        'flex-col',
+        'gap-4',
         'md:h-full',
         transferBgClass('bg', data.bgColor),
       ]"

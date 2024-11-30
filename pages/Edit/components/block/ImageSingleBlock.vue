@@ -27,7 +27,7 @@ watch(
 
 <template>
   <!-- https://fakeimg.pl/300x600 -->
-  <div class="flex flex-col mb-8">
+  <div class="flex flex-col">
     <div class="flex flex-col items-center">
       <div
         v-if="
