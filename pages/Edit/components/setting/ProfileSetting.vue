@@ -156,7 +156,9 @@ const onBgColor = (color: string) => {
             :key="color.value"
             :class="[color.label, 'bg-color-btn']"
             @click="onThemeColor(color.value)"
-          ></button>
+          >
+            <p v-if="relativeData.themeColor === color.value">v</p>
+          </button>
         </div>
       </div>
     </div>
@@ -172,7 +174,9 @@ const onBgColor = (color: string) => {
             :key="color.value"
             :class="[color.label, 'bg-color-btn']"
             @click="onBgColor(color.value)"
-          ></button>
+          >
+            <p v-if="relativeData.bgColor === color.value">v</p>
+          </button>
         </div>
       </div>
     </div>
@@ -181,6 +185,6 @@ const onBgColor = (color: string) => {
 
 <style scoped>
 .bg-color-btn {
-  @apply w-8 h-8 rounded-full border-2 border-stone-200;
+  @apply w-8 h-8 rounded-full border-2 border-stone-200 text-white;
 }
 </style>
