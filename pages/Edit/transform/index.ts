@@ -21,7 +21,7 @@ export function useEditModal() {
 
 // TODO 待完成其他 type 的 params
 export function createNewSection(
-  type: 'TEXT' | 'DIVIDER' | 'BUTTON',
+  type: 'TEXT' | 'DIVIDER' | 'BUTTON' | 'LOGO_WALL',
 ): SectionItem {
   const createSection = sectionCreators[type]
   if (!createSection) {
@@ -122,3 +122,102 @@ export const transferThemeClass = (
 
   return classMap[type][color] || ''
 }
+
+export const iconOptions = [
+  {
+    icon: 'majesticons:mail-line',
+    toolTip: 'E-mail',
+  },
+  {
+    icon: 'ic:baseline-facebook',
+    toolTip: 'Facebook',
+  },
+  {
+    icon: 'lets-icons:insta',
+    toolTip: 'Instagram',
+  },
+  {
+    icon: 'ant-design:global-outlined',
+    toolTip: 'Website',
+  },
+  {
+    icon: 'mingcute:youtube-fill',
+    toolTip: 'Youtube',
+  },
+  {
+    icon: 'ic:baseline-tiktok',
+    toolTip: 'Tiktok',
+  },
+  {
+    icon: 'proicons:x-twitter',
+    toolTip: 'Twitter',
+  },
+  {
+    icon: 'mingcute:threads-line',
+    toolTip: 'Threads',
+  },
+  {
+    icon: 'ic:baseline-discord',
+    toolTip: 'Discord',
+  },
+  {
+    icon: 'simple-icons:line',
+    toolTip: 'Line',
+  },
+  {
+    icon: 'ic:baseline-whatsapp',
+    toolTip: 'Whatsapp',
+  },
+  {
+    icon: 'bxl:telegram',
+    toolTip: 'Telegram',
+  },
+  {
+    icon: 'la:medium',
+    toolTip: 'Medium',
+  },
+  {
+    icon: 'mdi:github',
+    toolTip: 'Github',
+  },
+  {
+    icon: 'mdi:linkedin',
+    toolTip: 'Linkedin',
+  },
+  {
+    icon: 'mage:notion',
+    toolTip: 'Notion',
+  },
+  {
+    icon: 'hugeicons:figma',
+    toolTip: 'Figma',
+  },
+  {
+    icon: 'mdi:spotify',
+    toolTip: 'Spotify',
+  },
+  {
+    icon: 'mdi:podcast',
+    toolTip: 'Podcast',
+  },
+  {
+    icon: 'ri:amazon-fill',
+    toolTip: 'Amazon',
+  },
+  {
+    icon: 'simple-icons:shopee',
+    toolTip: 'Shopee',
+  },
+  {
+    icon: 'simple-icons:appstore',
+    toolTip: 'App Store',
+  },
+  {
+    icon: 'mage:playstore',
+    toolTip: 'Play Store',
+  },
+  {
+    icon: 'mdi:twitch',
+    toolTip: 'Twitch',
+  },
+]

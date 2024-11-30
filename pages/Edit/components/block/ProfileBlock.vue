@@ -33,7 +33,7 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col mb-8">
     <div class="flex flex-col items-center">
       <div
         v-if="!relativeData.profile.previewImage && !profile.avatar"

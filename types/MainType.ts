@@ -1,7 +1,7 @@
 // 共同基礎類型
 interface BaseSection {
   type: string
-  isShow?: boolean
+  isShow: boolean
 }
 
 interface TextSection extends BaseSection {
@@ -41,14 +41,22 @@ interface ButtonSection extends BaseSection {
   }
 }
 
-// interface ImageSection extends BaseSection {
-//   type: 'IMAGE'
-//   id: string
-//   src: string
-//   alt?: string
-// }
+interface LogoWallSection extends BaseSection {
+  type: 'LOGO_WALL'
+  id: string
+  logoList: Array<{
+    id: string
+    icon: string
+    link: string
+    toolTip: string
+  }>
+}
 
-export type SectionItem = TextSection | DividerSection | ButtonSection
+export type SectionItem =
+  | TextSection
+  | DividerSection
+  | ButtonSection
+  | LogoWallSection
 
 export interface EditDetail {
   id: string

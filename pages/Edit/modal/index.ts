@@ -47,8 +47,25 @@ function createButtonSection(): SectionItem {
   }
 }
 
+function createLogoWallSection(): SectionItem {
+  return {
+    type: 'LOGO_WALL',
+    id: nanoid(),
+    isShow: false,
+    logoList: [
+      {
+        id: nanoid(),
+        icon: 'majesticons:mail-line',
+        link: '',
+        toolTip: 'E-mail',
+      },
+    ],
+  }
+}
+
 export const sectionCreators: Record<string, () => SectionItem> = {
   TEXT: createTextSection,
   DIVIDER: createDividerSection,
   BUTTON: createButtonSection,
+  LOGO_WALL: createLogoWallSection,
 }
