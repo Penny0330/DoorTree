@@ -20,6 +20,10 @@ const props = defineProps({
 
 const relativeData = ref({ ...props.data })
 
+const onGoToLink = (link: string) => {
+  if (link) window.open(link, '_blank')
+}
+
 watch(
   () => props.data,
   (newData) => {
@@ -41,13 +45,13 @@ watch(
       { 'p-4': isEdit },
     ]"
   >
-    {{ relativeData.section[idx]?.text }}
     <button
       v-for="item in relativeData.section[idx]?.logoList"
       :key="item.id"
       class="text-3xl"
+      @click="onGoToLink(item.link)"
     >
-      <Tooltip :text="item.toolTip">
+      <Tooltip v-if="item.link || isEdit" :text="item.toolTip">
         <Icon
           :name="item.icon"
           :class="[transferThemeClass('text', relativeData.themeColor)]"
