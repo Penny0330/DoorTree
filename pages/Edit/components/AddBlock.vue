@@ -36,24 +36,6 @@ const addBlockButtonList = ref<AddBlockButton[]>([
     toolTip: 'header / paragraph',
   },
   {
-    type: 'SQUARE_SINGLE',
-    icon: 'ph:image-square',
-    text: 'Square(single)',
-    toolTip: 'header / paragraph',
-  },
-  {
-    type: 'SQUARE_DOUBLE',
-    icon: 'ph:images-square',
-    text: 'Square(double)',
-    toolTip: 'header / paragraph',
-  },
-  {
-    type: 'RECTANGLE',
-    icon: 'mynaui:image-rectangle',
-    text: 'Rectangle',
-    toolTip: 'header / paragraph',
-  },
-  {
     type: 'BUTTON',
     icon: 'basil:menu-solid',
     text: 'Button',
@@ -63,6 +45,24 @@ const addBlockButtonList = ref<AddBlockButton[]>([
     type: 'LOGO_WALL',
     icon: 'ph:wall',
     text: 'Logo Wall',
+    toolTip: 'header / paragraph',
+  },
+  {
+    type: 'IMAGE_SINGLE',
+    icon: 'ph:image-square',
+    text: 'Image(single)',
+    toolTip: 'header / paragraph',
+  },
+  {
+    type: 'IMAGE_DOUBLE',
+    icon: 'ph:images-square',
+    text: 'Image(double)',
+    toolTip: 'header / paragraph',
+  },
+  {
+    type: 'IMAGE_RECTANGLE',
+    icon: 'mynaui:image-rectangle',
+    text: 'Rectangle',
     toolTip: 'header / paragraph',
   },
 ])

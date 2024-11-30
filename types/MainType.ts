@@ -52,11 +52,20 @@ interface LogoWallSection extends BaseSection {
   }>
 }
 
+interface ImageSingleSection extends BaseSection {
+  type: 'IMAGE_SINGLE'
+  id: string
+  url: string
+  previewImage?: string
+  previewImageFile?: File
+}
+
 export type SectionItem =
   | TextSection
   | DividerSection
   | ButtonSection
   | LogoWallSection
+  | ImageSingleSection
 
 export interface EditDetail {
   id: string
@@ -84,9 +93,9 @@ export type AddBlockButtonType =
   | 'TEXT'
   | 'DIVIDER'
   | 'BUTTON'
-  | 'SQUARE_SINGLE'
-  | 'SQUARE_DOUBLE'
-  | 'RECTANGLE'
+  | 'IMAGE_SINGLE'
+  | 'IMAGE_DOUBLE'
+  | 'IMAGE_RECTANGLE'
   | 'LOGO_WALL'
 
 export type AddBlockButton = {

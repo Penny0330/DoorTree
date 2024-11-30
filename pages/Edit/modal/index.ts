@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 import type { SectionItem } from '@/types/MainType'
 
-function createTextSection(): SectionItem {
+const createTextSection = (): SectionItem => {
   return {
     type: 'TEXT',
     id: nanoid(),
@@ -18,7 +18,7 @@ function createTextSection(): SectionItem {
   }
 }
 
-function createDividerSection(): SectionItem {
+const createDividerSection = (): SectionItem => {
   return {
     type: 'DIVIDER',
     id: nanoid(),
@@ -31,7 +31,7 @@ function createDividerSection(): SectionItem {
   }
 }
 
-function createButtonSection(): SectionItem {
+const createButtonSection = (): SectionItem => {
   return {
     type: 'BUTTON',
     id: nanoid(),
@@ -47,7 +47,7 @@ function createButtonSection(): SectionItem {
   }
 }
 
-function createLogoWallSection(): SectionItem {
+const createLogoWallSection = (): SectionItem => {
   return {
     type: 'LOGO_WALL',
     id: nanoid(),
@@ -63,9 +63,19 @@ function createLogoWallSection(): SectionItem {
   }
 }
 
+const createImageSingleSection = (): SectionItem => {
+  return {
+    type: 'IMAGE_SINGLE',
+    id: nanoid(),
+    isShow: false,
+    url: '',
+  }
+}
+
 export const sectionCreators: Record<string, () => SectionItem> = {
   TEXT: createTextSection,
   DIVIDER: createDividerSection,
   BUTTON: createButtonSection,
   LOGO_WALL: createLogoWallSection,
+  IMAGE_SINGLE: createImageSingleSection,
 }

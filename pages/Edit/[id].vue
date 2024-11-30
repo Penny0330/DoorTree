@@ -135,6 +135,22 @@ const onUploadAvatar = async () => {
   delete editData.value.profile.selectedImage
 }
 
+const onUploadImage = async (idx: number) => {
+  const section = currentModalData.value.section[idx]
+
+  if (section.type === 'IMAGE_SINGLE' && section.previewImageFile) {
+    const imageUrl = await uploadImage(section.previewImageFile)
+    section.url = imageUrl
+    editData.value = _.cloneDeep(currentModalData.value as EditDetail)
+    if (editData.value.section[idx].type === 'IMAGE_SINGLE') {
+      delete editData.value.section[idx].previewImage
+      delete editData.value.section[idx].previewImageFile
+    }
+
+    console.log('upload after: ', editData.value)
+  }
+}
+
 const handleUpdate = async () => {
   // update dashboardList
   await updateDashboardList()
@@ -142,13 +158,29 @@ const handleUpdate = async () => {
   await updateDocument('doorItemDetail', id.value as string, editData.value)
 }
 
+const handleImageBlock = () => {
+  const imageSingleIndex = currentModalData.value.section.findIndex(
+    (item) =>
+      item.type === 'IMAGE_SINGLE' && item.previewImageFile !== undefined,
+  )
+
+  return imageSingleIndex
+}
+
 const onSave = async () => {
   isSaveLoading.value = true
   if (currentModalData.value.profile.selectedImage) {
     await onUploadAvatar()
+  }
+
+  const hasImageUpload = handleImageBlock()
+
+  if (hasImageUpload !== -1) {
+    onUploadImage(hasImageUpload)
   } else {
     editData.value = _.cloneDeep(currentModalData.value as EditDetail)
   }
+
   await handleUpdate()
   isSaveLoading.value = false
   closeModal()
