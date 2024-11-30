@@ -42,6 +42,7 @@ const onToggleDescriptionBtn = () => {
           @click="onToggleFillBtn"
         />
       </div>
+      <!-- text -->
       <div class="edit-row items-start mb-4">
         <Icon name="ion:text-outline" class="text-gray-400 text-2xl" />
         <input
@@ -50,6 +51,7 @@ const onToggleDescriptionBtn = () => {
           placeholder="button text"
         />
       </div>
+      <!-- fontSize -->
       <div class="edit-row pb-4">
         <div class="edit-select ml-8">
           <label
@@ -89,6 +91,15 @@ const onToggleDescriptionBtn = () => {
           placeholder="button text"
         />
       </div>
+    </div>
+    <!-- link -->
+    <div class="edit-row mb-4">
+      <Icon name="ep:link" class="text-gray-400 text-2xl" />
+      <input
+        v-model="relativeData.section[idx].link"
+        class="edit-input"
+        placeholder="button link"
+      />
     </div>
   </div>
 </template>

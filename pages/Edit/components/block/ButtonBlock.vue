@@ -18,6 +18,12 @@ const props = defineProps({
 
 const relativeData = ref({ ...props.data })
 
+const onGoToLink = () => {
+  const targetUrl = relativeData.value.section[props.idx].link
+  if (!targetUrl) return
+  window.open(targetUrl, '_blank')
+}
+
 watch(
   () => props.data,
   (newData) => {
@@ -43,6 +49,7 @@ watch(
         ? `${transferThemeClass('bg', relativeData.themeColor)} text-white`
         : transferThemeClass('text', relativeData.themeColor),
     ]"
+    @click="onGoToLink"
   >
     {{ relativeData.section[idx]?.text }}
     <div
