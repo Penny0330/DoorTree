@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { themeColorOptions, bgColorOptions } from '@/pages/Edit/transform'
 const props = defineProps({
   data: {
     type: Object,
@@ -34,6 +35,14 @@ const onPreviewImage = (event: Event) => {
 const onRemoveImage = () => {
   relativeData.profile.previewImage = null
   relativeData.profile.selectedImage = null
+}
+
+const onThemeColor = (color: string) => {
+  relativeData.themeColor = color
+}
+
+const onBgColor = (color: string) => {
+  relativeData.bgColor = color
 }
 </script>
 
@@ -135,5 +144,43 @@ const onRemoveImage = () => {
         ></textarea>
       </div>
     </div>
+    <div class="border border-gray-100 my-6"></div>
+    <!-- theme color -->
+    <div>
+      <p class="text-gray-500 mb-4">Theme Color</p>
+      <div class="edit-row items-center">
+        <Icon name="proicons:color-palette" class="text-gray-400 text-2xl" />
+        <div class="flex gap-2 flex-wrap">
+          <button
+            v-for="color in themeColorOptions"
+            :key="color.value"
+            :class="[color.label, 'bg-color-btn']"
+            @click="onThemeColor(color.value)"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <div class="border border-gray-100 my-6"></div>
+    <!-- bg color -->
+    <div class="pb-8">
+      <p class="text-gray-500 mb-4">Background Color</p>
+      <div class="edit-row items-center">
+        <Icon name="tabler:background" class="text-gray-400 text-2xl" />
+        <div class="flex gap-2 flex-wrap">
+          <button
+            v-for="color in bgColorOptions"
+            :key="color.value"
+            :class="[color.label, 'bg-color-btn']"
+            @click="onBgColor(color.value)"
+          ></button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.bg-color-btn {
+  @apply w-8 h-8 rounded-full border-2 border-stone-200;
+}
+</style>

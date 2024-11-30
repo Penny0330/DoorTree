@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transferThemeClass } from '@/pages/Edit/transform'
+
 import Tooltip from '@/components/GlobalTooltip.vue'
 
 const props = defineProps({
@@ -63,7 +65,11 @@ watch(
           <button class="p-1 mr-2" @click="handleEdit()">
             <Icon
               name="mdi:ios-share"
-              :class="{ 'text-gray-500': !relativeData.showShareBtn }"
+              :class="[
+                !relativeData.showShareBtn
+                  ? 'text-gray-500'
+                  : transferThemeClass('text', relativeData.themeColor),
+              ]"
             />
           </button>
         </Tooltip>
@@ -71,7 +77,11 @@ watch(
           <button class="p-1 mr-2" @click="handleEdit()">
             <Icon
               name="ant-design:qrcode-outlined"
-              :class="{ 'text-gray-500': !relativeData.showQRCodeBtn }"
+              :class="[
+                !relativeData.showQRCodeBtn
+                  ? 'text-gray-500'
+                  : transferThemeClass('text', relativeData.themeColor),
+              ]"
             />
           </button>
         </Tooltip>
@@ -80,12 +90,18 @@ watch(
       <template v-else>
         <Tooltip v-if="relativeData.showShareBtn" text="Share">
           <button class="p-1 mr-2" @click="onShare()">
-            <Icon name="mdi:ios-share" />
+            <Icon
+              name="mdi:ios-share"
+              :class="[transferThemeClass('text', relativeData.themeColor)]"
+            />
           </button>
         </Tooltip>
         <Tooltip v-if="relativeData.showQRCodeBtn" text="QRCode">
           <button class="p-1 mr-2" @click="onShowQRCode()">
-            <Icon name="ant-design:qrcode-outlined" />
+            <Icon
+              name="ant-design:qrcode-outlined"
+              :class="[transferThemeClass('text', relativeData.themeColor)]"
+            />
           </button>
         </Tooltip>
       </template>

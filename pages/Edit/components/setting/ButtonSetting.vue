@@ -44,13 +44,11 @@ const onToggleDescriptionBtn = () => {
       </div>
       <div class="edit-row items-start mb-4">
         <Icon name="ion:text-outline" class="text-gray-400 text-2xl" />
-        <textarea
+        <input
           v-model="relativeData.section[idx].text"
           class="edit-input"
           placeholder="button text"
-          cols="50"
-          rows="3"
-        ></textarea>
+        />
       </div>
       <div class="edit-row pb-4">
         <div class="edit-select ml-8">
@@ -85,13 +83,11 @@ const onToggleDescriptionBtn = () => {
         v-if="relativeData.section[props.idx].showDescription"
         class="edit-row pl-8"
       >
-        <textarea
+        <input
           v-model="relativeData.section[idx].description"
           class="edit-input"
           placeholder="button text"
-          cols="50"
-          rows="5"
-        ></textarea>
+        />
       </div>
     </div>
   </div>

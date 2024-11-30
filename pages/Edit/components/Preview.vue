@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transferBgClass } from '@/pages/Edit/transform'
+
 import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
 import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'
 import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
@@ -30,8 +32,17 @@ const blockComponent = (type: string) => {
 </script>
 
 <template>
-  <div class="bg-white rounded-2xl w-11/12 h-4/5 m-auto relative lg:h-full">
-    <main class="overflow-y-auto h-[calc(100%-60px)] p-4 lg:h-full">
+  <div class="bg-white rounded-2xl w-11/12 h-4/5 m-auto relative md:h-full">
+    <main
+      :class="[
+        'overflow-y-auto',
+        'h-[calc(100%-60px)]',
+        'p-4',
+        'rounded-2xl',
+        'md:h-full',
+        transferBgClass('bg', data.bgColor),
+      ]"
+    >
       <TopButtonBlock :is-edit="isEdit" :data="data" />
       <ProfileBlock :is-edit="isEdit" :data="data" />
       <template v-for="(section, idx) in data.section" :key="section.id">

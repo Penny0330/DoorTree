@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
 import dayjs from 'dayjs'
+import { bgColorOptions, themeColorOptions } from '../Edit/transform'
 import EmptyCard from './components/EmptyCard.vue'
 import DoorCard from './components/DoorCard.vue'
 import LinkModal from './components/LinkModal.vue'
@@ -82,6 +83,8 @@ const createDetail = async (itemId: string, link: string) => {
       avatar: '',
     },
     section: [],
+    themeColor: 'default',
+    bgColor: 'white',
   }
   await setDocument('doorItemDetail', itemId, newItem)
 }

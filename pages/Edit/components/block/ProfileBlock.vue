@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transferThemeClass } from '@/pages/Edit/transform'
+
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -35,7 +37,18 @@ watch(
     <div class="flex flex-col items-center">
       <div
         v-if="!relativeData.profile.previewImage && !profile.avatar"
-        class="bg-gray-300 rounded-full w-24 h-24 flex items-center justify-center text-white text-2xl"
+        :class="[
+          'rounded-full',
+          'w-24',
+          'h-24',
+          'flex',
+          'items-center',
+          'justify-center',
+          'text-white',
+          'text-2xl',
+          'opacity-70',
+          transferThemeClass('bg', relativeData.themeColor),
+        ]"
       >
         {{ profile.title[0].toUpperCase() }}
       </div>
@@ -55,7 +68,9 @@ watch(
       <p class="text-2xl font-medium mt-4 mb-2">
         {{ profile.title }}
       </p>
-      <p class="text-slate-700">{{ profile.description }}</p>
+      <p class="text-slate-700 whitespace-pre-wrap text-center">
+        {{ profile.description }}
+      </p>
     </div>
     <button
       v-if="isEdit"

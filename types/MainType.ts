@@ -61,6 +61,8 @@ export interface EditDetail {
     avatar: string
   }
   section: SectionItem[]
+  bgColor: string
+  themeColor: string
 }
 
 export interface EditModalParams {

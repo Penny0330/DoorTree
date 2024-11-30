@@ -22,7 +22,11 @@ import { useUploadImage } from '@/composables/useUploadImage'
 import type { EditDetail, EditModalParams } from '@/types/MainType'
 import type { DashboardItem } from '@/types/DashboardType'
 
-import { useEditModal, createNewSection } from '@/pages/Edit/transform/index'
+import {
+  useEditModal,
+  createNewSection,
+  transferBgClass,
+} from '@/pages/Edit/transform/index'
 
 definePageMeta({
   middleware: 'auth',
@@ -166,7 +170,7 @@ const onUpdateIsShow = async () => {
   await handleUpdate()
 }
 
-const onAddBlock = async (type: 'TEXT' | 'IMAGE' | 'BUTTON') => {
+const onAddBlock = async (type: 'TEXT' | 'DIVIDER' | 'BUTTON') => {
   isAddLoading.value = true
   const newSection = createNewSection(type)
   editData.value.section.push(newSection)
@@ -225,7 +229,15 @@ onMounted(() => {
       <main class="md:justify-self-center w-full sm:max-w-[500px]">
         <ShareLinkBlock :link="editData?.link" />
         <div class="mt-8">
-          <div class="flex flex-col">
+          <div
+            :class="[
+              'flex',
+              'flex-col',
+              'p-4',
+              'rounded-2xl',
+              transferBgClass('bg', editData?.bgColor),
+            ]"
+          >
             <TopButtonBlock
               :is-edit="true"
               :data="editData"
@@ -246,7 +258,16 @@ onMounted(() => {
               @change="onChangeSection"
             >
               <template #item="{ element, index }">
-                <div class="rounded-2xl bg-white shadow-around-light-025 mt-10">
+                <div
+                  :class="[
+                    'rounded-2xl',
+                    'shadow-around-light-025',
+                    'mt-10',
+                    element.type === 'BUTTON' && !element.isFill
+                      ? ''
+                      : 'bg-white',
+                  ]"
+                >
                   <ToolBar
                     :data="editData"
                     :idx="index"

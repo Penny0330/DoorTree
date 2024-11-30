@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transferThemeClass } from '@/pages/Edit/transform'
+
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -14,12 +16,12 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive({ ...props.data })
+const relativeData = ref({ ...props.data })
 
 watch(
   () => props.data,
   (newData) => {
-    relativeData.section = newData.section
+    Object.assign(relativeData.value, newData)
   },
   { immediate: true, deep: true },
 )
@@ -28,13 +30,18 @@ watch(
 <template>
   <button
     v-if="isEdit || relativeData.section[idx].isShow"
-    class="text-center border-2 py-2 px-4 w-full rounded-lg"
     :class="[
+      'text-center',
+      'border-2',
+      'py-2',
+      'px-4',
+      'w-full',
+      'rounded-lg',
       `${relativeData.section[idx]?.style.fontSize}`,
-      {
-        'bg-blue-200': relativeData.section[idx]?.isFill,
-        'border-blue-200': relativeData.section[idx]?.isFill,
-      },
+      transferThemeClass('border', relativeData.themeColor),
+      relativeData.section[idx]?.isFill
+        ? `${transferThemeClass('bg', relativeData.themeColor)} text-white`
+        : transferThemeClass('text', relativeData.themeColor),
     ]"
   >
     {{ relativeData.section[idx]?.text }}

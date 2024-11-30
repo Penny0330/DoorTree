@@ -9,6 +9,8 @@ import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
 
 import type { EditDetail } from '@/types/MainType'
 
+import { transferBgClass } from '@/pages/Edit/transform'
+
 definePageMeta({
   layout: 'share',
 })
@@ -49,7 +51,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-white pb-8 min-h-[calc(100dvh-32px)]">
+  <div
+    :class="[
+      'pb-8',
+      'min-h-[calc(100dvh-32px)]',
+      transferBgClass('bg', doorItem[0]?.bgColor),
+      { 'bg-white': isLoading },
+    ]"
+  >
     <GlobalLoading v-if="isLoading" class="pt-40" />
     <div v-else>
       <div
