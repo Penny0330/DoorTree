@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transferThemeClass } from '@/pages/Edit/transform'
+
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -32,6 +34,7 @@ watch(
       'p-4',
       `${relativeData.section[idx]?.style.fontSize}`,
       `${relativeData.section[idx]?.style.textAlign}`,
+      transferThemeClass('text', relativeData.section[idx]?.style.color),
       {
         italic: relativeData.section[idx]?.style.isItalic,
         underline: relativeData.section[idx]?.style.isUnderline,

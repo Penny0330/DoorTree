@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { fontSizeOptions, textAlignOptions } from '@/pages/Edit/transform/index'
+import {
+  fontSizeOptions,
+  textAlignOptions,
+  themeColorOptions,
+} from '@/pages/Edit/transform/index'
 
 const props = defineProps({
   data: {
@@ -13,6 +17,10 @@ const props = defineProps({
 })
 
 const relativeData = reactive(props.data)
+
+const onTextColor = (color: string) => {
+  relativeData.section[props.idx].style.color = color
+}
 </script>
 
 <template>
@@ -81,6 +89,20 @@ const relativeData = reactive(props.data)
             />
             {{ textAlignOption.label }}
           </label>
+        </div>
+      </div>
+      <div class="edit-row pt-4">
+        <div class="flex gap-2 flex-wrap ml-8">
+          <button
+            v-for="color in themeColorOptions"
+            :key="color.value"
+            :class="[color.label, 'color-select']"
+            @click="onTextColor(color.value)"
+          >
+            <p v-if="relativeData.section[idx].style.color === color.value">
+              v
+            </p>
+          </button>
         </div>
       </div>
     </div>
