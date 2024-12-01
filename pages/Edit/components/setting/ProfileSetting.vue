@@ -154,7 +154,7 @@ const onBgColor = (color: string) => {
           <button
             v-for="color in themeColorOptions"
             :key="color.value"
-            :class="[color.label, 'bg-color-btn']"
+            :class="[color.label, 'color-select']"
             @click="onThemeColor(color.value)"
           >
             <p v-if="relativeData.themeColor === color.value">v</p>
@@ -172,7 +172,7 @@ const onBgColor = (color: string) => {
           <button
             v-for="color in bgColorOptions"
             :key="color.value"
-            :class="[color.label, 'bg-color-btn']"
+            :class="[color.label, 'color-select']"
             @click="onBgColor(color.value)"
           >
             <p v-if="relativeData.bgColor === color.value">v</p>
@@ -182,9 +182,3 @@ const onBgColor = (color: string) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.bg-color-btn {
-  @apply w-8 h-8 rounded-full border-2 border-stone-200 text-white;
-}
-</style>

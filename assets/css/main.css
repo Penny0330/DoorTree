@@ -64,6 +64,10 @@
         @apply bg-gray-200 py-2 px-4 rounded-2xl flex gap-4 w-full flex-wrap;
     }
 
+    .color-select {
+        @apply w-8 h-8 rounded-full border-2 border-stone-200 text-white;
+    }
+
 }
 
 @layer utilities {

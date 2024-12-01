@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import {
+  tagTextAlignOptions,
+  themeColorOptions,
+  textAlignOptions,
+} from '@/pages/Edit/transform/index'
+
 const props = defineProps({
   data: {
     type: Object,
@@ -30,59 +36,136 @@ const onRemoveImage = () => {
   relativeData.section[props.idx].previewImage = null
   relativeData.section[props.idx].previewImageFile = null
 }
+
+const onTagBgColor = (color: string) => {
+  relativeData.section[props.idx].tag.bgColor = color
+}
 </script>
 
 <template>
-  <div>
-    <div>
-      <div class="edit-row mb-6">
-        <Icon name="ph:image-square" class="text-gray-400 text-2xl" />
-        <div
-          v-if="
-            !relativeData.section[idx].previewImage &&
-            !relativeData.section[idx].url
+  <div class="flex flex-col gap-4">
+    <!-- image -->
+    <div class="edit-row mb-2">
+      <Icon name="ph:image-square" class="text-gray-400 text-2xl" />
+      <div
+        v-if="
+          !relativeData.section[idx].previewImage &&
+          !relativeData.section[idx].url
+        "
+        class="bg-gray-200 rounded-2xl w-24 h-24 flex items-center justify-center"
+      >
+        <Icon name="ph:image-square" class="text-gray-300 text-4xl" />
+      </div>
+      <div v-else class="w-24 h-24 rounded-2xl border bg-gray-300">
+        <img
+          v-if="relativeData.section[idx].previewImage"
+          :src="relativeData.section[idx].previewImage"
+          alt="Uploaded Image"
+          class="w-full h-full object-cover rounded-2xl"
+        />
+        <img
+          v-else-if="
+            relativeData.section[idx].url &&
+            !relativeData.section[idx].previewImage
           "
-          class="bg-gray-200 rounded-2xl w-24 h-24 flex items-center justify-center"
+          :src="relativeData.section[idx].url"
+          class="w-full h-full object-cover rounded-2xl"
+        />
+      </div>
+      <div class="flex flex-col gap-4">
+        <button
+          class="btn-circle btn-hoverable"
+          @click="$refs.imageItemInput.click()"
         >
-          <Icon name="ph:image-square" class="text-gray-300 text-4xl" />
-        </div>
-        <div v-else class="w-24 h-24 rounded-2xl border bg-gray-300">
-          <img
-            v-if="relativeData.section[idx].previewImage"
-            :src="relativeData.section[idx].previewImage"
-            alt="Uploaded Image"
-            class="w-full h-full object-cover rounded-2xl"
-          />
-          <img
-            v-else-if="
-              relativeData.section[idx].url &&
-              !relativeData.section[idx].previewImage
-            "
-            :src="relativeData.section[idx].url"
-            class="w-full h-full object-cover rounded-2xl"
-          />
-        </div>
-        <div class="flex flex-col gap-4">
-          <button
-            class="btn-circle btn-hoverable"
-            @click="$refs.imageItemInput.click()"
-          >
-            upload image
-          </button>
+          upload image
+        </button>
+        <input
+          ref="imageItemInput"
+          class="hidden"
+          type="file"
+          accept=".jpg, .jpeg, .png, .gif"
+          @change="onPreviewImage"
+        />
+        <button
+          class="btn-circle btn-white rounded-full"
+          @click="onRemoveImage"
+        >
+          remove
+        </button>
+      </div>
+    </div>
+    <!-- link -->
+    <div class="edit-row">
+      <Icon name="ep:link" class="text-gray-400 text-2xl" />
+      <input
+        v-model="relativeData.section[idx].link"
+        class="edit-input"
+        placeholder="link"
+      />
+    </div>
+    <!-- tag text -->
+    <div class="edit-row">
+      <Icon name="mynaui:tag" class="text-gray-400 text-2xl" />
+      <input
+        v-model="relativeData.section[idx].tag.text"
+        class="edit-input"
+        placeholder="tag text"
+      />
+    </div>
+    <!-- tag textAlign -->
+    <div class="edit-row">
+      <div class="edit-select ml-8">
+        <label
+          v-for="tagTextAlignOption in tagTextAlignOptions"
+          :key="tagTextAlignOption.value"
+        >
           <input
-            ref="imageItemInput"
-            class="hidden"
-            type="file"
-            accept=".jpg, .jpeg, .png, .gif"
-            @change="onPreviewImage"
+            v-model="relativeData.section[idx].tag.textAlign"
+            type="radio"
+            :value="tagTextAlignOption.value"
           />
-          <button
-            class="btn-circle btn-white rounded-full"
-            @click="onRemoveImage"
-          >
-            remove
-          </button>
-        </div>
+          {{ tagTextAlignOption.label }}
+        </label>
+      </div>
+    </div>
+    <!-- tag bg color -->
+    <div class="edit-row">
+      <div class="flex gap-2 flex-wrap ml-8">
+        <button
+          v-for="color in themeColorOptions"
+          :key="color.value"
+          :class="[color.label, 'color-select']"
+          @click="onTagBgColor(color.value)"
+        >
+          <p v-if="relativeData.section[props.idx].tag.bgColor === color.value">
+            v
+          </p>
+        </button>
+      </div>
+    </div>
+    <!-- text -->
+    <div class="edit-row">
+      <Icon name="ion:text-outline" class="text-gray-400 text-2xl" />
+      <input
+        v-model="relativeData.section[idx].description.text"
+        class="edit-input"
+        placeholder="description"
+      />
+    </div>
+    <!-- text text-align -->
+    <div class="edit-row pt-4">
+      <div class="edit-select ml-8">
+        <label
+          v-for="textAlignOption in textAlignOptions"
+          :key="textAlignOption.value"
+        >
+          <input
+            v-model="relativeData.section[idx].description.textAlign"
+            type="radio"
+            :value="textAlignOption.value"
+          />
+          {{ textAlignOption.label }}
+        </label>
       </div>
     </div>
   </div>

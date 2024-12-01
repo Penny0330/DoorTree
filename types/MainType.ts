@@ -58,6 +58,16 @@ interface ImageSingleSection extends BaseSection {
   url: string
   previewImage?: string
   previewImageFile?: File
+  link: string
+  tag: {
+    text: string
+    textAlign: 'left-4' | 'right-4'
+    bgColor: string
+  }
+  description: {
+    text: string
+    textAlign: 'text-left' | 'text-right'
+  }
 }
 
 export type SectionItem =

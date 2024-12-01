@@ -64,6 +64,11 @@ export const textAlignOptions = [
   { value: 'text-right', label: 'Right' },
 ]
 
+export const tagTextAlignOptions = [
+  { value: 'left-4', label: 'Left' },
+  { value: 'right-4', label: 'Right' },
+]
+
 export const transferBgClass = (
   type: 'text' | 'bg' | 'border',
   color: string,

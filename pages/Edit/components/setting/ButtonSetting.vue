@@ -67,6 +67,15 @@ const onToggleDescriptionBtn = () => {
           </label>
         </div>
       </div>
+      <!-- link -->
+      <div class="edit-row mb-4">
+        <Icon name="ep:link" class="text-gray-400 text-2xl" />
+        <input
+          v-model="relativeData.section[idx].link"
+          class="edit-input"
+          placeholder="button link"
+        />
+      </div>
       <!-- button description -->
       <div class="edit-row mb-4">
         <Icon name="material-symbols:subject" class="text-gray-400 text-2xl" />
@@ -91,15 +100,6 @@ const onToggleDescriptionBtn = () => {
           placeholder="button text"
         />
       </div>
-    </div>
-    <!-- link -->
-    <div class="edit-row mb-4">
-      <Icon name="ep:link" class="text-gray-400 text-2xl" />
-      <input
-        v-model="relativeData.section[idx].link"
-        class="edit-input"
-        placeholder="button link"
-      />
     </div>
   </div>
 </template>
