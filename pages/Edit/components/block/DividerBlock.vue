@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transferThemeClass } from '@/pages/Edit/transform'
+
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -31,7 +33,7 @@ watch(
       :class="[
         `${relativeData.section[idx]?.style.width}`,
         `${relativeData.section[idx]?.style.type}`,
-        `${relativeData.section[idx]?.style.color}`,
+        transferThemeClass('border', relativeData.section[idx]?.style.color),
       ]"
     ></div>
   </div>
