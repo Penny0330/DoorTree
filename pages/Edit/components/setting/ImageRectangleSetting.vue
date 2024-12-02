@@ -47,31 +47,13 @@ const onTagBgColor = (color: string) => {
     <!-- image -->
     <div class="edit-row mb-2">
       <Icon name="ph:image-square" class="text-gray-400 text-2xl" />
-      <div
-        v-if="
-          !relativeData.section[idx].previewImage &&
-          !relativeData.section[idx].image
-        "
-        class="bg-gray-200 rounded-2xl w-24 h-24 flex items-center justify-center"
-      >
-        <Icon name="ph:image-square" class="text-gray-300 text-4xl" />
-      </div>
-      <div
-        v-else
-        class="w-28 h-auto aspect-video rounded-2xl border bg-gray-300"
-      >
+      <div class="w-28 h-auto aspect-video rounded-2xl border bg-gray-300">
         <img
-          v-if="relativeData.section[idx].previewImage"
-          :src="relativeData.section[idx].previewImage"
-          alt="Uploaded Image"
-          class="w-full h-full object-cover rounded-2xl"
-        />
-        <img
-          v-else-if="
-            relativeData.section[idx].image &&
-            !relativeData.section[idx].previewImage
+          :src="
+            relativeData.section[idx].previewImage ||
+            relativeData.section[idx].image
           "
-          :src="relativeData.section[idx].image"
+          alt="Uploaded Image"
           class="w-full h-full object-cover rounded-2xl"
         />
       </div>
@@ -140,9 +122,7 @@ const onTagBgColor = (color: string) => {
           :class="[color.label, 'color-select']"
           @click="onTagBgColor(color.value)"
         >
-          <p v-if="relativeData.section[props.idx].tag.bgColor === color.value">
-            v
-          </p>
+          <p v-if="relativeData.section[idx].tag.bgColor === color.value">v</p>
         </button>
       </div>
     </div>

@@ -59,22 +59,10 @@ const onTagBgColor = (item, color: string) => {
       <!-- image -->
       <div class="edit-row mb-2">
         <Icon name="ph:image-square" class="text-gray-400 text-2xl" />
-        <div
-          v-if="!item.previewImage && !item.image"
-          class="bg-gray-200 rounded-2xl w-24 h-24 flex items-center justify-center"
-        >
-          <Icon name="ph:image-square" class="text-gray-300 text-4xl" />
-        </div>
-        <div v-else class="w-24 h-24 rounded-2xl border bg-gray-300">
+        <div class="w-24 h-24 rounded-2xl border bg-gray-300">
           <img
-            v-if="item.previewImage"
-            :src="item.previewImage"
+            :src="item.previewImage || item.image"
             alt="Uploaded Image"
-            class="w-full h-full object-cover rounded-2xl"
-          />
-          <img
-            v-else-if="item.image && !item.previewImage"
-            :src="item.image"
             class="w-full h-full object-cover rounded-2xl"
           />
         </div>

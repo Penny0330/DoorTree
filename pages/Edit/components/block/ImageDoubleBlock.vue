@@ -33,7 +33,6 @@ watch(
 </script>
 
 <template>
-  <!-- https://fakeimg.pl/300x600 -->
   <div
     v-if="isEdit || relativeData.section[idx].isShow"
     class="grid grid-cols-2 gap-4"
@@ -45,14 +44,6 @@ watch(
     >
       <div class="flex flex-col items-center">
         <div
-          v-if="!item.previewImage && !item.image"
-          class="rounded-2xl w-full h-full aspect-square flex items-center justify-center bg-gray-100"
-          @click="onGoToLink(item.link)"
-        >
-          <Icon name="ph:image-square" class="text-gray-300 text-4xl" />
-        </div>
-        <div
-          v-else
           class="w-full h-full aspect-square rounded-2xl border bg-gray-300 relative"
         >
           <img

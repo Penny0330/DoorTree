@@ -34,21 +34,9 @@ watch(
 </script>
 
 <template>
-  <!-- https://fakeimg.pl/300x600 -->
   <div class="flex flex-col">
     <div class="flex flex-col items-center">
       <div
-        v-if="
-          !relativeData.section[idx].previewImage &&
-          !relativeData.section[idx].image
-        "
-        class="rounded-2xl w-full h-full aspect-video flex items-center justify-center bg-gray-100"
-        @click="onGoToLink"
-      >
-        <Icon name="ph:image-square" class="text-gray-300 text-4xl" />
-      </div>
-      <div
-        v-else
         class="w-full h-full aspect-video rounded-2xl border bg-gray-300 relative"
       >
         <img
