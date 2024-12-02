@@ -226,7 +226,7 @@ const onAddBlock = async (type: BlockType) => {
   onToggleAddBlockModal()
   if (scrollContainer.value) {
     window.scrollTo({
-      top: document.documentElement.scrollHeight,
+      top: scrollContainer.value.scrollHeight,
       behavior: 'smooth',
     })
   }
