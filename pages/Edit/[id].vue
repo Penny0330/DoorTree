@@ -266,7 +266,16 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white pt-20 pb-8 min-h-[calc(100dvh-32px)] flex flex-col items-center sm:pt-32"
+    :class="[
+      'pt-20',
+      'pb-8',
+      'min-h-[calc(100dvh-32px)]',
+      'flex',
+      'flex-col',
+      'items-center',
+      'sm:pt-32',
+      transferBgClass('bg', editData?.bgColor),
+    ]"
   >
     <GlobalLoading v-if="isLoading" />
     <section
@@ -282,15 +291,7 @@ onMounted(() => {
       <main class="md:justify-self-center w-full sm:max-w-[500px]">
         <ShareLinkBlock :link="editData?.link" />
         <div class="mt-8">
-          <div
-            :class="[
-              'flex',
-              'flex-col',
-              'p-4',
-              'rounded-2xl',
-              transferBgClass('bg', editData?.bgColor),
-            ]"
-          >
+          <div class="flex flex-col p-4 rounded-2xl">
             <TopButtonBlock
               :is-edit="true"
               :data="editData"
