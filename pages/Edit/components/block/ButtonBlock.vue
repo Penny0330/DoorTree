@@ -19,7 +19,7 @@ const props = defineProps({
 const relativeData = ref({ ...props.data })
 
 const onGoToLink = () => {
-  const targetUrl = relativeData.value.section[props.idx].link
+  const targetUrl = relativeData.value.section[props.idx]?.link
   if (!targetUrl) return
   window.open(targetUrl, '_blank')
 }
@@ -35,7 +35,7 @@ watch(
 
 <template>
   <button
-    v-if="isEdit || relativeData.section[idx].isShow"
+    v-if="isEdit || relativeData.section[idx]?.isShow"
     :class="[
       'text-center',
       'border-2',
@@ -52,10 +52,7 @@ watch(
     @click="onGoToLink"
   >
     {{ relativeData.section[idx]?.text }}
-    <div
-      v-if="relativeData.section[props.idx].showDescription"
-      class="text-sm mt-2"
-    >
+    <div v-if="relativeData.section[idx]?.showDescription" class="text-sm mt-2">
       {{ relativeData.section[idx]?.description }}
     </div>
   </button>

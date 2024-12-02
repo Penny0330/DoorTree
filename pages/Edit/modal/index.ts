@@ -1,7 +1,32 @@
+import dayjs from 'dayjs'
 import { nanoid } from 'nanoid'
-import type { SectionItem } from '@/types/MainType'
+import type { EditDetail, SectionItem } from '@/types/MainType'
+import type { DashboardItem } from '@/types/DashboardType'
 
 const generateNumber = (): number => Math.floor(Math.random() * 1000) + 1
+
+export const DefaultDashboardItem: DashboardItem = {
+  id: nanoid(),
+  title: '',
+  link: '',
+  avatar: '',
+  updateTime: dayjs().format('YYYY/MM/DD HH:mm'),
+}
+
+export const DefaultEditDetail: EditDetail = {
+  id: '',
+  link: '',
+  showQRCodeBtn: true,
+  showShareBtn: true,
+  profile: {
+    title: '',
+    description: 'Welcome to my DoorTree!',
+    avatar: '',
+  },
+  section: [],
+  themeColor: 'default',
+  bgColor: 'white',
+}
 
 const createTextSection = (): SectionItem => {
   return {

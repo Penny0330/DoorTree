@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { fontSizeOptions, textAlignOptions } from '@/pages/Edit/transform/index'
+import { fontSizeOptions } from '@/pages/Edit/transform/index'
 
 const props = defineProps({
   data: {
@@ -34,7 +34,7 @@ const onToggleDescriptionBtn = () => {
         <p>button fill</p>
         <Icon
           :name="
-            relativeData.section[props.idx].isFill
+            relativeData.section[idx].isFill
               ? 'ri:toggle-fill'
               : 'ri:toggle-line'
           "
@@ -82,7 +82,7 @@ const onToggleDescriptionBtn = () => {
         <p>button description</p>
         <Icon
           :name="
-            relativeData.section[props.idx].showDescription
+            relativeData.section[idx].showDescription
               ? 'ri:toggle-fill'
               : 'ri:toggle-line'
           "
@@ -91,7 +91,7 @@ const onToggleDescriptionBtn = () => {
         />
       </div>
       <div
-        v-if="relativeData.section[props.idx].showDescription"
+        v-if="relativeData.section[idx].showDescription"
         class="edit-row pl-8"
       >
         <input

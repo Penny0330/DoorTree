@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { nanoid } from 'nanoid'
-import dayjs from 'dayjs'
 import EmptyCard from './components/EmptyCard.vue'
 import DoorCard from './components/DoorCard.vue'
 import LinkModal from './components/LinkModal.vue'
-import type { DashboardItem } from '@/types/DashboardType'
-import { useFirestore } from '@/composables/useFirestore'
 import GlobalLoading from '@/components/GlobalLoading.vue'
+
+import type { DashboardItem } from '@/types/DashboardType'
+import {
+  DefaultDashboardItem,
+  DefaultEditDetail,
+} from '@/pages/Edit/modal/index'
+
+import { useFirestore } from '@/composables/useFirestore'
 import { useShowConfirmModal } from '@/composables/useConfirmModal'
 import { useShowGlobalToast } from '@/composables/useGlobalToast'
 
@@ -50,14 +54,7 @@ const onToggleCreateLinkModal = () => {
 
 const onCreateLink = async (link: string) => {
   isCreateLoading.value = true
-  const newDashboardItem = {
-    id: nanoid(),
-    title: link,
-    link,
-    avatar: '',
-    updateTime: dayjs().format('YYYY/MM/DD HH:mm'),
-  }
-
+  const newDashboardItem = { ...DefaultDashboardItem, title: link, link }
   await updateDocumentArray(
     'dashboard',
     store.uid as string,
@@ -72,18 +69,12 @@ const onCreateLink = async (link: string) => {
 
 const createDetail = async (itemId: string, link: string) => {
   const newItem = {
+    ...DefaultEditDetail,
     id: itemId,
-    link,
-    showQRCodeBtn: true,
-    showShareBtn: true,
     profile: {
+      ...DefaultEditDetail.profile,
       title: link,
-      description: 'Welcome to my DoorTree!',
-      avatar: '',
     },
-    section: [],
-    themeColor: 'default',
-    bgColor: 'white',
   }
   await setDocument('doorItemDetail', itemId, newItem)
 }

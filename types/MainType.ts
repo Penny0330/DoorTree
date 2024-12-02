@@ -8,23 +8,23 @@ interface TextSection extends BaseSection {
   type: 'TEXT'
   id: string
   text: string
-  style?: {
-    fontSize?: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
-    isBold?: boolean
-    isUnderline?: boolean
-    isItalic?: boolean
-    textAlign?: 'text-left' | 'text-center' | 'text-right'
-    color?: string
+  style: {
+    fontSize: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
+    isBold: boolean
+    isUnderline: boolean
+    isItalic: boolean
+    textAlign: 'text-left' | 'text-center' | 'text-right'
+    color: string
   }
 }
 
 interface DividerSection extends BaseSection {
   type: 'DIVIDER'
   id: string
-  style?: {
-    type?: 'border-solid' | 'border-dashed' | 'border-dotted' | 'border-double'
-    width?: 'border-b' | 'border-b-2' | 'border-b-4' | 'border-b-8'
-    color?: string
+  style: {
+    type: 'border-solid' | 'border-dashed' | 'border-dotted' | 'border-double'
+    width: 'border-b' | 'border-b-2' | 'border-b-4' | 'border-b-8'
+    color: string
   }
 }
 
@@ -36,8 +36,8 @@ interface ButtonSection extends BaseSection {
   showDescription: boolean
   description: string
   isFill: boolean
-  style?: {
-    fontSize?: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
+  style: {
+    fontSize: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
   }
 }
 
@@ -127,6 +127,8 @@ export interface EditDetail {
     title: string
     description: string
     avatar: string
+    previewImage?: string
+    previewImageFile?: File
   }
   section: SectionItem[]
   bgColor: string
@@ -140,17 +142,17 @@ export interface EditModalParams {
 }
 
 // 增加區塊按鈕
-export type AddBlockButtonType =
+export type BlockType =
   | 'TEXT'
   | 'DIVIDER'
   | 'BUTTON'
+  | 'LOGO_WALL'
   | 'IMAGE_SINGLE'
   | 'IMAGE_DOUBLE'
   | 'IMAGE_RECTANGLE'
-  | 'LOGO_WALL'
 
 export type AddBlockButton = {
-  type: AddBlockButtonType
+  type: BlockType
   icon: string
   text: string
   toolTip: string

@@ -29,7 +29,7 @@ watch(
 
 <template>
   <div
-    v-if="isEdit || relativeData.section[idx].isShow"
+    v-if="isEdit || relativeData.section[idx]?.isShow"
     :class="[
       'p-4',
       `${relativeData.section[idx]?.style.fontSize}`,

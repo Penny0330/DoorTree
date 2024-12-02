@@ -45,7 +45,7 @@ defineEmits(['onEdit', 'onShareLink', 'onDelete', 'onShowCreateLinkModal'])
         v-else
         class="bg-gray-300 rounded-full w-28 h-28 flex items-center justify-center text-white text-2xl"
       >
-        {{ item.title[0].toUpperCase() }}
+        {{ item.link[0].toUpperCase() }}
       </div>
       <div>
         <p class="text-xl">{{ item.link }}</p>

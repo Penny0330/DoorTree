@@ -35,7 +35,7 @@ watch(
 
 <template>
   <div
-    v-if="isEdit || relativeData.section[idx].isShow"
+    v-if="isEdit || relativeData.section[idx]?.isShow"
     :class="[
       'flex',
       'items-center',

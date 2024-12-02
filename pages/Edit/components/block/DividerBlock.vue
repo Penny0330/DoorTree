@@ -28,7 +28,7 @@ watch(
 </script>
 
 <template>
-  <div v-if="isEdit || relativeData.section[idx].isShow" class="py-6">
+  <div v-if="isEdit || relativeData.section[idx]?.isShow" class="py-6">
     <div
       :class="[
         `${relativeData.section[idx]?.style.width}`,

@@ -25,7 +25,7 @@ const onPreviewImage = (event: Event) => {
     const reader = new FileReader()
     reader.onload = (e) => {
       relativeData.profile.previewImage = e.target?.result as string
-      relativeData.profile.selectedImage = file
+      relativeData.profile.previewImageFile = file
     }
     reader.readAsDataURL(file)
   }
@@ -34,7 +34,7 @@ const onPreviewImage = (event: Event) => {
 
 const onRemoveImage = () => {
   relativeData.profile.previewImage = null
-  relativeData.profile.selectedImage = null
+  relativeData.profile.previewImageFile = null
 }
 
 const onThemeColor = (color: string) => {

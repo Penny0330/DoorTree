@@ -2,6 +2,7 @@
 import ErrorPage from '../error.vue'
 import { useFirestore } from '@/composables/useFirestore'
 import { useHandleError } from '@/composables/useHandleError'
+
 import GlobalLoading from '@/components/GlobalLoading.vue'
 import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
 import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'

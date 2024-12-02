@@ -71,7 +71,6 @@ const newDraggingType = ref<string | null>(null)
 const isDragging = ref<boolean>(false)
 
 const cloneBlock = (block: AddBlockButton) => {
-  console.log('cloneBlock', block)
   newDraggingType.value = block.type
   const newSection = createNewSection(block.type)
   return {

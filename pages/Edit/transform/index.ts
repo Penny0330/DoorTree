@@ -1,4 +1,4 @@
-import type { SectionItem } from '@/types/MainType'
+import type { SectionItem, BlockType } from '@/types/MainType'
 import { sectionCreators } from '@/pages/Edit/modal/index'
 
 export function useEditModal() {
@@ -19,14 +19,7 @@ export function useEditModal() {
   }
 }
 
-// TODO 待完成其他 type 的 params
-export function createNewSection(
-  type:
-    | 'TEXT'
-    | 'DIVIDER'
-    | 'BUTTON'
-    | 'LOGO_WALL | IMAGE_SINGLE | IMAGE_DOUBLE',
-): SectionItem {
+export function createNewSection(type: BlockType): SectionItem {
   const createSection = sectionCreators[type]
   if (!createSection) {
     throw new Error(`Invalid block type: ${type}`)
@@ -73,11 +66,17 @@ export const tagTextAlignOptions = [
   { value: 'right-4', label: 'Right' },
 ]
 
+type ClassMap = {
+  bg: Record<string, string>
+  text?: Record<string, string>
+  border?: Record<string, string>
+}
+
 export const transferBgClass = (
   type: 'text' | 'bg' | 'border',
   color: string,
 ) => {
-  const classMap = {
+  const classMap: ClassMap = {
     bg: {
       white: 'bg-white',
       red: 'bg-red-100',
@@ -89,14 +88,14 @@ export const transferBgClass = (
     },
   }
 
-  return classMap[type][color] || ''
+  return classMap[type]?.[color] || ''
 }
 
 export const transferThemeClass = (
   type: 'text' | 'bg' | 'border',
   color: string,
 ) => {
-  const classMap = {
+  const classMap: ClassMap = {
     text: {
       default: 'text-main-blue',
       red: 'text-red-300',
@@ -129,7 +128,7 @@ export const transferThemeClass = (
     },
   }
 
-  return classMap[type][color] || ''
+  return classMap[type]?.[color] || ''
 }
 
 export const iconOptions = [

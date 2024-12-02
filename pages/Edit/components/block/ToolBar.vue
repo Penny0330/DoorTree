@@ -49,7 +49,7 @@ watch(
         class="text-2xl text-gray-500 cursor-pointer drag-btn"
       />
       <Icon
-        :name="section[idx].isShow ? 'ri:toggle-fill' : 'ri:toggle-line'"
+        :name="section[idx]?.isShow ? 'ri:toggle-fill' : 'ri:toggle-line'"
         class="text-2xl text-main-blue cursor-pointer"
         @click="onToggleShowBtn"
       />

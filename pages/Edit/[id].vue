@@ -20,8 +20,12 @@ import { useShowGlobalToast } from '@/composables/useGlobalToast'
 import { useUploadImage } from '@/composables/useUploadImage'
 import { useShowConfirmModal } from '@/composables/useConfirmModal'
 
-import type { EditDetail, EditModalParams } from '@/types/MainType'
+import type { EditDetail, EditModalParams, BlockType } from '@/types/MainType'
 import type { DashboardItem } from '@/types/DashboardType'
+import {
+  DefaultDashboardItem,
+  DefaultEditDetail,
+} from '@/pages/Edit/modal/index'
 
 import {
   useEditModal,
@@ -46,27 +50,14 @@ const showConfirmModal = useShowConfirmModal()
 const showGlobalToast = useShowGlobalToast()
 const { uploadImage } = useUploadImage()
 
-const defaultEditDetail: EditDetail = {
-  id: '',
-  link: 'string',
-  showQRCodeBtn: true,
-  showShareBtn: true,
-  profile: {
-    title: '',
-    description: '',
-    avatar: '',
-  },
-  section: [],
-}
-
 const route = useRoute()
 const id = ref<string | string[]>(route.params.id)
 const isLoading = ref<boolean>(true)
-const editData = ref<EditDetail>(defaultEditDetail)
-const dashboardItem = ref<DashboardItem>({})
+const editData = ref<EditDetail>(DefaultEditDetail)
+const dashboardItem = ref<DashboardItem>(DefaultDashboardItem)
 const currentModalTitle = ref<string>('')
 const currentModalType = ref<string>('')
-const currentModalData = ref<EditDetail>(defaultEditDetail)
+const currentModalData = ref<EditDetail>(DefaultEditDetail)
 const currentModalDataIdx = ref<number>(0)
 const isSaveLoading = ref<boolean>(false)
 const showPreview = ref<boolean>(false)
@@ -91,7 +82,6 @@ const getDashboardData = async (): Promise<void> => {
 }
 
 const handleEdit = (params: EditModalParams) => {
-  console.log(params)
   const { title, type, idx } = params
   currentModalTitle.value = title
   currentModalType.value = type
@@ -108,8 +98,8 @@ const updateDashboardList = async () => {
     'dashboardList',
     dashboardItem.value,
   )
-  // update dashboardItem
-  const newDashboardItem: DashboardItem = {
+  const newDashboardItem = {
+    ...defaultDashboardItem,
     id: id.value as string,
     title: currentModalData.value?.profile.title,
     link: currentModalData.value.link,
@@ -127,14 +117,14 @@ const updateDashboardList = async () => {
 
 const onUploadAvatar = async () => {
   const imageUrl = await uploadImage(
-    currentModalData.value.profile.selectedImage,
+    currentModalData.value.profile.previewImageFile as File,
   )
   if (imageUrl) {
     currentModalData.value.profile.avatar = imageUrl
   }
   editData.value = _.cloneDeep(currentModalData.value as EditDetail)
   delete editData.value.profile.previewImage
-  delete editData.value.profile.selectedImage
+  delete editData.value.profile.previewImageFile
 }
 
 const onUploadImage = async (idx: number) => {
@@ -202,7 +192,7 @@ const handleImageBlock = async () => {
 
 const onSave = async () => {
   isSaveLoading.value = true
-  if (currentModalData.value.profile.selectedImage) {
+  if (currentModalData.value.profile.previewImageFile) {
     await onUploadAvatar()
   }
   await handleImageBlock()
@@ -225,7 +215,7 @@ const onUpdateIsShow = async () => {
   await handleUpdate()
 }
 
-const onAddBlock = async (type: 'TEXT' | 'DIVIDER' | 'BUTTON') => {
+const onAddBlock = async (type: BlockType) => {
   isAddLoading.value = true
   const newSection = createNewSection(type)
   editData.value.section.push(newSection)

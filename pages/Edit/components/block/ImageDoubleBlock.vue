@@ -34,11 +34,11 @@ watch(
 
 <template>
   <div
-    v-if="isEdit || relativeData.section[idx].isShow"
+    v-if="isEdit || relativeData.section[idx]?.isShow"
     class="grid grid-cols-2 gap-4"
   >
     <div
-      v-for="item in relativeData.section[idx].imageList"
+      v-for="item in relativeData.section[idx]?.imageList"
       :key="item.id"
       class="flex flex-col"
     >
