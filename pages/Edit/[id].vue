@@ -372,6 +372,7 @@ onMounted(() => {
       <Preview
         :show-preview="showPreview"
         :is-edit="false"
+        :idx="currentModalDataIdx"
         :data="currentModalData"
         @on-preview="onTogglePreview"
       />
