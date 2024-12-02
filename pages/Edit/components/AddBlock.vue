@@ -62,7 +62,7 @@ const addBlockButtonList = ref<AddBlockButton[]>([
   {
     type: 'IMAGE_RECTANGLE',
     icon: 'mynaui:image-rectangle',
-    text: 'Rectangle',
+    text: 'Image (rectangle)',
     toolTip: 'header / paragraph',
   },
 ])

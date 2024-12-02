@@ -5,6 +5,7 @@ import BUTTON from './ButtonSetting.vue'
 import LOGO_WALL from './LogoWallSetting.vue'
 import IMAGE_SINGLE from './ImageSingleSetting.vue'
 import IMAGE_DOUBLE from './ImageDoubleSetting.vue'
+import IMAGE_RECTANGLE from './ImageRectangleSetting.vue'
 
 export const settingTypeComponent: Record<
   string,
@@ -15,6 +16,7 @@ export const settingTypeComponent: Record<
   | typeof LOGO_WALL
   | typeof IMAGE_SINGLE
   | typeof IMAGE_DOUBLE
+  | typeof IMAGE_RECTANGLE
 > = {
   Profile,
   TEXT,
@@ -23,4 +25,5 @@ export const settingTypeComponent: Record<
   LOGO_WALL,
   IMAGE_SINGLE,
   IMAGE_DOUBLE,
+  IMAGE_RECTANGLE,
 }

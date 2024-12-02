@@ -122,6 +122,25 @@ const createImageDoubleSection = (): SectionItem => {
   }
 }
 
+const createImageRectangleSection = (): SectionItem => {
+  return {
+    type: 'IMAGE_RECTANGLE',
+    id: nanoid(),
+    isShow: false,
+    link: '',
+    image: `https://picsum.photos/id/${generateNumber()}/400/200`,
+    tag: {
+      text: '',
+      textAlign: 'left-4',
+      bgColor: 'default',
+    },
+    description: {
+      text: '',
+      textAlign: 'text-left',
+    },
+  }
+}
+
 export const sectionCreators: Record<string, () => SectionItem> = {
   TEXT: createTextSection,
   DIVIDER: createDividerSection,
@@ -129,4 +148,5 @@ export const sectionCreators: Record<string, () => SectionItem> = {
   LOGO_WALL: createLogoWallSection,
   IMAGE_SINGLE: createImageSingleSection,
   IMAGE_DOUBLE: createImageDoubleSection,
+  IMAGE_RECTANGLE: createImageRectangleSection,
 }

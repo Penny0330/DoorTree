@@ -4,6 +4,7 @@ import BUTTON from './ButtonBlock.vue'
 import LOGO_WALL from './LogoWallBlock.vue'
 import IMAGE_SINGLE from './ImageSingleBlock.vue'
 import IMAGE_DOUBLE from './ImageDoubleBlock.vue'
+import IMAGE_RECTANGLE from './ImageRectangleBlock.vue'
 
 export const BlockTypeComponent: Record<
   string,
@@ -13,6 +14,7 @@ export const BlockTypeComponent: Record<
   | typeof LOGO_WALL
   | typeof IMAGE_SINGLE
   | typeof IMAGE_DOUBLE
+  | typeof IMAGE_RECTANGLE
 > = {
   TEXT,
   DIVIDER,
@@ -20,4 +22,5 @@ export const BlockTypeComponent: Record<
   LOGO_WALL,
   IMAGE_SINGLE,
   IMAGE_DOUBLE,
+  IMAGE_RECTANGLE,
 }

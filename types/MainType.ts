@@ -91,6 +91,24 @@ interface ImageDoubleSection extends BaseSection {
   }>
 }
 
+interface ImageRectangleSection extends BaseSection {
+  type: 'IMAGE_RECTANGLE'
+  id: string
+  link: string
+  previewImage?: string
+  previewImageFile?: File
+  image: string
+  tag: {
+    text: string
+    textAlign: 'left-4' | 'right-4'
+    bgColor: string
+  }
+  description: {
+    text: string
+    textAlign: 'text-left' | 'text-right'
+  }
+}
+
 export type SectionItem =
   | TextSection
   | DividerSection
@@ -98,6 +116,7 @@ export type SectionItem =
   | LogoWallSection
   | ImageSingleSection
   | ImageDoubleSection
+  | ImageRectangleSection
 
 export interface EditDetail {
   id: string

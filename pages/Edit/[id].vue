@@ -138,14 +138,15 @@ const onUploadAvatar = async () => {
 const onUploadImage = async (idx: number) => {
   const section = currentModalData.value.section[idx]
 
-  if (section.type === 'IMAGE_SINGLE' && section.previewImageFile) {
+  if (
+    (section.type === 'IMAGE_SINGLE' || section.type === 'IMAGE_RECTANGLE') &&
+    section.previewImageFile
+  ) {
     const imageUrl = await uploadImage(section.previewImageFile)
     section.image = imageUrl
+    delete section.previewImage
+    delete section.previewImageFile
     editData.value = _.cloneDeep(currentModalData.value as EditDetail)
-    if (editData.value.section[idx].type === 'IMAGE_SINGLE') {
-      delete editData.value.section[idx].previewImage
-      delete editData.value.section[idx].previewImageFile
-    }
   }
 }
 
@@ -177,7 +178,8 @@ const handleUpdate = async () => {
 const handleImageBlock = async () => {
   const index = currentModalData.value.section.findIndex((item) => {
     return (
-      (item.type === 'IMAGE_SINGLE' && item.previewImageFile) ||
+      ((item.type === 'IMAGE_SINGLE' || item.type === 'IMAGE_RECTANGLE') &&
+        item.previewImageFile) ||
       (item.type === 'IMAGE_DOUBLE' &&
         item.imageList.some((image) => image.previewImageFile))
     )
@@ -186,7 +188,7 @@ const handleImageBlock = async () => {
   if (index !== -1) {
     const item = currentModalData.value.section[index]
 
-    if (item.type === 'IMAGE_SINGLE') {
+    if (item.type === 'IMAGE_SINGLE' || item.type === 'IMAGE_RECTANGLE') {
       await onUploadImage(index)
     } else if (item.type === 'IMAGE_DOUBLE') {
       await onUploadDoubleImages(index)
@@ -218,8 +220,6 @@ const onToggleAddBlockModal = () => {
 
 const onUpdateIsShow = async () => {
   currentModalData.value = _.cloneDeep(editData.value)
-  console.log('editData: ', editData.value)
-  console.log('currentModalData: ', currentModalData.value)
   await handleUpdate()
 }
 
