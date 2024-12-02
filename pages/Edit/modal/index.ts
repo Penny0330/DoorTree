@@ -28,7 +28,7 @@ const createDividerSection = (): SectionItem => {
     style: {
       type: 'border-solid',
       width: 'border-b',
-      color: 'border-black',
+      color: 'black',
     },
   }
 }
@@ -38,7 +38,7 @@ const createButtonSection = (): SectionItem => {
     type: 'BUTTON',
     id: nanoid(),
     isShow: false,
-    text: '',
+    text: 'Button',
     link: '',
     showDescription: false,
     description: '',

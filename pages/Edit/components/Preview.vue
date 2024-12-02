@@ -18,6 +18,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  idx: {
+    type: Number,
+    default: null,
+  },
   showFooter: {
     type: Boolean,
     default: true,
@@ -46,16 +50,25 @@ const blockComponent = (type: string) => {
         transferBgClass('bg', data.bgColor),
       ]"
     >
-      <TopButtonBlock :is-edit="isEdit" :data="data" />
-      <ProfileBlock :is-edit="isEdit" :data="data" />
-      <template v-for="(section, idx) in data.section" :key="section.id">
-        <component
-          :is="blockComponent(section.type)"
-          :is-edit="isEdit"
-          :data="data"
-          :idx="idx"
-        />
+      <template v-if="idx === null">
+        <TopButtonBlock :is-edit="false" :data="data" />
+        <ProfileBlock :is-edit="false" :data="data" />
+        <template v-for="(section, index) in data.section" :key="section.id">
+          <component
+            :is="blockComponent(section.type)"
+            :is-edit="false"
+            :data="data"
+            :idx="index"
+          />
+        </template>
       </template>
+      <component
+        :is="blockComponent(data.section[idx].type)"
+        v-else
+        :is-edit="isEdit"
+        :data="data"
+        :idx="idx"
+      />
     </main>
     <footer v-if="showFooter" class="p-2.5">
       <button

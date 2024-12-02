@@ -21,7 +21,7 @@ const props = defineProps({
   },
   idx: {
     type: Number,
-    default: 0,
+    default: null,
   },
   isSaveLoading: {
     type: Boolean,
@@ -83,8 +83,9 @@ const settingComponent = computed(
         <section class="hidden md:block md:flex-1">
           <Preview
             :show-preview="true"
-            :is-edit="false"
+            :is-edit="true"
             :data="data"
+            :idx="idx"
             :show-footer="false"
           />
         </section>

@@ -34,7 +34,7 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div v-if="isEdit || relativeData.section[idx].isShow" class="flex flex-col">
     <div class="flex flex-col items-center">
       <div
         class="w-full h-full aspect-square rounded-2xl border bg-gray-300 relative"
