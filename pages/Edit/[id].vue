@@ -63,6 +63,7 @@ const isSaveLoading = ref<boolean>(false)
 const showPreview = ref<boolean>(false)
 const showAddBlockModal = ref<boolean>(false)
 const isAddLoading = ref<boolean>(false)
+const scrollContainer = ref<HTMLElement | null>(null)
 
 // get data
 const getDetailData = async (): Promise<void> => {
@@ -223,6 +224,12 @@ const onAddBlock = async (type: BlockType) => {
   await handleUpdate()
   isAddLoading.value = false
   onToggleAddBlockModal()
+  if (scrollContainer.value) {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    })
+  }
 }
 
 const onDelete = (idx: number) => {
@@ -270,6 +277,7 @@ onMounted(() => {
 
 <template>
   <div
+    ref="scrollContainer"
     :class="[
       'pt-20',
       'pb-8',
