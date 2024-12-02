@@ -55,10 +55,10 @@ interface LogoWallSection extends BaseSection {
 interface ImageSingleSection extends BaseSection {
   type: 'IMAGE_SINGLE'
   id: string
-  url: string
+  link: string
   previewImage?: string
   previewImageFile?: File
-  link: string
+  image: string
   tag: {
     text: string
     textAlign: 'left-4' | 'right-4'
@@ -70,12 +70,32 @@ interface ImageSingleSection extends BaseSection {
   }
 }
 
+interface ImageDoubleSection extends BaseSection {
+  type: 'IMAGE_DOUBLE'
+  id: string
+  imageList: Array<{
+    link: string
+    previewImage?: string
+    previewImageFile?: File
+    tag: {
+      text: string
+      textAlign: 'left-4' | 'right-4'
+      bgColor: string
+    }
+    description: {
+      text: string
+      textAlign: 'text-left' | 'text-right'
+    }
+  }>
+}
+
 export type SectionItem =
   | TextSection
   | DividerSection
   | ButtonSection
   | LogoWallSection
   | ImageSingleSection
+  | ImageDoubleSection
 
 export interface EditDetail {
   id: string

@@ -140,7 +140,7 @@ const onUploadImage = async (idx: number) => {
 
   if (section.type === 'IMAGE_SINGLE' && section.previewImageFile) {
     const imageUrl = await uploadImage(section.previewImageFile)
-    section.url = imageUrl
+    section.image = imageUrl
     editData.value = _.cloneDeep(currentModalData.value as EditDetail)
     if (editData.value.section[idx].type === 'IMAGE_SINGLE') {
       delete editData.value.section[idx].previewImage
@@ -176,7 +176,7 @@ const onSave = async () => {
   const hasImageUpload = handleImageBlock()
 
   if (hasImageUpload !== -1) {
-    onUploadImage(hasImageUpload)
+    await onUploadImage(hasImageUpload)
   } else {
     editData.value = _.cloneDeep(currentModalData.value as EditDetail)
   }

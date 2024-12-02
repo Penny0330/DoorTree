@@ -50,7 +50,7 @@ const onTagBgColor = (color: string) => {
       <div
         v-if="
           !relativeData.section[idx].previewImage &&
-          !relativeData.section[idx].url
+          !relativeData.section[idx].image
         "
         class="bg-gray-200 rounded-2xl w-24 h-24 flex items-center justify-center"
       >
@@ -65,10 +65,10 @@ const onTagBgColor = (color: string) => {
         />
         <img
           v-else-if="
-            relativeData.section[idx].url &&
+            relativeData.section[idx].image &&
             !relativeData.section[idx].previewImage
           "
-          :src="relativeData.section[idx].url"
+          :src="relativeData.section[idx].image"
           class="w-full h-full object-cover rounded-2xl"
         />
       </div>

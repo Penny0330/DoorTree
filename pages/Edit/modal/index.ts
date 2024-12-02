@@ -68,8 +68,8 @@ const createImageSingleSection = (): SectionItem => {
     type: 'IMAGE_SINGLE',
     id: nanoid(),
     isShow: false,
-    url: '',
     link: '',
+    image: '',
     tag: {
       text: '',
       textAlign: 'left-4',

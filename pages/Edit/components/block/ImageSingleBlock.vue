@@ -40,7 +40,7 @@ watch(
       <div
         v-if="
           !relativeData.section[idx].previewImage &&
-          !relativeData.section[idx].url
+          !relativeData.section[idx].image
         "
         class="rounded-2xl w-full h-full aspect-square flex items-center justify-center bg-gray-100"
         @click="onGoToLink"
@@ -54,7 +54,7 @@ watch(
         <img
           :src="
             relativeData.section[idx].previewImage ||
-            relativeData.section[idx].url
+            relativeData.section[idx].image
           "
           class="w-full h-full object-cover rounded-2xl"
           @click="onGoToLink"
