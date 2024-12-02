@@ -2,13 +2,13 @@
 import _ from 'lodash'
 import dayjs from 'dayjs'
 import Draggable from 'vuedraggable'
-
 import { nanoid } from 'nanoid'
-import ShareLinkBlock from './components/block/ShareLinkBlock.vue'
+
 import GlobalLoading from '@/components/GlobalLoading.vue'
 import EditModal from '@/pages/Edit/components/EditModal.vue'
 import Preview from '@/pages/Edit/components/Preview.vue'
 import AddBlock from '@/pages/Edit/components/AddBlock.vue'
+import ShareLinkBlock from '@/pages/Edit/components/block/ShareLinkBlock.vue'
 import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
 import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'
 import ToolBar from '@/pages/Edit/components/block/ToolBar.vue'
@@ -18,6 +18,7 @@ import { useFirestore } from '@/composables/useFirestore'
 import { useHandleError } from '@/composables/useHandleError'
 import { useShowGlobalToast } from '@/composables/useGlobalToast'
 import { useUploadImage } from '@/composables/useUploadImage'
+import { useShowConfirmModal } from '@/composables/useConfirmModal'
 
 import type { EditDetail, EditModalParams } from '@/types/MainType'
 import type { DashboardItem } from '@/types/DashboardType'
@@ -41,6 +42,7 @@ const {
 } = useFirestore()
 const { handleError } = useHandleError()
 const { showEditModal, openModal, closeModal } = useEditModal()
+const showConfirmModal = useShowConfirmModal()
 const showGlobalToast = useShowGlobalToast()
 const { uploadImage } = useUploadImage()
 
@@ -233,9 +235,21 @@ const onAddBlock = async (type: 'TEXT' | 'DIVIDER' | 'BUTTON') => {
   onToggleAddBlockModal()
 }
 
-const onDelete = async (idx: number) => {
-  editData.value.section.splice(idx, 1)
+const onDelete = (idx: number) => {
+  showConfirmModal({
+    modalTitle: `Delete Block`,
+    content: 'Are you sure you want to delete? This action cannot be undone.',
+    okBtnText: 'delete',
+    isDanger: true,
+    confirmLoading: true,
+    onOk: () => handleDelete(idx),
+  })
+}
+
+const handleDelete = async (idx: number) => {
+  currentModalData.value = _.cloneDeep(editData.value as EditDetail)
   await handleUpdate()
+  editData.value.section.splice(idx, 1)
   showGlobalToast({ message: 'Deleted successfully', type: 'success' })
 }
 
@@ -274,7 +288,7 @@ onMounted(() => {
       'flex-col',
       'items-center',
       'sm:pt-32',
-      transferBgClass('bg', editData?.bgColor),
+      isLoading ? 'bg-white' : transferBgClass('bg', editData?.bgColor),
     ]"
   >
     <GlobalLoading v-if="isLoading" />

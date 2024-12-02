@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Tooltip from '@/components/GlobalTooltip.vue'
+
 const props = defineProps({
   data: {
     type: Object,
@@ -53,21 +55,27 @@ watch(
       />
     </div>
     <div class="flex gap-4">
-      <Icon
-        name="si:copy-line"
-        class="text-lg text-gray-500 cursor-pointer"
-        @click="$emit('onCopy', idx)"
-      />
-      <Icon
-        name="fluent:delete-32-regular"
-        class="text-lg text-gray-500 cursor-pointer"
-        @click="$emit('onDelete', idx)"
-      />
-      <Icon
-        name="hugeicons:pencil"
-        class="text-lg text-gray-500 cursor-pointer"
-        @click="handleEdit"
-      />
+      <Tooltip text="Copy">
+        <Icon
+          name="si:copy-line"
+          class="text-lg text-gray-500 cursor-pointer hover:text-main-blue"
+          @click="$emit('onCopy', idx)"
+        />
+      </Tooltip>
+      <Tooltip text="Delete">
+        <Icon
+          name="fluent:delete-32-regular"
+          class="text-lg text-gray-500 cursor-pointer hover:text-red-500"
+          @click="$emit('onDelete', idx)"
+        />
+      </Tooltip>
+      <Tooltip text="Edit">
+        <Icon
+          name="hugeicons:pencil"
+          class="text-lg text-gray-500 cursor-pointer hover:text-main-blue"
+          @click="handleEdit"
+        />
+      </Tooltip>
     </div>
   </div>
 </template>
