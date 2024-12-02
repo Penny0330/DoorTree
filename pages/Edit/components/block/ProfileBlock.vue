@@ -50,7 +50,7 @@ watch(
           transferThemeClass('bg', relativeData.themeColor),
         ]"
       >
-        {{ profile.title[0].toUpperCase() }}
+        {{ relativeData.link[0].toUpperCase() }}
       </div>
       <div v-else class="w-24 h-24 rounded-full border bg-gray-300">
         <img

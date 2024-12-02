@@ -78,7 +78,7 @@ const onBgColor = (color: string) => {
           v-if="!relativeData.profile.previewImage && !profile.avatar"
           class="bg-gray-300 rounded-full w-24 h-24 flex items-center justify-center text-white text-2xl"
         >
-          {{ profile.title[0].toUpperCase() }}
+          {{ relativeData.link[0].toUpperCase() }}
         </div>
         <div v-else class="w-24 h-24 rounded-full border bg-gray-300">
           <img

@@ -99,7 +99,7 @@ const updateDashboardList = async () => {
     dashboardItem.value,
   )
   const newDashboardItem = {
-    ...defaultDashboardItem,
+    ...DefaultDashboardItem,
     id: id.value as string,
     title: currentModalData.value?.profile.title,
     link: currentModalData.value.link,
