@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid'
 import type { SectionItem } from '@/types/MainType'
 
+const generateNumber = (): number => Math.floor(Math.random() * 1000) + 1
+
 const createTextSection = (): SectionItem => {
   return {
     type: 'TEXT',
@@ -69,7 +71,7 @@ const createImageSingleSection = (): SectionItem => {
     id: nanoid(),
     isShow: false,
     link: '',
-    image: '',
+    image: `https://picsum.photos/id/${generateNumber()}/400/400`,
     tag: {
       text: '',
       textAlign: 'left-4',
@@ -82,10 +84,49 @@ const createImageSingleSection = (): SectionItem => {
   }
 }
 
+const createImageDoubleSection = (): SectionItem => {
+  return {
+    type: 'IMAGE_DOUBLE',
+    id: nanoid(),
+    isShow: false,
+    imageList: [
+      {
+        id: nanoid(),
+        link: '',
+        image: `https://picsum.photos/id/${generateNumber()}/400/400`,
+        tag: {
+          text: '',
+          textAlign: 'left-4',
+          bgColor: 'default',
+        },
+        description: {
+          text: '',
+          textAlign: 'text-left',
+        },
+      },
+      {
+        id: nanoid(),
+        link: '',
+        image: `https://picsum.photos/id/${generateNumber()}/400/400`,
+        tag: {
+          text: '',
+          textAlign: 'left-4',
+          bgColor: 'default',
+        },
+        description: {
+          text: '',
+          textAlign: 'text-left',
+        },
+      },
+    ],
+  }
+}
+
 export const sectionCreators: Record<string, () => SectionItem> = {
   TEXT: createTextSection,
   DIVIDER: createDividerSection,
   BUTTON: createButtonSection,
   LOGO_WALL: createLogoWallSection,
   IMAGE_SINGLE: createImageSingleSection,
+  IMAGE_DOUBLE: createImageDoubleSection,
 }

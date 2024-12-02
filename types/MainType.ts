@@ -74,9 +74,11 @@ interface ImageDoubleSection extends BaseSection {
   type: 'IMAGE_DOUBLE'
   id: string
   imageList: Array<{
+    id: string
     link: string
     previewImage?: string
     previewImageFile?: File
+    image: string
     tag: {
       text: string
       textAlign: 'left-4' | 'right-4'

@@ -21,7 +21,11 @@ export function useEditModal() {
 
 // TODO 待完成其他 type 的 params
 export function createNewSection(
-  type: 'TEXT' | 'DIVIDER' | 'BUTTON' | 'LOGO_WALL',
+  type:
+    | 'TEXT'
+    | 'DIVIDER'
+    | 'BUTTON'
+    | 'LOGO_WALL | IMAGE_SINGLE | IMAGE_DOUBLE',
 ): SectionItem {
   const createSection = sectionCreators[type]
   if (!createSection) {

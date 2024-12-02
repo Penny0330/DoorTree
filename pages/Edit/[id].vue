@@ -146,8 +146,24 @@ const onUploadImage = async (idx: number) => {
       delete editData.value.section[idx].previewImage
       delete editData.value.section[idx].previewImageFile
     }
+  }
+}
 
-    console.log('upload after: ', editData.value)
+const onUploadDoubleImages = async (idx: number) => {
+  const section = currentModalData.value.section[idx]
+
+  if (section.type === 'IMAGE_DOUBLE') {
+    for (const item of section.imageList) {
+      if (item.previewImageFile) {
+        const uploadedUrl = await uploadImage(item.previewImageFile)
+        item.image = uploadedUrl
+
+        delete item.previewImage
+        delete item.previewImageFile
+      }
+    }
+
+    editData.value = _.cloneDeep(currentModalData.value as EditDetail)
   }
 }
 
@@ -158,13 +174,26 @@ const handleUpdate = async () => {
   await updateDocument('doorItemDetail', id.value as string, editData.value)
 }
 
-const handleImageBlock = () => {
-  const imageSingleIndex = currentModalData.value.section.findIndex(
-    (item) =>
-      item.type === 'IMAGE_SINGLE' && item.previewImageFile !== undefined,
-  )
+const handleImageBlock = async () => {
+  const index = currentModalData.value.section.findIndex((item) => {
+    return (
+      (item.type === 'IMAGE_SINGLE' && item.previewImageFile) ||
+      (item.type === 'IMAGE_DOUBLE' &&
+        item.imageList.some((image) => image.previewImageFile))
+    )
+  })
 
-  return imageSingleIndex
+  if (index !== -1) {
+    const item = currentModalData.value.section[index]
+
+    if (item.type === 'IMAGE_SINGLE') {
+      await onUploadImage(index)
+    } else if (item.type === 'IMAGE_DOUBLE') {
+      await onUploadDoubleImages(index)
+    }
+  } else {
+    editData.value = _.cloneDeep(currentModalData.value as EditDetail)
+  }
 }
 
 const onSave = async () => {
@@ -172,15 +201,7 @@ const onSave = async () => {
   if (currentModalData.value.profile.selectedImage) {
     await onUploadAvatar()
   }
-
-  const hasImageUpload = handleImageBlock()
-
-  if (hasImageUpload !== -1) {
-    await onUploadImage(hasImageUpload)
-  } else {
-    editData.value = _.cloneDeep(currentModalData.value as EditDetail)
-  }
-
+  await handleImageBlock()
   await handleUpdate()
   isSaveLoading.value = false
   closeModal()
