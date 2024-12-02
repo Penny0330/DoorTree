@@ -39,7 +39,13 @@ const isCreateLoading = ref<boolean>(false)
 const getDashboardData = async (): Promise<void> => {
   isGetLoading.value = true
   const data = await getDocument('dashboard', store.uid as string)
-  dashboardList.value = data?.dashboardList as DashboardItem[]
+  dashboardList.value = data?.dashboardList.sort(
+    (a: DashboardItem, b: DashboardItem) => {
+      const dateA = new Date(a.updateTime)
+      const dateB = new Date(b.updateTime)
+      return dateB.getTime() - dateA.getTime()
+    },
+  )
   isGetLoading.value = false
 }
 
