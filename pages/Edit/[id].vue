@@ -303,7 +303,7 @@ onMounted(() => {
       <main class="md:justify-self-center w-full sm:max-w-[500px]">
         <ShareLinkBlock :link="editData?.link" />
         <div class="mt-8">
-          <div class="flex flex-col p-4 rounded-2xl">
+          <div class="flex flex-col rounded-2xl md:p-4">
             <TopButtonBlock
               :is-edit="true"
               :data="editData"
@@ -328,7 +328,7 @@ onMounted(() => {
                   :class="[
                     'rounded-2xl',
                     'shadow-around-light-025',
-                    'mt-10',
+                    'mt-4',
                     element.type === 'BUTTON' && !element.isFill
                       ? ''
                       : 'bg-white',
