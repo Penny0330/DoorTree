@@ -251,8 +251,9 @@ const handleDelete = async (idx: number) => {
 }
 
 const onCopy = async (idx: number) => {
+  currentModalData.value = _.cloneDeep(editData.value as EditDetail)
   const copyData = {
-    ...editData.value.section[idx],
+    ...currentModalData.value.section[idx],
     id: nanoid(),
   }
   copyData.isShow = false
