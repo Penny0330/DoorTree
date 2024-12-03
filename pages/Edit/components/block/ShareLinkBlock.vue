@@ -10,22 +10,17 @@ const props = defineProps({
   },
 })
 
-const domain = 'https://door-tree.vercel.app/'
+const shareLink = ref<string>(`${window.location.origin}/${props.link}`)
 
 const onCopyLink = async () => {
   try {
-    await navigator.clipboard.writeText(domain + props.link)
+    await navigator.clipboard.writeText(shareLink.value)
     showGlobalToast({ message: 'Copied!', type: 'success' })
   } catch (err) {
     showGlobalToast({ message: 'Failed to copy!', type: 'success' })
     console.error('Failed to copy text: ', err)
   }
 }
-
-// const onGoLinkPage = () => {
-//   console.log('onGoLinkPage')
-//   navigateTo(`/share/${props.link}`)
-// }
 </script>
 
 <template>
@@ -35,7 +30,7 @@ const onCopyLink = async () => {
     <span
       class="text-zinc-500 text-nowrap overflow-x-auto overscroll-none hide-scrollbar mr-4"
     >
-      {{ domain }}{{ link }}
+      {{ shareLink }}
     </span>
 
     <div class="flex gap-2">

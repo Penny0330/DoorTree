@@ -2,6 +2,7 @@
 import EmptyCard from './components/EmptyCard.vue'
 import DoorCard from './components/DoorCard.vue'
 import LinkModal from './components/LinkModal.vue'
+import ShareModal from './components/ShareModal.vue'
 import GlobalLoading from '@/components/GlobalLoading.vue'
 
 import type { DashboardItem } from '@/types/DashboardType'
@@ -34,6 +35,8 @@ const isGetLoading = ref<boolean>(true)
 // create Link
 const showCreateLinkModal = ref<boolean>(false)
 const isCreateLoading = ref<boolean>(false)
+const showShareModal = ref<boolean>(false)
+const currentShareLink = ref<string>('')
 
 // get data
 const getDashboardData = async (): Promise<void> => {
@@ -90,9 +93,11 @@ const onEdit = (id: string) => {
   navigateTo(`/edit/${id}`)
 }
 
-// go to share page
-const onShareLink = (link: string) => {
-  navigateTo(`/${link}`)
+const onToggleShareModal = (link: string) => {
+  showShareModal.value = !showShareModal.value
+  if (showShareModal.value) {
+    currentShareLink.value = link
+  }
 }
 
 // delete
@@ -141,7 +146,7 @@ onMounted(() => {
         :dashboard-list="dashboardList"
         @on-show-create-link-modal="onShowCreateLinkModal"
         @on-edit="onEdit"
-        @on-share-link="onShareLink"
+        @on-toggle-share-modal="onToggleShareModal"
         @on-delete="onDelete"
       />
     </template>
@@ -156,6 +161,11 @@ onMounted(() => {
       :is-create-loading="isCreateLoading"
       :on-toggle-create-link-modal="onToggleCreateLinkModal"
       :on-create-link="onCreateLink"
+    />
+    <ShareModal
+      :show-share-modal="showShareModal"
+      :current-share-link="currentShareLink"
+      @on-toggle-share-modal="onToggleShareModal"
     />
   </div>
 </template>

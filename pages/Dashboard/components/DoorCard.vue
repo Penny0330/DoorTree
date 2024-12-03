@@ -13,7 +13,12 @@ defineProps({
   },
 })
 
-defineEmits(['onEdit', 'onShareLink', 'onDelete', 'onShowCreateLinkModal'])
+defineEmits([
+  'onEdit',
+  'onToggleShareModal',
+  'onDelete',
+  'onShowCreateLinkModal',
+])
 </script>
 
 <template>
@@ -62,7 +67,7 @@ defineEmits(['onEdit', 'onShareLink', 'onDelete', 'onShowCreateLinkModal'])
           <ActionButton
             icon="mage:share"
             label="Share Link"
-            @click="$emit('onShareLink', item.link)"
+            @click.stop="$emit('onToggleShareModal', item.link)"
           />
           <ActionButton
             icon="fluent:delete-32-regular"
