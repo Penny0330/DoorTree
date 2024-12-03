@@ -40,7 +40,7 @@ const handleOk = async () => {
 <template>
   <div class="w-full h-dvh fixed top-0 z-30 bg-main-overlay">
     <div
-      class="w-11/12 max-w-[416px] bg-white rounded-2xl m-auto mt-[50%] pt-8 px-8 pb-6 relative sm:mt-[10%]"
+      class="w-11/12 max-w-[416px] bg-white rounded-2xl m-auto mt-[50%] pt-8 px-8 pb-6 relative animate-slide-show sm:mt-[10%]"
       @click.stop
     >
       <main class="flex gap-4">
