@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="bg-main-blue flex flex-col min-h-dvh">
+  <div class="bg-main-blue">
     <slot />
     <LayoutHomeFooter />
   </div>
