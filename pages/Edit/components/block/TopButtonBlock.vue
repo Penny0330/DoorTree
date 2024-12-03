@@ -69,7 +69,7 @@ watch(
 
 <template>
   <div class="flex flex-col">
-    <div class="text-end text-main-blue text-xl px-2 pr-6">
+    <div class="text-main-blue text-xl px-2 pr-6 flex justify-end">
       <!-- edit -->
       <template v-if="isEdit">
         <Tooltip :text="shareBtnToolTipText">
