@@ -43,8 +43,19 @@ const handleEdit = () => {
 }
 
 // share mode
-const onShare = () => {
-  console.log('onShare')
+const onShare = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'DoorTree',
+        url: window.location.href,
+      })
+    } catch (error) {
+      console.error('onShare:', error)
+    }
+  } else {
+    console.log('Web Share API is not supported in your browser.')
+  }
 }
 
 watch(
