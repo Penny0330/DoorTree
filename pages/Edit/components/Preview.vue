@@ -65,7 +65,7 @@ const blockComponent = (type: string) => {
       <component
         :is="blockComponent(data.section[idx].type)"
         v-else
-        :is-edit="isEdit"
+        :is-edit="true"
         :data="data"
         :idx="idx"
       />
