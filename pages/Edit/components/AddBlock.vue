@@ -27,43 +27,43 @@ const addBlockButtonList = ref<AddBlockButton[]>([
     type: 'TEXT',
     icon: 'ion:text-outline',
     text: 'Text',
-    toolTip: 'header / paragraph',
-  },
-  {
-    type: 'DIVIDER',
-    icon: 'fluent-mdl2:line-style',
-    text: 'Divider',
-    toolTip: 'header / paragraph',
+    toolTip: 'Display header / paragraph',
   },
   {
     type: 'BUTTON',
     icon: 'basil:menu-solid',
     text: 'Button',
-    toolTip: 'header / paragraph',
+    toolTip: 'Text button',
   },
   {
     type: 'LOGO_WALL',
     icon: 'ph:wall',
     text: 'Logo Wall',
-    toolTip: 'header / paragraph',
+    toolTip: 'Display other social link',
   },
   {
     type: 'IMAGE_SINGLE',
     icon: 'ph:image-square',
     text: 'Image(single)',
-    toolTip: 'header / paragraph',
+    toolTip: '1:1 image, supports: JPG, PNG, GIF',
   },
   {
     type: 'IMAGE_DOUBLE',
     icon: 'ph:images-square',
     text: 'Image(double)',
-    toolTip: 'header / paragraph',
+    toolTip: '1:1 double square image, supports: JPG, PNG, GIF',
   },
   {
     type: 'IMAGE_RECTANGLE',
     icon: 'mynaui:image-rectangle',
     text: 'Image (rectangle)',
-    toolTip: 'header / paragraph',
+    toolTip: '2:1 rectangle image, supports: JPG, PNG, GIF',
+  },
+  {
+    type: 'DIVIDER',
+    icon: 'fluent-mdl2:line-style',
+    text: 'Divider',
+    toolTip: 'Lines separating different sections',
   },
 ])
 
@@ -80,10 +80,10 @@ const cloneBlock = (block: AddBlockButton) => {
 </script>
 
 <template>
-  <div class="md:w-[290px]">
+  <div class="md:w-[320px]">
     <!-- <PC> add block --->
     <div
-      class="hidden py-8 px-6 bg-main-blue rounded-2xl w-[290px] mt-16 shadow-[0_7px_29px_0_rgba(100,100,111,0.4)] md:block md:fixed"
+      class="hidden py-6 px-8 bg-main-blue rounded-2xl w-[320px] mt-16 shadow-[0_7px_29px_0_rgba(100,100,111,0.4)] max-h-[60%] overflow-y-auto md:block md:fixed"
     >
       <div
         class="bg-[#EEE0C9] text-black text-xs px-2 py-1 rounded-md mb-8 flex items-center justify-center gap-2"
@@ -97,7 +97,7 @@ const cloneBlock = (block: AddBlockButton) => {
         :sort="false"
         item-key="type"
         :clone="cloneBlock"
-        class="grid grid-cols-2 gap-4"
+        class="grid grid-cols-1 gap-4"
         ghost-class="dragging"
         @move="(isDragging = true)"
         @end="(isDragging = false)"
@@ -107,13 +107,21 @@ const cloneBlock = (block: AddBlockButton) => {
             :class="[
               'add-block',
               'btn-hoverable',
+              'flex',
+              'items-center',
+              'gap-4',
               {
                 'border-4 mt-8': isDragging && element.type === newDraggingType,
               },
             ]"
           >
             <Icon :name="element.icon" class="add-block__icon" />
-            <p class="add-block__text">{{ element.text }}</p>
+            <div class="flex flex-col items-start gap-2">
+              <div>{{ element.text }}</div>
+              <div class="add-block__tooltip">
+                {{ element.toolTip }}
+              </div>
+            </div>
           </div>
         </template>
       </Draggable>
@@ -170,7 +178,7 @@ const cloneBlock = (block: AddBlockButton) => {
 .add-block__icon {
   @apply text-main-blue text-4xl;
 }
-.add-block__text {
-  @apply text-gray-600 text-xs;
+.add-block__tooltip {
+  @apply text-xs text-gray-500 text-start;
 }
 </style>
