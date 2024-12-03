@@ -16,6 +16,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  subTitle: {
+    type: String,
+    default: '',
+  },
 })
 
 const emit = defineEmits(['onCloseDialog'])
@@ -38,6 +42,7 @@ const handleMaskCloseable = () => {
       <!-- header -->
       <header class="text-xl text-center my-8">
         <p>{{ dialogTitle }}</p>
+        <p v-if="subTitle" class="text-sm mt-4 text-gray-400">{{ subTitle }}</p>
         <!-- close icon -->
         <Icon
           v-if="showCloseBtn"

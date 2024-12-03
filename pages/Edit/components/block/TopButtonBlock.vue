@@ -12,9 +12,13 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  showQRCodeModal: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-const emit = defineEmits(['onEdit'])
+const emit = defineEmits(['onEdit', 'onToggleQRCodeModal'])
 const relativeData = ref({ ...props.data })
 
 const shareBtnToolTipText = computed(() => {
@@ -41,10 +45,6 @@ const handleEdit = () => {
 // share mode
 const onShare = () => {
   console.log('onShare')
-}
-
-const onShowQRCode = () => {
-  console.log('onShowQRCode')
 }
 
 watch(
@@ -97,7 +97,7 @@ watch(
           </button>
         </Tooltip>
         <Tooltip v-if="relativeData.showQRCodeBtn" text="QRCode">
-          <button class="p-1 mr-2" @click="onShowQRCode()">
+          <button class="p-1 mr-2" @click="$emit('onToggleQRCodeModal')">
             <Icon
               name="ant-design:qrcode-outlined"
               :class="[transferThemeClass('text', relativeData.themeColor)]"
