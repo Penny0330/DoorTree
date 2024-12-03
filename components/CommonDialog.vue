@@ -36,7 +36,7 @@ const handleMaskCloseable = () => {
     @click="handleMaskCloseable"
   >
     <div
-      class="w-11/12 bg-white rounded-2xl m-auto mt-[50%] py-4 px-5 relative sm:mt-[10%] sm:max-w-[500px]"
+      class="w-11/12 bg-white rounded-2xl m-auto mt-[50%] py-4 px-5 relative sm:mt-[10%] animate-slide-show sm:max-w-[500px]"
       @click.stop
     >
       <!-- header -->
