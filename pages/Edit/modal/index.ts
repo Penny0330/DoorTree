@@ -13,21 +13,6 @@ export const DefaultDashboardItem: DashboardItem = {
   updateTime: dayjs().format('YYYY/MM/DD HH:mm'),
 }
 
-export const DefaultEditDetail: EditDetail = {
-  id: '',
-  link: '',
-  showQRCodeBtn: true,
-  showShareBtn: true,
-  profile: {
-    title: '',
-    description: 'Welcome to my DoorTree!',
-    avatar: '',
-  },
-  section: [],
-  themeColor: 'default',
-  bgColor: 'white',
-}
-
 const createTextSection = (): SectionItem => {
   return {
     type: 'TEXT',
@@ -176,4 +161,19 @@ export const sectionCreators: Record<string, () => SectionItem> = {
   IMAGE_SINGLE: createImageSingleSection,
   IMAGE_DOUBLE: createImageDoubleSection,
   IMAGE_RECTANGLE: createImageRectangleSection,
+}
+
+export const DefaultEditDetail: EditDetail = {
+  id: '',
+  link: '',
+  showQRCodeBtn: true,
+  showShareBtn: true,
+  profile: {
+    title: '',
+    description: 'Welcome to my DoorTree!',
+    avatar: '',
+  },
+  section: [createTextSection()],
+  themeColor: 'default',
+  bgColor: 'white',
 }
