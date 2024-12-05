@@ -30,6 +30,10 @@ const pathUrl = computed(
   () => `https://door-tree.vercel.app/${route.params.id}`,
 )
 
+useHead({
+  title: `@${route.params.id}`,
+})
+
 const getData = async () => {
   isLoading.value = true
   try {
