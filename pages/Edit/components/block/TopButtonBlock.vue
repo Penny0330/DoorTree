@@ -69,11 +69,11 @@ watch(
 
 <template>
   <div class="flex flex-col">
-    <div class="text-main-blue text-xl px-2 pr-6 flex justify-end">
+    <div class="text-main-blue text-xl px-2 pr-6 flex justify-end items-center">
       <!-- edit -->
       <template v-if="isEdit">
         <Tooltip :text="shareBtnToolTipText">
-          <button class="p-1 mr-2" @click="handleEdit()">
+          <button class="p-1 mr-2 flex" @click="handleEdit()">
             <Icon
               name="mdi:ios-share"
               :class="[
@@ -85,7 +85,7 @@ watch(
           </button>
         </Tooltip>
         <Tooltip :text="QRCodeBtnToolTipText">
-          <button class="p-1 mr-2" @click="handleEdit()">
+          <button class="p-1 mr-2 flex" @click="handleEdit()">
             <Icon
               name="ant-design:qrcode-outlined"
               :class="[
@@ -100,7 +100,7 @@ watch(
       <!-- share -->
       <template v-else>
         <Tooltip v-if="relativeData.showShareBtn" text="Share">
-          <button class="p-1 mr-2" @click="onShare()">
+          <button class="p-1 mr-2 flex" @click="onShare()">
             <Icon
               name="mdi:ios-share"
               :class="[transferThemeClass('text', relativeData.themeColor)]"
@@ -108,7 +108,7 @@ watch(
           </button>
         </Tooltip>
         <Tooltip v-if="relativeData.showQRCodeBtn" text="QRCode">
-          <button class="p-1 mr-2" @click="$emit('onToggleQRCodeModal')">
+          <button class="p-1 mr-2 flex" @click="$emit('onToggleQRCodeModal')">
             <Icon
               name="ant-design:qrcode-outlined"
               :class="[transferThemeClass('text', relativeData.themeColor)]"

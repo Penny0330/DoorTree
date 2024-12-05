@@ -49,6 +49,7 @@ watch(
         <a
           :href="item.type === 'E-mail' ? `mailto:${item.link}` : item.link"
           target="_blank"
+          class="flex"
         >
           <Icon
             :name="item.icon"
