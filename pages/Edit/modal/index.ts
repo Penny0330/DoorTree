@@ -49,7 +49,7 @@ const createDividerSection = (): SectionItem => {
   return {
     type: 'DIVIDER',
     id: nanoid(),
-    isShow: true,
+    isShow: false,
     style: {
       type: 'border-solid',
       width: 'border-b',
