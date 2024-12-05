@@ -86,7 +86,7 @@ export function useAuth() {
       const result = await signInWithPopup($auth, provider)
       const user = result.user
       handleAuthSuccess(user.uid)
-      // console.log('google user: ', user)
+      initDashboardData(user.uid)
     } catch (error) {
       console.log('error', error)
     } finally {
