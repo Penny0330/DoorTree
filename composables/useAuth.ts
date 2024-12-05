@@ -4,6 +4,7 @@ import {
   // onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
   signOut,
 } from 'firebase/auth'
 
@@ -80,10 +81,14 @@ export function useAuth() {
   }
 
   const handleLoginUseGoogle = async () => {
+    console.log(process.env.NODE_ENV)
     isLoading.value = true
+    const isDev = process.env.NODE_ENV === 'development'
     const provider = new GoogleAuthProvider()
     try {
-      const result = await signInWithPopup($auth, provider)
+      const result = isDev
+        ? await signInWithPopup($auth, provider)
+        : await signInWithRedirect($auth, provider)
       const user = result.user
       handleAuthSuccess(user.uid)
       initDashboardData(user.uid)
