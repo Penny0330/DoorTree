@@ -80,6 +80,7 @@ const createDetail = async (itemId: string, link: string) => {
   const newItem = {
     ...DefaultEditDetail,
     id: itemId,
+    link,
     profile: {
       ...DefaultEditDetail.profile,
       title: link,
