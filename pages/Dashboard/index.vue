@@ -138,7 +138,7 @@ onMounted(() => {
     <template v-else>
       <!-- empty status -->
       <EmptyCard
-        v-if="!dashboardList.length"
+        v-if="!dashboardList?.length"
         @on-show-create-link-modal="onShowCreateLinkModal"
       />
       <!-- has data -->

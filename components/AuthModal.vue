@@ -11,10 +11,6 @@ const {
 } = useAuth()
 
 const props = defineProps({
-  // showAuthModal: {
-  //   type: Boolean,
-  //   default: false,
-  // },
   isLoginAction: {
     type: Boolean,
     default: true,
@@ -52,6 +48,8 @@ const toggleButtonText = computed(() => {
 })
 
 const onToggleAuthAction = (_event: MouseEvent) => {
+  email.value = null
+  password.value = null
   props.onToggleAuthAction()
 }
 
@@ -82,12 +80,15 @@ const handleInput = (e: Event) => {
 <template>
   <div class="w-full h-dvh fixed z-30 bg-main-overlay" @click="onOverlayClick">
     <div
-      class="w-4/5 bg-white rounded-2xl m-auto mt-10 py-4 px-5 relative max-w-md"
+      class="w-4/5 bg-white rounded-2xl m-auto mt-10 py-4 px-5 relative animate-slide-show max-w-md"
       @click.stop
     >
       <header class="text-xl text-center my-4">
         {{ toggleTitle }}
       </header>
+      <p v-if="isLoginAction" class="text-xs text-gray-400 text-center mb-4">
+        ↓ Welcome to logIn with the test account.
+      </p>
       <Icon
         name="iconamoon:close"
         class="absolute top-3 right-4 text-2xl text-gray-400 cursor-pointer"
@@ -146,12 +147,12 @@ const handleInput = (e: Event) => {
           {{ toggleGoogleButtonText }}
         </button>
         <div class="my-2 text-center flex flex-col">
-          <button
+          <!-- <button
             v-if="isLoginAction"
             class="text-sm underline text-slate-500 mb-2"
           >
             Forgot password?
-          </button>
+          </button> -->
           <button
             class="text-sm underline text-slate-500"
             @click="onToggleAuthAction"

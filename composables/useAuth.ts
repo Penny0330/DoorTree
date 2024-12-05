@@ -16,8 +16,8 @@ export function useAuth() {
   const { initDashboardData } = useDashboard()
   const showGlobalToast = useShowGlobalToast()
 
-  const email = ref<string | null>(null)
-  const password = ref<any>(null)
+  const email = ref<string | null>('test@test.com')
+  const password = ref<any>('testtest')
   const isLoading = ref<boolean>(false)
 
   const handleAuthSuccess = (uid: string) => {
@@ -34,8 +34,8 @@ export function useAuth() {
         email.value,
         password.value,
       )
+      await initDashboardData(userCredential.user.uid)
       handleAuthSuccess(userCredential.user.uid)
-      initDashboardData(userCredential.user.uid)
     } catch (error) {
       showGlobalToast({ message: 'Signup failed!', type: 'error' })
       console.error('Error signing in:', error)
@@ -86,8 +86,8 @@ export function useAuth() {
     try {
       const result = await signInWithPopup($auth, provider)
       const user = result.user
+      await initDashboardData(user.uid)
       handleAuthSuccess(user.uid)
-      initDashboardData(user.uid)
     } catch (error) {
       console.log('error', error)
     } finally {
