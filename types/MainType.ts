@@ -46,9 +46,11 @@ interface LogoWallSection extends BaseSection {
   id: string
   logoList: Array<{
     id: string
-    icon: string
     link: string
-    toolTip: string
+    type: string
+    icon?: string
+    toolTip?: string
+    placeholder?: string
   }>
 }
 

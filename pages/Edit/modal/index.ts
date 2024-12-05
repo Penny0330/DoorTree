@@ -82,9 +82,11 @@ const createLogoWallSection = (): SectionItem => {
     logoList: [
       {
         id: nanoid(),
+        type: 'E-mail',
         icon: 'majesticons:mail-line',
         link: '',
         toolTip: 'E-mail',
+        placeholder: 'xxx@gmail.com',
       },
     ],
   }

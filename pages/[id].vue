@@ -12,7 +12,7 @@ import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
 
 import type { EditDetail } from '@/types/MainType'
 
-import { transferBgClass } from '@/pages/Edit/transform'
+import { transferBgClass, transformSection } from '@/pages/Edit/transform'
 
 definePageMeta({
   layout: 'share',
@@ -33,11 +33,16 @@ const pathUrl = computed(
 const getData = async () => {
   isLoading.value = true
   try {
-    const resp = await getDocumentByLink(
+    const resp = (await getDocumentByLink(
       'doorItemDetail',
       route.params.id as string,
-    )
-    doorItem.value = resp as EditDetail[]
+    )) as EditDetail[]
+    doorItem.value = resp.map((door) => {
+      return {
+        ...door,
+        section: transformSection(door.section),
+      }
+    })
 
     hasExistLink.value = Array.isArray(resp) && resp.length > 0
     if (!hasExistLink.value) handleError(404, 'Page Not Found')

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { transferThemeClass } from '@/pages/Edit/transform'
+import { transferThemeClass, transLogoList } from '@/pages/Edit/transform'
 
 import Tooltip from '@/components/GlobalTooltip.vue'
 
@@ -19,10 +19,6 @@ const props = defineProps({
 })
 
 const relativeData = ref({ ...props.data })
-
-const onGoToLink = (link: string) => {
-  if (link) window.open(link, '_blank')
-}
 
 watch(
   () => props.data,
@@ -45,18 +41,25 @@ watch(
       { 'p-4': isEdit },
     ]"
   >
-    <button
+    <template
       v-for="item in relativeData.section[idx]?.logoList"
       :key="item.id"
-      class="text-3xl"
-      @click="onGoToLink(item.link)"
     >
       <Tooltip v-if="item.link || isEdit" :text="item.toolTip">
-        <Icon
-          :name="item.icon"
-          :class="[transferThemeClass('text', relativeData.themeColor)]"
-        />
+        <a
+          :href="item.type === 'E-mail' ? `mailto:${item.link}` : item.link"
+          target="_blank"
+        >
+          <Icon
+            :name="item.icon"
+            :class="[
+              'text-3xl',
+              'cursor-pointer',
+              transferThemeClass('text', relativeData.themeColor),
+            ]"
+          />
+        </a>
       </Tooltip>
-    </button>
+    </template>
   </div>
 </template>

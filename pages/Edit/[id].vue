@@ -26,12 +26,13 @@ import {
   DefaultDashboardItem,
   DefaultEditDetail,
 } from '@/pages/Edit/modal/index'
-
 import {
+  transferSaveData,
   useEditModal,
   createNewSection,
   transferBgClass,
-} from '@/pages/Edit/transform/index'
+  transformSection,
+} from '@/pages/Edit/transform'
 
 definePageMeta({
   middleware: 'auth',
@@ -69,9 +70,12 @@ const scrollContainer = ref<HTMLElement | null>(null)
 const getDetailData = async (): Promise<void> => {
   isLoading.value = true
   const docId = Array.isArray(id.value) ? id.value[0] : id.value
-  const resp = await getDocument('doorItemDetail', docId)
+  const resp = (await getDocument('doorItemDetail', docId)) as EditDetail
   if (!resp) handleError(500, 'Page Not Found')
-  editData.value = resp as EditDetail
+  editData.value = {
+    ...resp,
+    section: transformSection(resp.section),
+  }
   isLoading.value = false
 }
 
@@ -165,7 +169,11 @@ const handleUpdate = async () => {
   // update dashboardList
   await updateDashboardList()
   // update doorDetail
-  await updateDocument('doorItemDetail', id.value as string, editData.value)
+  const saveData = {
+    ...editData.value,
+    section: transferSaveData(editData.value.section),
+  }
+  await updateDocument('doorItemDetail', id.value as string, saveData)
 }
 
 const handleImageBlock = async () => {

@@ -24,12 +24,19 @@ const onToggleLogoOptions = () => {
   showLogoOptions.value = !showLogoOptions.value
 }
 
-const onAddLogo = (icon: string, toolTip: string) => {
+const onAddLogo = (
+  type: string,
+  icon: string,
+  toolTip: string,
+  placeholder: string,
+) => {
   const newLogoItem = {
     id: nanoid(),
+    type,
     icon,
     link: '',
     toolTip,
+    placeholder,
   }
   relativeData.section[props.idx].logoList.push(newLogoItem)
 }
@@ -58,7 +65,12 @@ const onDeleteLogo = (idx: number) => {
             <Tooltip :text="element.toolTip" class="flex">
               <Icon :name="element.icon" class="text-main-blue text-2xl" />
             </Tooltip>
-            <input v-model="element.link" type="text" class="edit-input" />
+            <input
+              v-model="element.link"
+              type="text"
+              class="edit-input"
+              :placeholder="element.placeholder"
+            />
             <Icon
               v-if="relativeData.section[idx].logoList.length > 1"
               name="fluent:delete-32-regular"
@@ -82,7 +94,9 @@ const onDeleteLogo = (idx: number) => {
           <template v-for="item in iconOptions" :key="item.icon">
             <Tooltip
               :text="item.toolTip"
-              @click="onAddLogo(item.icon, item.toolTip)"
+              @click="
+                onAddLogo(item.type, item.icon, item.toolTip, item.placeholder)
+              "
             >
               <button
                 class="flex p-1 rounded-lg hover:bg-gray-200 hover-transition"

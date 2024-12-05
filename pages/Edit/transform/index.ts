@@ -131,101 +131,193 @@ export const transferThemeClass = (
   return classMap[type]?.[color] || ''
 }
 
+export const transLogoList = (logoList: any[]): any[] => {
+  return logoList.map((element) => {
+    const matchedIcon = iconOptions.find((icon) => icon.type === element.type)
+
+    return {
+      ...element,
+      ...matchedIcon,
+    }
+  })
+}
+
+export const transformSection = (section: any[]) => {
+  return section.map((item) => {
+    if (item.type === 'LOGO_WALL') {
+      return {
+        ...item,
+        logoList: transLogoList(item.logoList),
+      }
+    }
+    return item
+  })
+}
+
+function stripConvertedData(logoList: any[]): any[] {
+  // 保留要的參數
+  return logoList.map(({ id, type, link }) => ({
+    id,
+    type,
+    link,
+  }))
+}
+
+export function transferSaveData(section: any[]): any[] {
+  return section.map((item) => {
+    if (item.type === 'LOGO_WALL') {
+      return {
+        ...item,
+        logoList: stripConvertedData(item.logoList),
+      }
+    }
+    return item
+  })
+}
+
 export const iconOptions = [
   {
+    type: 'E-mail',
     icon: 'majesticons:mail-line',
     toolTip: 'E-mail',
+    placeholder: 'xxx@gmail.com',
   },
   {
+    type: 'Facebook',
     icon: 'ic:baseline-facebook',
     toolTip: 'Facebook',
+    placeholder: 'https://www.facebook.com/xxx',
   },
   {
+    type: 'Instagram',
     icon: 'lets-icons:insta',
     toolTip: 'Instagram',
+    placeholder: 'https://www.instagram.com/xxx',
   },
   {
+    type: 'Website',
     icon: 'ant-design:global-outlined',
     toolTip: 'Website',
+    placeholder: 'https://www...',
   },
   {
+    type: 'Youtube',
     icon: 'mingcute:youtube-fill',
     toolTip: 'Youtube',
+    placeholder: 'https://www.youtube.com/xxx',
   },
   {
+    type: 'Tiktok',
     icon: 'ic:baseline-tiktok',
     toolTip: 'Tiktok',
+    placeholder: 'https://www.tiktok.com/@xxx',
   },
   {
+    type: 'Twitter',
     icon: 'proicons:x-twitter',
     toolTip: 'Twitter',
+    placeholder: 'https://www.twitter.com/xxx',
   },
   {
+    type: 'Threads',
     icon: 'mingcute:threads-line',
     toolTip: 'Threads',
+    placeholder: 'https://www.threads.net/xxx',
   },
   {
+    type: 'Discord',
     icon: 'ic:baseline-discord',
     toolTip: 'Discord',
+    placeholder: 'https://www.discord.gg/xxx',
   },
   {
+    type: 'Line',
     icon: 'simple-icons:line',
     toolTip: 'Line',
+    placeholder: 'https://line.me/ti/p/xxx',
   },
   {
+    type: 'Whatsapp',
     icon: 'ic:baseline-whatsapp',
     toolTip: 'Whatsapp',
+    placeholder: 'https://wa.me/xxx',
   },
   {
+    type: 'Telegram',
     icon: 'bxl:telegram',
     toolTip: 'Telegram',
+    placeholder: 'https://t.me/xxx',
   },
   {
+    type: 'Medium',
     icon: 'la:medium',
     toolTip: 'Medium',
+    placeholder: 'https://medium.com/@xxx',
   },
   {
+    type: 'Github',
     icon: 'mdi:github',
     toolTip: 'Github',
+    placeholder: 'https://github.com/xxx',
   },
   {
+    type: 'Linkedin',
     icon: 'mdi:linkedin',
     toolTip: 'Linkedin',
+    placeholder: 'https://www.linkedin.com/in/xxx',
   },
   {
+    type: 'Notion',
     icon: 'mage:notion',
     toolTip: 'Notion',
+    placeholder: 'https://www.notion.so/xxx/...',
   },
   {
+    type: 'Figma',
     icon: 'hugeicons:figma',
     toolTip: 'Figma',
+    placeholder: 'https://www.figma.com/@xxx',
   },
   {
+    type: 'Spotify',
     icon: 'mdi:spotify',
     toolTip: 'Spotify',
+    placeholder: 'https://open.spotify.com/show/xxx',
   },
   {
+    type: 'Podcast',
     icon: 'mdi:podcast',
     toolTip: 'Podcast',
+    placeholder: 'https://podcast.apply.com/tw/podcast/xxx',
   },
   {
+    type: 'Amazon',
     icon: 'ri:amazon-fill',
     toolTip: 'Amazon',
+    placeholder: 'https://www.amazon.com/shops/xxx',
   },
   {
+    type: 'Shopee',
     icon: 'simple-icons:shopee',
     toolTip: 'Shopee',
+    placeholder: 'https://shopee.tw/xxx',
   },
   {
+    type: 'App Store',
     icon: 'simple-icons:appstore',
     toolTip: 'App Store',
+    placeholder: 'https://www...',
   },
   {
+    type: 'Play Store',
     icon: 'mage:playstore',
     toolTip: 'Play Store',
+    placeholder: 'https://www...',
   },
   {
+    type: 'Twitch',
     icon: 'mdi:twitch',
     toolTip: 'Twitch',
+    placeholder: 'https://www.twitch.tv/xxx',
   },
 ]
