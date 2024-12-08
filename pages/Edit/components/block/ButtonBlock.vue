@@ -43,6 +43,8 @@ watch(
       'px-4',
       'w-full',
       'rounded-lg',
+      'hover:opacity-60',
+      'hover-transition',
       `${relativeData.section[idx]?.style.fontSize}`,
       transferThemeClass('border', relativeData.themeColor),
       relativeData.section[idx]?.isFill

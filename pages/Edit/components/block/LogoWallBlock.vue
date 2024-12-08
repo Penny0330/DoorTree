@@ -55,6 +55,8 @@ watch(
             :name="item.icon"
             :class="[
               'text-3xl',
+              'hover:opacity-60',
+              'hover-transition',
               'cursor-pointer',
               transferThemeClass('text', relativeData.themeColor),
             ]"
