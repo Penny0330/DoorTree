@@ -37,6 +37,17 @@ const onLogout = (_event: MouseEvent) => {
 }
 
 const isLogin = computed(() => store.isLogin)
+
+const scrollToSection = (sectionId) => {
+  props.onToggleMenu()
+  const targetElement = document.getElementById(sectionId)
+  if (targetElement) {
+    targetElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+}
 </script>
 
 <template>
@@ -71,7 +82,9 @@ const isLogin = computed(() => store.isLogin)
           </template>
         </li>
         <li v-if="!isLogin">
-          <a href="/" class="a-btn btn-link">Feature</a>
+          <a class="a-btn btn-link" @click="scrollToSection('feature')"
+            >Feature</a
+          >
         </li>
         <li v-if="!isLogin">
           <a href="/" class="a-btn btn-link">Templates</a>

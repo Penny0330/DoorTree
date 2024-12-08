@@ -1,44 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Home from './components/home.vue'
+import CreateStep from './components/homeCreateStep.vue'
+import Feature from './components/homeFeature.vue'
+</script>
 
 <template>
   <div class="h-full pt-24 sm:pt-32 sm:flex sm:justify-center">
-    <section
-      class="bg-white ml-4 rounded-tl-3xl rounded-bl-3xl p-8 relative sm:max-w-[1440px + 1rem] sm:h-dvh"
+    <main
+      class="bg-white ml-4 rounded-tl-3xl rounded-bl-3xl relative overflow-x-hidden overflow-y-auto h-dvh lg:max-w-[1440px]"
     >
       <img
         src="../assets/icon/bg-home.svg"
         alt="BG-HOME"
         class="absolute right-0 top-[-23px]"
       />
-      <p class="text-2xl font-bold">Everything you are.</p>
-      <p class="text-2xl font-bold pb-4">In one, simple link in bio.</p>
-      <p>
-        Join 50M+ people using DoorTree for their link in bio. One link to help
-        you share everything you create, curate and sell from your Instagram,
-        TikTok, Twitter, YouTube and other social media profiles.
-      </p>
-      <!-- mock content -->
-      <p class="text-2xl font-bold">Everything you are.</p>
-      <p class="text-2xl font-bold pb-4">In one, simple link in bio.</p>
-      <p>
-        Join 50M+ people using DoorTree for their link in bio. One link to help
-        you share everything you create, curate and sell from your Instagram,
-        TikTok, Twitter, YouTube and other social media profiles.
-      </p>
-      <p class="text-2xl font-bold">Everything you are.</p>
-      <p class="text-2xl font-bold pb-4">In one, simple link in bio.</p>
-      <p>
-        Join 50M+ people using DoorTree for their link in bio. One link to help
-        you share everything you create, curate and sell from your Instagram,
-        TikTok, Twitter, YouTube and other social media profiles.
-      </p>
-      <p class="text-2xl font-bold">Everything you are.</p>
-      <p class="text-2xl font-bold pb-4">In one, simple link in bio.</p>
-      <p>
-        Join 50M+ people using DoorTree for their link in bio. One link to help
-        you share everything you create, curate and sell from your Instagram,
-        TikTok, Twitter, YouTube and other social media profiles.
-      </p>
-    </section>
+      <Home />
+      <div class="divider"></div>
+      <CreateStep />
+      <div class="divider"></div>
+      <Feature />
+    </main>
   </div>
 </template>
+
+<style scoped>
+.divider {
+  @apply border-b-4 border-double mx-8;
+}
+</style>

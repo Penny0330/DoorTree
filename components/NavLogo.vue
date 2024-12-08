@@ -36,6 +36,16 @@ const onLogout = (_event: MouseEvent) => {
 }
 
 const isLogin = computed(() => store.isLogin)
+
+const scrollToSection = (sectionId) => {
+  const targetElement = document.getElementById(sectionId)
+  if (targetElement) {
+    targetElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+}
 </script>
 
 <template>
@@ -60,8 +70,8 @@ const isLogin = computed(() => store.isLogin)
       <div class="hidden sm:flex sm:gap-4 text-gray-500 font-semibold">
         <template v-if="!isLogin">
           <a
-            href="/"
             class="hover:text-main-blue px-2 hover-transition cursor-pointer"
+            @click="scrollToSection('feature')"
             >Feature</a
           >
           <a
