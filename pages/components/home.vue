@@ -1,8 +1,8 @@
 <template>
   <section
-    class="flex flex-col justify-between items-end w-dvw mt-8 mb-20 lg:h-full lg:mb-24 lg:ml-8 lg:max-w-[1440px] lg:flex-row lg:items-start"
+    class="flex flex-col justify-between items-center w-dvw mb-20 lg:h-full lg:mb-24 lg:ml-8 lg:mt-8 lg:max-w-[1440px] lg:flex-row lg:items-start"
   >
-    <header class="relative z-[1] lg:self-center pt-8 px-8">
+    <header class="relative z-[1] text-center lg:self-center pt-8 px-8">
       <p class="text-3xl font-bold text-gray-600 lg:text-6xl lg:mb-5">
         Everything you are.
       </p>
@@ -25,7 +25,7 @@
     <img
       src="../../assets/home-share.png"
       alt="home-share"
-      class="w-[95%] h-full lg:w-auto lg:h-[100dvh] object-cover border border-gray-200 rounded-l-2xl shadow-around-light lg:absolute lg:right-0 animate-slide-left"
+      class="w-[60%] h-full lg:w-auto lg:h-[100dvh] object-cover border border-gray-200 shadow-around-light rounded-2xl animate-slide-up lg:absolute lg:right-0 lg:rounded-l-2xl lg:animate-slide-left"
     />
   </section>
 </template>
