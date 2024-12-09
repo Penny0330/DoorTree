@@ -36,7 +36,7 @@ const blockBoxList = [
 <template>
   <section
     id="feature"
-    class="px-8 flex flex-col justify-center items-center py-20 lg:py-24"
+    class="px-8 flex flex-col justify-center items-center pt-20 mb-28 lg:py-24"
   >
     <div class="flex flex-col justify-center items-center">
       <header class="text-center mb-12 lg:mb-20 lg:max-w-[700px]">

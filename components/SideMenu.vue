@@ -87,7 +87,9 @@ const scrollToSection = (sectionId) => {
           >
         </li>
         <li v-if="!isLogin">
-          <a href="/" class="a-btn btn-link">Templates</a>
+          <a class="a-btn btn-link" @click="scrollToSection('feedback')"
+            >Feedback</a
+          >
         </li>
       </ul>
     </section>

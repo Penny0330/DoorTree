@@ -2,6 +2,7 @@
 import Home from './components/home.vue'
 import CreateStep from './components/homeCreateStep.vue'
 import Feature from './components/homeFeature.vue'
+import Feedback from './components/homeFeedback.vue'
 </script>
 
 <template>
@@ -19,6 +20,7 @@ import Feature from './components/homeFeature.vue'
       <CreateStep />
       <div class="divider"></div>
       <Feature />
+      <Feedback />
     </main>
   </div>
 </template>

@@ -37,7 +37,7 @@ const stepDetailList = [
 
 <template>
   <section
-    class="px-8 flex flex-col justify-center lg:items-center my-20 lg:my-24"
+    class="flex flex-col justify-center px-8 my-20 lg:items-center lg:my-24"
   >
     <div class="lg:max-w-[700px] lg:flex lg:flex-col lg:items-center">
       <header

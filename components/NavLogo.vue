@@ -75,9 +75,9 @@ const scrollToSection = (sectionId) => {
             >Feature</a
           >
           <a
-            href="/"
             class="hover:text-main-blue px-2 transition hover-transition cursor-pointer"
-            >Templates</a
+            @click="scrollToSection('feedback')"
+            >Feedback</a
           >
           <a
             class="hover:text-main-blue px-2 transition hover-transition cursor-pointer"
