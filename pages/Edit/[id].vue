@@ -127,9 +127,8 @@ const onUploadAvatar = async () => {
   if (imageUrl) {
     currentModalData.value.profile.avatar = imageUrl
   }
-  editData.value = _.cloneDeep(currentModalData.value as EditDetail)
-  delete editData.value.profile.previewImage
-  delete editData.value.profile.previewImageFile
+  delete currentModalData.value.profile.previewImage
+  delete currentModalData.value.profile.previewImageFile
 }
 
 const onUploadImage = async (idx: number) => {
