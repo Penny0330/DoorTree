@@ -33,7 +33,7 @@ useHead({
   title: `@${id.value}`,
   meta: [
     {
-      name: 'og:title',
+      property: 'og:title',
       content: `@${id.value} | DoorTree`,
     },
   ],
