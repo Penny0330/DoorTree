@@ -26,12 +26,17 @@ const hasExistLink = ref<boolean>(false)
 const doorItem = ref<EditDetail[]>([])
 const showQRCodeModal = ref<boolean>(false)
 const QRCodeImage = ref<string>('')
-const pathUrl = computed(
-  () => `https://door-tree.vercel.app/${route.params.id}`,
-)
+const id = computed(() => route.params.id)
+const pathUrl = computed(() => `https://door-tree.vercel.app/${id.value}`)
 
 useHead({
-  title: `@${route.params.id}`,
+  title: `@${id.value}`,
+  meta: [
+    {
+      name: 'og:title',
+      content: `@${id.value} | DoorTree`,
+    },
+  ],
 })
 
 const getData = async () => {
@@ -39,7 +44,7 @@ const getData = async () => {
   try {
     const resp = (await getDocumentByLink(
       'doorItemDetail',
-      route.params.id as string,
+      id.value as string,
     )) as EditDetail[]
     doorItem.value = resp.map((door) => {
       return {
