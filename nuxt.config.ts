@@ -15,14 +15,29 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
       title: 'DoorTree',
       meta: [
-        { charset: 'utf-8' },
         {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1, maximum-scale=1',
+          name: 'description',
+          content:
+            'DoorTree makes room for all of you. Get everything you create, curate and share, wherever it’s scattered online, and put it back together again in one place – your DoorTree – where it can be discovered with ease.',
         },
-        { hid: 'description', name: 'description', content: '' },
+        {
+          name: 'og:title',
+          content: 'DoorTree',
+        },
+        {
+          name: 'og:description',
+          content:
+            'DoorTree makes room for all of you. Get everything you create, curate and share, wherever it’s scattered online, and put it back together again in one place – your DoorTree – where it can be discovered with ease.',
+        },
+        {
+          name: 'og:image',
+          content:
+            'https://res.cloudinary.com/dc8zkjbya/image/upload/v1733812764/zalcjxvr2frllmp1zh8x.png',
+        },
       ],
       link: [{ rel: 'icon', type: 'image/png', href: '/logo.svg' }],
     },
