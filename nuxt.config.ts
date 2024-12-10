@@ -38,6 +38,10 @@ export default defineNuxtConfig({
           content:
             'https://res.cloudinary.com/dc8zkjbya/image/upload/v1733812764/zalcjxvr2frllmp1zh8x.png',
         },
+        {
+          name: 'og:url',
+          content: 'https://door-tree.vercel.app',
+        },
       ],
       link: [{ rel: 'icon', type: 'image/png', href: '/logo.svg' }],
     },
