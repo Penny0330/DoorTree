@@ -99,10 +99,7 @@ const onBgColor = (color: string) => {
           />
         </div>
         <div class="flex flex-col gap-4">
-          <button
-            class="btn-circle btn-hoverable"
-            @click="handleImageUpload"
-          >
+          <button class="btn-circle btn-hoverable" @click="handleImageUpload">
             upload avatar
           </button>
           <input

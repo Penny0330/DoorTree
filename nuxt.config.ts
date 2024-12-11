@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
   ],
   typescript: {
-    typeCheck: true
+    typeCheck: true,
   },
   tailwindcss: {
     cssPath: '~/assets/css/main.css',

@@ -99,8 +99,8 @@ const cloneBlock = (block: AddBlockButton) => {
         :clone="cloneBlock"
         class="grid grid-cols-1 gap-4"
         ghost-class="dragging"
-        @move="(isDragging = true)"
-        @end="(isDragging = false)"
+        @move="isDragging = true"
+        @end="isDragging = false"
       >
         <template #item="{ element }">
           <div

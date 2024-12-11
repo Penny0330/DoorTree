@@ -122,7 +122,7 @@ export const useFirestore = () => {
       const querySnapshot = await getDocs(q)
       const results: EditDetail[] = []
       querySnapshot.forEach((doc) => {
-        results.push((doc.data() as EditDetail))
+        results.push(doc.data() as EditDetail)
       })
 
       return results
