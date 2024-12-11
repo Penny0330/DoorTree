@@ -48,8 +48,8 @@ const toggleButtonText = computed(() => {
 })
 
 const onToggleAuthAction = (_event: MouseEvent) => {
-  email.value = null
-  password.value = null
+  email.value = ''
+  password.value = ''
   props.onToggleAuthAction()
 }
 

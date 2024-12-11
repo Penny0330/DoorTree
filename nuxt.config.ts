@@ -10,8 +10,17 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
   ],
-  pinia: {
-    autoImports: ['defineStore'], // 全域引入
+  typescript: {
+    typeCheck: true
+  },
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
   app: {
     head: {
@@ -44,15 +53,6 @@ export default defineNuxtConfig({
         },
       ],
       link: [{ rel: 'icon', type: 'image/png', href: '/logo.svg' }],
-    },
-  },
-  tailwindcss: {
-    cssPath: '~/assets/css/main.css',
-  },
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
     },
   },
   runtimeConfig: {

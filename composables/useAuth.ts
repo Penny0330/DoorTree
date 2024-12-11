@@ -7,16 +7,18 @@ import {
   signOut,
 } from 'firebase/auth'
 
+import type { Auth } from 'firebase/auth'
+
 import { useDashboard } from '@/composables/useInitData'
 import { useShowGlobalToast } from '@/composables/useGlobalToast'
 
 export function useAuth() {
-  const { $auth } = useNuxtApp()
+  const $auth = useNuxtApp().$auth as Auth
   const store = useStore()
   const { initDashboardData } = useDashboard()
   const showGlobalToast = useShowGlobalToast()
 
-  const email = ref<string | null>('test@test.com')
+  const email = ref<string>('test@test.com')
   const password = ref<any>('testtest')
   const isLoading = ref<boolean>(false)
 

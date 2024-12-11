@@ -37,7 +37,7 @@ const onLogout = (_event: MouseEvent) => {
 
 const isLogin = computed(() => store.isLogin)
 
-const scrollToSection = (sectionId) => {
+const scrollToSection = (sectionId: string) => {
   const targetElement = document.getElementById(sectionId)
   if (targetElement) {
     targetElement.scrollIntoView({

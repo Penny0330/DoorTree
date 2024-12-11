@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { settingTypeComponent } from './setting/index'
-import Preview from '@/pages/Edit/components/Preview.vue'
 
 const props = defineProps({
   showEditModal: {
@@ -81,7 +80,7 @@ const settingComponent = computed(
         />
         <!-- <PC> preview -->
         <section class="hidden md:block md:flex-1">
-          <Preview
+          <EditPreview
             :show-preview="true"
             :is-edit="true"
             :data="data"

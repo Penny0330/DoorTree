@@ -72,14 +72,14 @@ interface ImageSingleSection extends BaseSection {
   }
 }
 
-interface ImageDoubleSection extends BaseSection {
+export interface ImageDoubleSection extends BaseSection {
   type: 'IMAGE_DOUBLE'
   id: string
   imageList: Array<{
     id: string
     link: string
-    previewImage?: string
-    previewImageFile?: File
+    previewImage?: string | null
+    previewImageFile?: File | null
     image: string
     tag: {
       text: string

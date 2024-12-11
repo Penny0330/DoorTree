@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import CommonDialog from '@/components/CommonDialog.vue'
-
 const props = defineProps({
   showQRCodeModal: {
     type: Boolean,

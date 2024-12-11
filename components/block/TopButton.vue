@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { transferThemeClass } from '@/pages/Edit/transform'
 
-import Tooltip from '@/components/GlobalTooltip.vue'
-
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -72,7 +70,7 @@ watch(
     <div class="text-main-blue text-xl px-2 pr-6 flex justify-end items-center">
       <!-- edit -->
       <template v-if="isEdit">
-        <Tooltip :text="shareBtnToolTipText">
+        <ToolTip :text="shareBtnToolTipText">
           <button class="p-1 mr-2 flex" @click="handleEdit()">
             <Icon
               name="mdi:ios-share"
@@ -83,8 +81,8 @@ watch(
               ]"
             />
           </button>
-        </Tooltip>
-        <Tooltip :text="QRCodeBtnToolTipText">
+        </ToolTip>
+        <ToolTip :text="QRCodeBtnToolTipText">
           <button class="p-1 mr-2 flex" @click="handleEdit()">
             <Icon
               name="ant-design:qrcode-outlined"
@@ -95,26 +93,26 @@ watch(
               ]"
             />
           </button>
-        </Tooltip>
+        </ToolTip>
       </template>
       <!-- share -->
       <template v-else>
-        <Tooltip v-if="relativeData.showShareBtn" text="Share">
+        <ToolTip v-if="relativeData.showShareBtn" text="Share">
           <button class="p-1 mr-2 flex" @click="onShare()">
             <Icon
               name="mdi:ios-share"
               :class="[transferThemeClass('text', relativeData.themeColor)]"
             />
           </button>
-        </Tooltip>
-        <Tooltip v-if="relativeData.showQRCodeBtn" text="QRCode">
+        </ToolTip>
+        <ToolTip v-if="relativeData.showQRCodeBtn" text="QRCode">
           <button class="p-1 mr-2 flex" @click="$emit('onToggleQRCodeModal')">
             <Icon
               name="ant-design:qrcode-outlined"
               :class="[transferThemeClass('text', relativeData.themeColor)]"
             />
           </button>
-        </Tooltip>
+        </ToolTip>
       </template>
     </div>
   </div>

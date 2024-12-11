@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { transferThemeClass, transLogoList } from '@/pages/Edit/transform'
-
-import Tooltip from '@/components/GlobalTooltip.vue'
+import { transferThemeClass } from '@/pages/Edit/transform'
 
 const props = defineProps({
   isEdit: {
@@ -45,7 +43,7 @@ watch(
       v-for="item in relativeData.section[idx]?.logoList"
       :key="item.id"
     >
-      <Tooltip v-if="item.link || isEdit" :text="item.toolTip">
+      <ToolTip v-if="item.link || isEdit" :text="item.toolTip">
         <a
           :href="item.type === 'E-mail' ? `mailto:${item.link}` : item.link"
           target="_blank"
@@ -62,7 +60,7 @@ watch(
             ]"
           />
         </a>
-      </Tooltip>
+      </ToolTip>
     </template>
   </div>
 </template>

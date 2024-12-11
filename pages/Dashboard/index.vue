@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import EmptyCard from './components/EmptyCard.vue'
-import DoorCard from './components/DoorCard.vue'
-import LinkModal from './components/LinkModal.vue'
-import ShareModal from './components/ShareModal.vue'
-import GlobalLoading from '@/components/GlobalLoading.vue'
-
 import type { DashboardItem } from '@/types/DashboardType'
 import {
   DefaultDashboardItem,
@@ -137,12 +131,12 @@ onMounted(() => {
     <GlobalLoading v-if="isGetLoading" />
     <template v-else>
       <!-- empty status -->
-      <EmptyCard
+      <DashboardEmptyCard
         v-if="!dashboardList?.length"
         @on-show-create-link-modal="onShowCreateLinkModal"
       />
       <!-- has data -->
-      <DoorCard
+      <DashboardDoorCard
         v-else
         :dashboard-list="dashboardList"
         @on-show-create-link-modal="onShowCreateLinkModal"
@@ -157,13 +151,13 @@ onMounted(() => {
       @click="onShowCreateLinkModal"
     />
 
-    <LinkModal
+    <DashboardLinkModal
       :show-create-link-modal="showCreateLinkModal"
       :is-create-loading="isCreateLoading"
       :on-toggle-create-link-modal="onToggleCreateLinkModal"
       :on-create-link="onCreateLink"
     />
-    <ShareModal
+    <DashboardShareModal
       :show-share-modal="showShareModal"
       :current-share-link="currentShareLink"
       @on-toggle-share-modal="onToggleShareModal"

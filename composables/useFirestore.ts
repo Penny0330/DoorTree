@@ -12,8 +12,11 @@ import {
   where,
 } from 'firebase/firestore'
 
+import type { Firestore } from 'firebase/firestore'
+import type { EditDetail } from '@/types/MainType'
+
 export const useFirestore = () => {
-  const { $db } = useNuxtApp()
+  const $db = useNuxtApp().$db as Firestore
 
   // create
   const setDocument = async (
@@ -107,25 +110,19 @@ export const useFirestore = () => {
     }
   }
 
-  interface DocumentData {
-    id: string
-    [key: string]: any // TODO 待添加後，移至 /types
-  }
-
   const getDocumentByLink = async (
     collectionName: string,
     link: string,
-  ): Promise<DocumentData[]> => {
+  ): Promise<EditDetail[]> => {
     try {
       const q = query(
         collection($db, collectionName),
         where('link', '==', link),
       )
       const querySnapshot = await getDocs(q)
-
-      const results: DocumentData[] = []
+      const results: EditDetail[] = []
       querySnapshot.forEach((doc) => {
-        results.push({ id: doc.id, ...doc.data() })
+        results.push((doc.data() as EditDetail))
       })
 
       return results

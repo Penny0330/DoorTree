@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import GlobalToast from '@/components/GlobalToast.vue'
-import CommonConfirmModal from '@/components/CommonConfirmModal.vue'
 import { useGlobalToast } from '@/composables/useGlobalToast'
 import { useConfirmModal } from '@/composables/useConfirmModal'
 

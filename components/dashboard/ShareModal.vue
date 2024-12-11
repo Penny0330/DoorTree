@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CommonDialog from '@/components/CommonDialog.vue'
 import { useShowGlobalToast } from '@/composables/useGlobalToast'
 
 const showGlobalToast = useShowGlobalToast()

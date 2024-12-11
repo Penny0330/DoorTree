@@ -4,8 +4,6 @@ import { nanoid } from 'nanoid'
 
 import { iconOptions } from '@/pages/Edit/transform'
 
-import Tooltip from '@/components/GlobalTooltip.vue'
-
 const props = defineProps({
   data: {
     type: Object,
@@ -62,9 +60,9 @@ const onDeleteLogo = (idx: number) => {
               name="ic:round-drag-handle"
               class="drag-btn text-4xl text-main-blue cursor-pointer"
             />
-            <Tooltip :text="element.toolTip" class="flex">
+            <ToolTip :text="element.toolTip" class="flex">
               <Icon :name="element.icon" class="text-main-blue text-2xl" />
-            </Tooltip>
+            </ToolTip>
             <input
               v-model="element.link"
               type="text"
@@ -92,7 +90,7 @@ const onDeleteLogo = (idx: number) => {
           class="mx-2 p-4 shadow-around-light flex items-center gap-3 flex-wrap"
         >
           <template v-for="item in iconOptions" :key="item.icon">
-            <Tooltip
+            <ToolTip
               :text="item.toolTip"
               @click="
                 onAddLogo(item.type, item.icon, item.toolTip, item.placeholder)
@@ -103,7 +101,7 @@ const onDeleteLogo = (idx: number) => {
               >
                 <Icon :name="item.icon" class="text-3xl text-gray-500" />
               </button>
-            </Tooltip>
+            </ToolTip>
           </template>
         </div>
       </div>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ActionButton from './ActionButton.vue'
 import type { DashboardItem } from '@/types/DashboardType'
 
 defineProps({
@@ -59,17 +58,17 @@ defineEmits([
           <span class="text-xs text-gray-400">{{ item.updateTime }}</span>
         </div>
         <div class="mt-4 flex flex-col gap-2">
-          <ActionButton
+          <DashboardActionButton
             icon="hugeicons:pencil"
             label="Edit"
             @click="$emit('onEdit', item.id)"
           />
-          <ActionButton
+          <DashboardActionButton
             icon="mage:share"
             label="Share Link"
             @click.stop="$emit('onToggleShareModal', item.link)"
           />
-          <ActionButton
+          <DashboardActionButton
             icon="fluent:delete-32-regular"
             label="Delete"
             class="hover:text-red-500"

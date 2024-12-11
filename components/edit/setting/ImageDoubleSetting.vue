@@ -5,6 +5,8 @@ import {
   textAlignOptions,
 } from '@/pages/Edit/transform/index'
 
+import type { ImageDoubleSection } from '@/types/MainType'
+
 const props = defineProps({
   data: {
     type: Object,
@@ -25,7 +27,7 @@ const onUploadClick = (id: string) => {
   }
 }
 
-const onPreviewImage = (item, event: Event) => {
+const onPreviewImage = (item: ImageDoubleSection['imageList'][number], event: Event) => {
   const input = event.target as HTMLInputElement
   if (input.files && input.files[0]) {
     const file = input.files[0]
@@ -39,12 +41,12 @@ const onPreviewImage = (item, event: Event) => {
   input.value = ''
 }
 
-const onRemoveImage = (item) => {
+const onRemoveImage = (item: ImageDoubleSection['imageList'][number]) => {
   item.previewImage = null
   item.previewImageFile = null
 }
 
-const onTagBgColor = (item, color: string) => {
+const onTagBgColor = (item: ImageDoubleSection['imageList'][number], color: string) => {
   item.tag.bgColor = color
 }
 </script>

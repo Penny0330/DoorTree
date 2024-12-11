@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import Home from './components/home.vue'
-import CreateStep from './components/homeCreateStep.vue'
-import Feature from './components/homeFeature.vue'
-import Feedback from './components/homeFeedback.vue'
-</script>
-
 <template>
   <div class="h-full pt-24 sm:pt-32 sm:flex sm:justify-center">
     <main
@@ -17,10 +10,10 @@ import Feedback from './components/homeFeedback.vue'
       />
       <Home />
       <div class="divider"></div>
-      <CreateStep />
+      <HomeCreateStep />
       <div class="divider"></div>
-      <Feature />
-      <Feedback />
+      <HomeFeature />
+      <HomeFeedback />
     </main>
   </div>
 </template>

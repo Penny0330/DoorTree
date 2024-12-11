@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import debounce from 'lodash/debounce'
-import { checkLinkTransformType } from '../transform'
+import { checkLinkTransformType } from '@/pages/Dashboard/transform'
 import { useFirestore } from '@/composables/useFirestore'
-import CommonDialog from '@/components/CommonDialog.vue'
 
 const { getDocumentByLink } = useFirestore()
 

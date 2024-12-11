@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { transferBgClass } from '@/pages/Edit/transform'
-
-import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
-import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'
-import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
+import { BlockTypeComponent } from '@/components/block/index'
 
 const props = defineProps({
   showPreview: {
@@ -51,8 +48,8 @@ const blockComponent = (type: string) => {
       ]"
     >
       <template v-if="idx === null">
-        <TopButtonBlock :is-edit="false" :data="data" />
-        <ProfileBlock :is-edit="false" :data="data" />
+        <BlockTopButton :is-edit="false" :data="data" />
+        <BlockProfile :is-edit="false" :data="data" />
         <template v-for="(section, index) in data.section" :key="section.id">
           <component
             :is="blockComponent(section.type)"

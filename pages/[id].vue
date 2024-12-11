@@ -3,15 +3,8 @@ import QRCode from 'qrcode'
 import ErrorPage from '../error.vue'
 import { useFirestore } from '@/composables/useFirestore'
 import { useHandleError } from '@/composables/useHandleError'
-
-import GlobalLoading from '@/components/GlobalLoading.vue'
-import QRCodeModal from '@/components/QRCoddeModal.vue'
-import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
-import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'
-import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
-
+import { BlockTypeComponent } from '@/components/block/index'
 import type { EditDetail } from '@/types/MainType'
-
 import { transferBgClass, transformSection } from '@/pages/Edit/transform'
 
 definePageMeta({
@@ -107,11 +100,11 @@ onMounted(() => {
         v-if="hasExistLink"
         class="flex flex-col gap-4 px-4 m-auto pt-8 max-w-[500px]"
       >
-        <TopButtonBlock
+        <BlockTopButton
           :data="doorItem[0]"
           @on-toggle-q-r-code-modal="onToggleQRCodeModal"
         />
-        <ProfileBlock :data="doorItem[0]" />
+        <BlockProfile :data="doorItem[0]" />
         <template
           v-for="(section, idx) in doorItem[0].section"
           :key="section.id"

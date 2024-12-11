@@ -4,15 +4,7 @@ import dayjs from 'dayjs'
 import Draggable from 'vuedraggable'
 import { nanoid } from 'nanoid'
 
-import GlobalLoading from '@/components/GlobalLoading.vue'
-import EditModal from '@/pages/Edit/components/EditModal.vue'
-import Preview from '@/pages/Edit/components/Preview.vue'
-import AddBlock from '@/pages/Edit/components/AddBlock.vue'
-import ShareLinkBlock from '@/pages/Edit/components/block/ShareLinkBlock.vue'
-import TopButtonBlock from '@/pages/Edit/components/block/TopButtonBlock.vue'
-import ProfileBlock from '@/pages/Edit/components/block/ProfileBlock.vue'
-import ToolBar from '@/pages/Edit/components/block/ToolBar.vue'
-import { BlockTypeComponent } from '@/pages/Edit/components/block/index'
+import { BlockTypeComponent } from '@/components/block/index'
 
 import { useFirestore } from '@/composables/useFirestore'
 import { useHandleError } from '@/composables/useHandleError'
@@ -302,22 +294,22 @@ onMounted(() => {
       v-if="!isLoading"
       class="w-11/12 px-0 flex justify-center md:grid md:px-2 md:grid-cols-[1fr_3fr] md:gap-4 md:max-w-[1440px] lg:px-8"
     >
-      <AddBlock
+      <EditAddBlock
         :show-add-block-modal="showAddBlockModal"
         :is-add-loading="isAddLoading"
         @on-toggle-add-block-modal="onToggleAddBlockModal"
         @on-add-block="onAddBlock"
       />
       <main class="md:justify-self-center w-full sm:max-w-[500px]">
-        <ShareLinkBlock :link="editData?.link" />
+        <BlockShareLink :link="editData?.link" />
         <div class="mt-8">
           <div class="flex flex-col rounded-2xl md:p-4">
-            <TopButtonBlock
+            <BlockTopButton
               :is-edit="true"
               :data="editData"
               @on-edit="handleEdit"
             />
-            <ProfileBlock
+            <BlockProfile
               :is-edit="true"
               :data="editData"
               @on-edit="handleEdit"
@@ -342,7 +334,7 @@ onMounted(() => {
                       : 'bg-white',
                   ]"
                 >
-                  <ToolBar
+                  <BlockToolBar
                     :data="editData"
                     :idx="index"
                     @on-update-is-show="onUpdateIsShow"
@@ -385,7 +377,7 @@ onMounted(() => {
       v-if="showPreview"
       class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex"
     >
-      <Preview
+      <EditPreview
         :show-preview="showPreview"
         :is-edit="false"
         :idx="currentModalDataIdx"
