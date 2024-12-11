@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import QRCode from 'qrcode'
 import ErrorPage from '../error.vue'
-import { useFirestore } from '@/composables/useFirestore'
-import { useHandleError } from '@/composables/useHandleError'
 import { BlockTypeComponent } from '@/components/block/index'
 import type { EditDetail } from '@/types/MainType'
 import { transferBgClass, transformSection } from '@/pages/Edit/transform'

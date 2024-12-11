@@ -9,9 +9,6 @@ import {
 
 import type { Auth } from 'firebase/auth'
 
-import { useDashboard } from '@/composables/useInitData'
-import { useShowGlobalToast } from '@/composables/useGlobalToast'
-
 export function useAuth() {
   const $auth = useNuxtApp().$auth as Auth
   const store = useStore()

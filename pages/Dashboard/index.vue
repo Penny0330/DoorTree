@@ -5,10 +5,6 @@ import {
   DefaultEditDetail,
 } from '@/pages/Edit/modal/index'
 
-import { useFirestore } from '@/composables/useFirestore'
-import { useShowConfirmModal } from '@/composables/useConfirmModal'
-import { useShowGlobalToast } from '@/composables/useGlobalToast'
-
 const store = useStore()
 const {
   setDocument,

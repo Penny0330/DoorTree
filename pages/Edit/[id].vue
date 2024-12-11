@@ -6,12 +6,6 @@ import { nanoid } from 'nanoid'
 
 import { BlockTypeComponent } from '@/components/block/index'
 
-import { useFirestore } from '@/composables/useFirestore'
-import { useHandleError } from '@/composables/useHandleError'
-import { useShowGlobalToast } from '@/composables/useGlobalToast'
-import { useUploadImage } from '@/composables/useUploadImage'
-import { useShowConfirmModal } from '@/composables/useConfirmModal'
-
 import type { EditDetail, EditModalParams, BlockType } from '@/types/MainType'
 import type { DashboardItem } from '@/types/DashboardType'
 import {

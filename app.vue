@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useGlobalToast } from '@/composables/useGlobalToast'
-import { useConfirmModal } from '@/composables/useConfirmModal'
-
 const { showToast, toastMessage, toastType, toastTime, showGlobalToast } =
   useGlobalToast()
 const { showModal, confirmModalOptions, closeConfirmModal, showConfirmModal } =

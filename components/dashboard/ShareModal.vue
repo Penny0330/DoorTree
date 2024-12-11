@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useShowGlobalToast } from '@/composables/useGlobalToast'
-
 const showGlobalToast = useShowGlobalToast()
 
 const props = defineProps({
