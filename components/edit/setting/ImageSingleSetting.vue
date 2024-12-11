@@ -17,6 +17,11 @@ const props = defineProps({
 })
 
 const relativeData = reactive(props.data)
+const imageItemInput = ref<HTMLInputElement | null>(null)
+
+const handleImageUpload = () => {
+  imageItemInput.value?.click()
+}
 
 const onPreviewImage = (event: Event) => {
   const input = event.target as HTMLInputElement
@@ -60,7 +65,7 @@ const onTagBgColor = (color: string) => {
       <div class="flex flex-col gap-4">
         <button
           class="btn-circle btn-hoverable"
-          @click="$refs.imageItemInput.click()"
+          @click="handleImageUpload"
         >
           upload image
         </button>

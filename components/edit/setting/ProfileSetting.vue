@@ -9,6 +9,11 @@ const props = defineProps({
 
 const relativeData = reactive(props.data)
 const { showShareBtn, showQRCodeBtn, profile } = toRefs(relativeData)
+const avatarItemInput = ref<HTMLInputElement | null>(null)
+
+const handleImageUpload = () => {
+  avatarItemInput.value?.click()
+}
 
 const onToggleShowShareBtn = () => {
   showShareBtn.value = !showShareBtn.value
@@ -96,7 +101,7 @@ const onBgColor = (color: string) => {
         <div class="flex flex-col gap-4">
           <button
             class="btn-circle btn-hoverable"
-            @click="$refs.avatarItemInput.click()"
+            @click="handleImageUpload"
           >
             upload avatar
           </button>
