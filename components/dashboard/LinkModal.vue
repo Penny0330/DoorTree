@@ -95,7 +95,7 @@ watch(link, (newLink) => {
 </script>
 
 <template>
-  <CommonDialog
+  <LazyCommonDialog
     :show-dialog="showCreateLinkModal"
     :dialog-title="'Create Your Custom Share Link'"
     @on-close-dialog="onToggleCreateLinkModal"
@@ -138,5 +138,5 @@ watch(link, (newLink) => {
         <p v-else>create</p>
       </button>
     </template>
-  </CommonDialog>
+  </LazyCommonDialog>
 </template>

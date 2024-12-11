@@ -116,7 +116,8 @@ onMounted(() => {
       </div>
       <ErrorPage v-else />
     </div>
-    <QRCodeModal
+    <LazyQRCodeModal
+      v-if="showQRCodeModal"
       :show-q-r-code-modal="showQRCodeModal"
       :qr-code-image="QRCodeImage"
       :path-url="pathUrl"

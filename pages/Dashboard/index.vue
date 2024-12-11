@@ -127,12 +127,12 @@ onMounted(() => {
     <GlobalLoading v-if="isGetLoading" />
     <template v-else>
       <!-- empty status -->
-      <DashboardEmptyCard
+      <LazyDashboardEmptyCard
         v-if="!dashboardList?.length"
         @on-show-create-link-modal="onShowCreateLinkModal"
       />
       <!-- has data -->
-      <DashboardDoorCard
+      <LazyDashboardDoorCard
         v-else
         :dashboard-list="dashboardList"
         @on-show-create-link-modal="onShowCreateLinkModal"
@@ -147,13 +147,15 @@ onMounted(() => {
       @click="onShowCreateLinkModal"
     />
 
-    <DashboardLinkModal
+    <LazyDashboardLinkModal
+      v-if="showCreateLinkModal"
       :show-create-link-modal="showCreateLinkModal"
       :is-create-loading="isCreateLoading"
       :on-toggle-create-link-modal="onToggleCreateLinkModal"
       :on-create-link="onCreateLink"
     />
-    <DashboardShareModal
+    <LazyDashboardShareModal
+      v-if="showShareModal"
       :show-share-modal="showShareModal"
       :current-share-link="currentShareLink"
       @on-toggle-share-modal="onToggleShareModal"

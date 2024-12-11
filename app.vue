@@ -11,13 +11,13 @@ provide('showConfirmModal', showConfirmModal)
 <template>
   <div>
     <NuxtLayout>
-      <GlobalToast
+      <LazyGlobalToast
         v-if="showToast"
         :message="toastMessage"
         :type="toastType"
         :time="toastTime"
       />
-      <CommonConfirmModal
+      <LazyCommonConfirmModal
         v-if="showModal"
         :confirm-modal-options="confirmModalOptions"
         @close-confirm-modal="closeConfirmModal"

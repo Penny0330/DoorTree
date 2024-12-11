@@ -51,7 +51,7 @@ watch(
     <MenuButton :show-menu="showMenu" :on-toggle-menu="onToggleMenu" />
   </nav>
   <transition name="fade">
-    <SideMenu
+    <LazySideMenu
       v-if="showMenu"
       :show-menu="showMenu"
       :show-auth-modal="showAuthModal"
@@ -60,7 +60,7 @@ watch(
     />
   </transition>
   <transition name="fade">
-    <AuthModal
+    <LazyAuthModal
       v-if="showAuthModal"
       :show-auth-modal="showAuthModal"
       :is-login-action="isLoginAction"

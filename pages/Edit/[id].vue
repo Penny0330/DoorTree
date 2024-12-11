@@ -288,7 +288,8 @@ onMounted(() => {
       v-if="!isLoading"
       class="w-11/12 px-0 flex justify-center md:grid md:px-2 md:grid-cols-[1fr_3fr] md:gap-4 md:max-w-[1440px] lg:px-8"
     >
-      <EditAddBlock
+      <LazyEditAddBlock
+        v-if="showAddBlockModal"
         :show-add-block-modal="showAddBlockModal"
         :is-add-loading="isAddLoading"
         @on-toggle-add-block-modal="onToggleAddBlockModal"
@@ -355,7 +356,8 @@ onMounted(() => {
         <Icon name="mingcute:add-fill" class="text-white text-2xl" />
       </div>
     </section>
-    <EditModal
+    <LazyEditModal
+      v-if="showEditModal"
       :show-edit-modal="showEditModal"
       :title="currentModalTitle"
       :type="currentModalType"
@@ -371,7 +373,7 @@ onMounted(() => {
       v-if="showPreview"
       class="w-full max-h-dvh h-dvh fixed top-0 left-0 z-30 bg-main-overlay flex"
     >
-      <EditPreview
+      <LazyEditPreview
         :show-preview="showPreview"
         :is-edit="false"
         :idx="currentModalDataIdx"

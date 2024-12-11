@@ -18,7 +18,7 @@ defineEmits(['onToggleQRCodeModal'])
 </script>
 
 <template>
-  <CommonDialog
+  <LazyCommonDialog
     :show-dialog="showQRCodeModal"
     :dialog-title="'QRCode'"
     :sub-title="'Here is your unique DoorTree QR code that will direct people to your DoorTree when scanned.'"
@@ -36,5 +36,5 @@ defineEmits(['onToggleQRCodeModal'])
         >
       </div>
     </template>
-  </CommonDialog>
+  </LazyCommonDialog>
 </template>

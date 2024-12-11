@@ -30,7 +30,7 @@ const onCopyLink = async () => {
 </script>
 
 <template>
-  <CommonDialog
+  <LazyCommonDialog
     :show-dialog="showShareModal"
     :dialog-title="'Share your DoorTree'"
     :sub-title="'Get more visitors by sharing your DoorTree everywhere.'"
@@ -53,5 +53,5 @@ const onCopyLink = async () => {
       >
       <button class="btn-primary flex" @click="onCopyLink">Copy</button>
     </template>
-  </CommonDialog>
+  </LazyCommonDialog>
 </template>
