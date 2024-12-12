@@ -288,8 +288,7 @@ onMounted(() => {
       v-if="!isLoading"
       class="w-11/12 px-0 flex justify-center md:grid md:px-2 md:grid-cols-[1fr_3fr] md:gap-4 md:max-w-[1440px] lg:px-8"
     >
-      <LazyEditAddBlock
-        v-if="showAddBlockModal"
+      <EditAddBlock
         :show-add-block-modal="showAddBlockModal"
         :is-add-loading="isAddLoading"
         @on-toggle-add-block-modal="onToggleAddBlockModal"

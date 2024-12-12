@@ -39,15 +39,15 @@ defineEmits([
     <div
       v-for="(item, idx) in dashboardList"
       :key="item.id"
-      class="border rounded-2xl shadow-md w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] xl:basis-[calc(25%-1rem)] xl:py-6"
+      class="border rounded-2xl shadow-md w-full p-4 flex justify-center items-center gap-8 cursor-pointer sm:basis-[calc(50%-1rem)] sm:h-full xl:basis-[calc(25%-1rem)] xl:py-6"
       @click="$emit('onEdit', item.id)"
     >
       <div v-if="item.avatar">
-        <img :src="item.avatar" class="w-28 h-28 rounded-full object-cover" />
+        <img :src="item.avatar" class="w-20 h-20 rounded-full object-cover" />
       </div>
       <div
         v-else
-        class="bg-gray-300 rounded-full w-28 h-28 flex items-center justify-center text-white text-2xl"
+        class="bg-gray-300 rounded-full w-20 h-20 flex items-center justify-center text-white text-2xl"
       >
         {{ item.link[0].toUpperCase() }}
       </div>
