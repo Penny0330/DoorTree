@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex flex-col justify-between items-center w-dvw mb-20 lg:h-full lg:mb-24 lg:ml-8 lg:mt-8 lg:max-w-[1440px] lg:flex-row lg:items-start"
+    class="flex flex-col justify-between items-center w-dvw mb-20 xl:h-full xl:mb-24 xl:ml-8 lg:mt-8 xl:max-w-[1440px] xl:flex-row xl:items-start"
   >
     <header class="relative z-[1] text-center lg:self-center pt-8 px-8">
       <p class="text-3xl font-bold text-gray-600 lg:text-6xl lg:mb-5">
@@ -25,7 +25,7 @@
     <img
       src="../../assets/home-share.png"
       alt="home-share"
-      class="w-[60%] h-full lg:w-auto lg:h-[100dvh] object-cover border border-gray-200 shadow-around-light rounded-2xl animate-slide-up lg:absolute lg:right-0 lg:rounded-l-2xl lg:animate-slide-left"
+      class="w-[60%] h-full object-cover border border-gray-200 shadow-around-light rounded-2xl animate-slide-up xl:w-auto xl:max-w-[550px] xl:h-auto xl:rounded-l-2xl xl:animate-slide-left"
     />
   </section>
 </template>
