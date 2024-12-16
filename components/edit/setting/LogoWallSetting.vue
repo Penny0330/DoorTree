@@ -15,32 +15,33 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive(props.data)
+const relativeData = reactive({ ...props.data })
+const currentSection = computed(() => relativeData.section[props.idx])
 
 const showLogoOptions = ref<boolean>(false)
 const onToggleLogoOptions = () => {
   showLogoOptions.value = !showLogoOptions.value
 }
 
-const onAddLogo = (
-  type: string,
-  icon: string,
-  toolTip: string,
-  placeholder: string,
-) => {
+const onAddLogo = (item: {
+  type: string
+  icon: string
+  toolTip: string
+  placeholder: string
+}) => {
   const newLogoItem = {
     id: nanoid(),
-    type,
-    icon,
+    type: item.type,
+    icon: item.icon,
     link: '',
-    toolTip,
-    placeholder,
+    toolTip: item.toolTip,
+    placeholder: item.placeholder,
   }
-  relativeData.section[props.idx].logoList.push(newLogoItem)
+  currentSection.value.logoList.push(newLogoItem)
 }
 
 const onDeleteLogo = (idx: number) => {
-  relativeData.section[props.idx].logoList.splice(idx, 1)
+  currentSection.value.logoList.splice(idx, 1)
 }
 </script>
 
@@ -48,7 +49,7 @@ const onDeleteLogo = (idx: number) => {
   <div>
     <div>
       <Draggable
-        :list="relativeData.section[idx].logoList"
+        :list="currentSection.logoList"
         item-key="id"
         animation="200"
         handle=".drag-btn"
@@ -70,7 +71,7 @@ const onDeleteLogo = (idx: number) => {
               :placeholder="element.placeholder"
             />
             <Icon
-              v-if="relativeData.section[idx].logoList.length > 1"
+              v-if="currentSection.logoList.length > 1"
               name="fluent:delete-32-regular"
               class="text-2xl text-red-500 cursor-pointer"
               @click="onDeleteLogo(index)"
@@ -90,12 +91,7 @@ const onDeleteLogo = (idx: number) => {
           class="mx-2 p-4 shadow-around-light flex items-center gap-3 flex-wrap"
         >
           <template v-for="item in iconOptions" :key="item.icon">
-            <ToolTip
-              :text="item.toolTip"
-              @click="
-                onAddLogo(item.type, item.icon, item.toolTip, item.placeholder)
-              "
-            >
+            <ToolTip :text="item.toolTip" @click="onAddLogo(item)">
               <button
                 class="flex p-1 rounded-lg hover:bg-gray-200 hover-transition"
               >

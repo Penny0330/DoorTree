@@ -16,7 +16,8 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive(props.data)
+const relativeData = reactive({ ...props.data })
+const currentSection = computed(() => relativeData.section[props.idx])
 const imageItemInput = ref<HTMLInputElement | null>(null)
 
 const handleImageUpload = () => {
@@ -25,12 +26,12 @@ const handleImageUpload = () => {
 
 const onPreviewImage = (event: Event) => {
   const input = event.target as HTMLInputElement
-  if (input.files && input.files[0]) {
+  if (input.files?.[0]) {
     const file = input.files[0]
     const reader = new FileReader()
     reader.onload = (e) => {
-      relativeData.section[props.idx].previewImage = e.target?.result as string
-      relativeData.section[props.idx].previewImageFile = file
+      currentSection.value.previewImage = e.target?.result as string
+      currentSection.value.previewImageFile = file
     }
     reader.readAsDataURL(file)
   }
@@ -38,12 +39,12 @@ const onPreviewImage = (event: Event) => {
 }
 
 const onRemoveImage = () => {
-  relativeData.section[props.idx].previewImage = null
-  relativeData.section[props.idx].previewImageFile = null
+  currentSection.value.previewImage = null
+  currentSection.value.previewImageFile = null
 }
 
 const onTagBgColor = (color: string) => {
-  relativeData.section[props.idx].tag.bgColor = color
+  currentSection.value.tag.bgColor = color
 }
 </script>
 
@@ -54,10 +55,7 @@ const onTagBgColor = (color: string) => {
       <Icon name="ph:image-square" class="text-gray-400 text-2xl" />
       <div class="w-24 h-24 rounded-2xl border bg-gray-300">
         <img
-          :src="
-            relativeData.section[idx].previewImage ||
-            relativeData.section[idx].image
-          "
+          :src="currentSection.previewImage || currentSection.image"
           alt="Uploaded Image"
           class="w-full h-full object-cover rounded-2xl"
         />
@@ -85,7 +83,7 @@ const onTagBgColor = (color: string) => {
     <div class="edit-row">
       <Icon name="ep:link" class="text-gray-400 text-2xl" />
       <input
-        v-model="relativeData.section[idx].link"
+        v-model="currentSection.link"
         class="edit-input"
         placeholder="link"
       />
@@ -94,7 +92,7 @@ const onTagBgColor = (color: string) => {
     <div class="edit-row">
       <Icon name="mynaui:tag" class="text-gray-400 text-2xl" />
       <input
-        v-model="relativeData.section[idx].tag.text"
+        v-model="currentSection.tag.text"
         class="edit-input"
         placeholder="tag text"
       />
@@ -107,7 +105,7 @@ const onTagBgColor = (color: string) => {
           :key="tagTextAlignOption.value"
         >
           <input
-            v-model="relativeData.section[idx].tag.textAlign"
+            v-model="currentSection.tag.textAlign"
             type="radio"
             :value="tagTextAlignOption.value"
           />
@@ -124,7 +122,7 @@ const onTagBgColor = (color: string) => {
           :class="[color.label, 'color-select']"
           @click="onTagBgColor(color.value)"
         >
-          <p v-if="relativeData.section[idx].tag.bgColor === color.value">v</p>
+          <p v-if="currentSection.tag.bgColor === color.value">v</p>
         </button>
       </div>
     </div>
@@ -132,7 +130,7 @@ const onTagBgColor = (color: string) => {
     <div class="edit-row">
       <Icon name="ion:text-outline" class="text-gray-400 text-2xl" />
       <input
-        v-model="relativeData.section[idx].description.text"
+        v-model="currentSection.description.text"
         class="edit-input"
         placeholder="description"
       />
@@ -145,7 +143,7 @@ const onTagBgColor = (color: string) => {
           :key="textAlignOption.value"
         >
           <input
-            v-model="relativeData.section[idx].description.textAlign"
+            v-model="currentSection.description.textAlign"
             type="radio"
             :value="textAlignOption.value"
           />

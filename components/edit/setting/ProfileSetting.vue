@@ -25,12 +25,12 @@ const onToggleShowQRCodeBtn = () => {
 
 const onPreviewImage = (event: Event) => {
   const input = event.target as HTMLInputElement
-  if (input.files && input.files[0]) {
+  if (input.files?.[0]) {
     const file = input.files[0]
     const reader = new FileReader()
     reader.onload = (e) => {
-      relativeData.profile.previewImage = e.target?.result as string
-      relativeData.profile.previewImageFile = file
+      profile.value.previewImage = e.target?.result as string
+      profile.value.previewImageFile = file
     }
     reader.readAsDataURL(file)
   }
@@ -38,8 +38,8 @@ const onPreviewImage = (event: Event) => {
 }
 
 const onRemoveImage = () => {
-  relativeData.profile.previewImage = null
-  relativeData.profile.previewImageFile = null
+  profile.value.previewImage = null
+  profile.value.previewImageFile = null
 }
 
 const onThemeColor = (color: string) => {
@@ -80,20 +80,20 @@ const onBgColor = (color: string) => {
       <div class="edit-row mb-6">
         <Icon name="gg:profile" class="text-gray-400 text-2xl" />
         <div
-          v-if="!relativeData.profile.previewImage && !profile.avatar"
+          v-if="!profile.previewImage && !profile.avatar"
           class="bg-gray-300 rounded-full w-24 h-24 flex items-center justify-center text-white text-2xl"
         >
           {{ relativeData.link[0].toUpperCase() }}
         </div>
         <div v-else class="w-24 h-24 rounded-full border bg-gray-300">
           <img
-            v-if="relativeData.profile.previewImage"
-            :src="relativeData.profile.previewImage || undefined"
+            v-if="profile.previewImage"
+            :src="profile.previewImage || undefined"
             alt="Uploaded Image"
             class="w-full h-full object-cover rounded-full"
           />
           <img
-            v-else-if="profile.avatar && !relativeData.profile.previewImage"
+            v-else-if="profile.avatar && !profile.previewImage"
             :src="profile.avatar"
             class="w-full h-full object-cover rounded-full"
           />

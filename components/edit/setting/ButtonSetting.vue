@@ -12,16 +12,15 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive(props.data)
+const relativeData = reactive({ ...props.data })
+const currentSection = computed(() => relativeData.section[props.idx])
 
 const onToggleFillBtn = () => {
-  relativeData.section[props.idx].isFill =
-    !relativeData.section[props.idx].isFill
+  currentSection.value.isFill = !currentSection.value.isFill
 }
 
 const onToggleDescriptionBtn = () => {
-  relativeData.section[props.idx].showDescription =
-    !relativeData.section[props.idx].showDescription
+  currentSection.value.showDescription = !currentSection.value.showDescription
 }
 </script>
 
@@ -33,11 +32,7 @@ const onToggleDescriptionBtn = () => {
         <Icon name="bxs:color-fill" class="text-gray-400 text-2xl" />
         <p>button fill</p>
         <Icon
-          :name="
-            relativeData.section[idx].isFill
-              ? 'ri:toggle-fill'
-              : 'ri:toggle-line'
-          "
+          :name="currentSection.isFill ? 'ri:toggle-fill' : 'ri:toggle-line'"
           class="text-3xl text-main-blue cursor-pointer"
           @click="onToggleFillBtn"
         />
@@ -46,7 +41,7 @@ const onToggleDescriptionBtn = () => {
       <div class="edit-row items-start mb-4">
         <Icon name="ion:text-outline" class="text-gray-400 text-2xl" />
         <input
-          v-model="relativeData.section[idx].text"
+          v-model="currentSection.text"
           class="edit-input"
           placeholder="button text"
         />
@@ -59,7 +54,7 @@ const onToggleDescriptionBtn = () => {
             :key="fontSizeOption.value"
           >
             <input
-              v-model="relativeData.section[idx].style.fontSize"
+              v-model="currentSection.style.fontSize"
               type="radio"
               :value="fontSizeOption.value"
             />
@@ -71,7 +66,7 @@ const onToggleDescriptionBtn = () => {
       <div class="edit-row mb-4">
         <Icon name="ep:link" class="text-gray-400 text-2xl" />
         <input
-          v-model="relativeData.section[idx].link"
+          v-model="currentSection.link"
           class="edit-input"
           placeholder="button link"
         />
@@ -82,20 +77,15 @@ const onToggleDescriptionBtn = () => {
         <p>button description</p>
         <Icon
           :name="
-            relativeData.section[idx].showDescription
-              ? 'ri:toggle-fill'
-              : 'ri:toggle-line'
+            currentSection.showDescription ? 'ri:toggle-fill' : 'ri:toggle-line'
           "
           class="text-3xl text-main-blue cursor-pointer"
           @click="onToggleDescriptionBtn"
         />
       </div>
-      <div
-        v-if="relativeData.section[idx].showDescription"
-        class="edit-row pl-8"
-      >
+      <div v-if="currentSection.showDescription" class="edit-row pl-8">
         <input
-          v-model="relativeData.section[idx].description"
+          v-model="currentSection.description"
           class="edit-input"
           placeholder="button text"
         />

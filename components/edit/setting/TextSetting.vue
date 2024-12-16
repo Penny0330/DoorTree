@@ -16,10 +16,11 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive(props.data)
+const relativeData = reactive({ ...props.data })
+const currentSection = computed(() => relativeData.section[props.idx])
 
 const onTextColor = (color: string) => {
-  relativeData.section[props.idx].style.color = color
+  currentSection.value.style.color = color
 }
 </script>
 
@@ -29,7 +30,7 @@ const onTextColor = (color: string) => {
       <div class="edit-row items-start">
         <Icon name="ion:text-outline" class="text-gray-400 text-2xl" />
         <textarea
-          v-model="relativeData.section[idx].text"
+          v-model="currentSection.text"
           class="edit-input"
           placeholder="header / paragraph"
           cols="50"
@@ -43,7 +44,7 @@ const onTextColor = (color: string) => {
             :key="fontSizeOption.value"
           >
             <input
-              v-model="relativeData.section[idx].style.fontSize"
+              v-model="currentSection.style.fontSize"
               type="radio"
               :value="fontSizeOption.value"
             />
@@ -54,24 +55,15 @@ const onTextColor = (color: string) => {
       <div class="edit-row pt-4">
         <div class="edit-select ml-8">
           <label class="custom-checkbox">
-            <input
-              v-model="relativeData.section[idx].style.isBold"
-              type="checkbox"
-            />
+            <input v-model="currentSection.style.isBold" type="checkbox" />
             Bold
           </label>
           <label class="custom-checkbox">
-            <input
-              v-model="relativeData.section[idx].style.isItalic"
-              type="checkbox"
-            />
+            <input v-model="currentSection.style.isItalic" type="checkbox" />
             Italic
           </label>
           <label class="custom-checkbox">
-            <input
-              v-model="relativeData.section[idx].style.isUnderline"
-              type="checkbox"
-            />
+            <input v-model="currentSection.style.isUnderline" type="checkbox" />
             Underline
           </label>
         </div>
@@ -83,7 +75,7 @@ const onTextColor = (color: string) => {
             :key="textAlignOption.value"
           >
             <input
-              v-model="relativeData.section[idx].style.textAlign"
+              v-model="currentSection.style.textAlign"
               type="radio"
               :value="textAlignOption.value"
             />
@@ -99,9 +91,7 @@ const onTextColor = (color: string) => {
             :class="[color.label, 'color-select']"
             @click="onTextColor(color.value)"
           >
-            <p v-if="relativeData.section[idx].style.color === color.value">
-              v
-            </p>
+            <p v-if="currentSection.style.color === color.value">v</p>
           </button>
         </div>
       </div>

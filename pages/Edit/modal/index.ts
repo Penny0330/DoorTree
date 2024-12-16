@@ -25,7 +25,7 @@ const createTextSection = (): SectionItem => {
       isUnderline: false,
       isItalic: false,
       textAlign: 'text-center',
-      color: 'text-black',
+      color: 'default',
     },
   }
 }

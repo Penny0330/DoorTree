@@ -12,7 +12,8 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive(props.data)
+const relativeData = reactive({ ...props.data })
+const currentStyle = computed(() => relativeData.section[props.idx].style)
 
 const typeOptions = [
   { value: 'border-solid', label: 'Solid' },
@@ -29,7 +30,7 @@ const widthOptions = [
 ]
 
 const onBorderColor = (color: string) => {
-  relativeData.section[props.idx].style.color = color
+  currentStyle.value.color = color
 }
 </script>
 
@@ -40,7 +41,7 @@ const onBorderColor = (color: string) => {
       <div class="edit-select">
         <label v-for="typeOption in typeOptions" :key="typeOption.value">
           <input
-            v-model="relativeData.section[idx].style.type"
+            v-model="currentStyle.type"
             type="radio"
             :value="typeOption.value"
           />
@@ -56,7 +57,7 @@ const onBorderColor = (color: string) => {
       <div class="edit-select">
         <label v-for="widthOption in widthOptions" :key="widthOption.value">
           <input
-            v-model="relativeData.section[idx].style.width"
+            v-model="currentStyle.width"
             type="radio"
             :value="widthOption.value"
           />
@@ -73,7 +74,7 @@ const onBorderColor = (color: string) => {
           :class="[color.label, 'color-select']"
           @click="onBorderColor(color.value)"
         >
-          <p v-if="relativeData.section[idx].style.color === color.value">v</p>
+          <p v-if="currentStyle.color === color.value">v</p>
         </button>
       </div>
     </div>

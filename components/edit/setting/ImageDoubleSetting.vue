@@ -18,13 +18,12 @@ const props = defineProps({
   },
 })
 
-const relativeData = reactive(props.data)
+const relativeData = reactive({ ...props.data })
+const currentSection = computed(() => relativeData.section[props.idx])
 const imageRefs = ref<Record<string, HTMLInputElement | null>>({})
 
 const onUploadClick = (id: string) => {
-  if (imageRefs.value[id]) {
-    imageRefs.value[id]?.click()
-  }
+  imageRefs.value[id]?.click()
 }
 
 const onPreviewImage = (
@@ -32,7 +31,7 @@ const onPreviewImage = (
   event: Event,
 ) => {
   const input = event.target as HTMLInputElement
-  if (input.files && input.files[0]) {
+  if (input.files?.[0]) {
     const file = input.files[0]
     const reader = new FileReader()
     reader.onload = (e) => {
@@ -60,7 +59,7 @@ const onTagBgColor = (
 <template>
   <div>
     <div
-      v-for="item in relativeData.section[idx].imageList"
+      v-for="item in currentSection.imageList"
       :key="item.id"
       class="flex flex-col gap-4 mb-4 bg-slate-100 px-2 py-4 rounded-lg"
     >
