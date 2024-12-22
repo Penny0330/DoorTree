@@ -36,10 +36,41 @@
 
 ## Core Tech Stack
 
+- Frontend
 
-| Description    | Technique |
-|  ----          | ---- |
-| test@test.com  | testtest |
+    | Tech         | Description      |
+    |  ----        | ----             |
+    | Nuxt3        | framework        |
+    | Vue3         | composition API  |
+    | TypeScript   | type system      |
+    | Tailwindcss  | styling          |
+    | Pinia        | state management |
+
+- Develop Tools
+
+    | Tech             | Description        |
+    |  ----            | ----               |
+    | Vite             | build tool         |
+    | npm              | package management |
+    | ESLint/Preitter  | codeing style      |
+    | Git/GitHub       | version control    |
+
+- Third-Party Library
+
+    | Tech                        | Description                |
+    |  ----                       | ----                       |
+    | vuedraggable                | drag-and-drop              |
+    | nanoid                      | unique string ID generator |
+    | qrcode                      | qrcode generator           |
+    | browser-image-compression   | reducing storage size      |
+
+- Backend
+    | Tech                    | Description     |
+    |  ----                   | ----            |
+    | Firebase Authentication | member system   |
+    | Firebase FireStore      | database        |
+    | Cloudinary              | image Storage   |
+    | Vercel                  | deployment      |
     
 
 ## 
