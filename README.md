@@ -1,75 +1,46 @@
-# Nuxt 3 Minimal Starter
+<h1 align="center"> DoorTree </h1> 
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<p align="center"> <i>"A link in bio tool created just for you."</i> 🔑</p>
 
-## Setup
+<p align="center">
+    DoorTree is a website which can create your space on the web.
+</p>
+<p align="center">
+    One link that contains group of other links and content as contact text, images and many more.
+</p> 
 
-Make sure to install the dependencies:
+![RWD](https://github.com/user-attachments/assets/a3e8cf52-eb98-4165-9f83-b3c692418576)
 
-```bash
-# npm
-npm install
+## Live Demo
+-   Website URL： [DoorTree](https://door-tree.vercel.app/)
+-   Test Account
 
-# pnpm
-pnpm install
+    | Account        | Password      |
+    | --------       | ------------- |
+    | test@test.com  | testtest |
 
-# yarn
-yarn install
+## Table of Content
 
-# bun
-bun install
-```
+## Key Features
 
-## Development Server
+- WYSIWYG Editor
+   > Update and `preview` changes in `real time` without refreshing the page.
+- Customizable URLs
+   > Users can create `unique URLs`.
+- Customizable Blocks with Tap-and-Drag
+   > Easily customize your layout with various block styles. Tap on mobile or on desktop to rearrange with `drag-and-drop` and create your ideal setup.
+- Theme Color
+   > Offers a variety of color themes and styles to align with brand identity.
+- Simplified Sharing Options
+   > Quickly share your page with a unique link or automatically generated `QR code`. 
 
-Start the development server on `http://localhost:3000`:
+## Core Tech Stack
 
-```bash
-# npm
-npm run dev
 
-# pnpm
-pnpm run dev
+| Description    | Technique |
+|  ----          | ---- |
+| test@test.com  | testtest |
+    
 
-# yarn
-yarn dev
+## 
 
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
