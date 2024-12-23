@@ -75,7 +75,7 @@
 
 ## Components Design
 
-![Components-Design](https://github.com/user-attachments/assets/f3c0def3-bb0f-4e76-8bf8-ac85e6fb1280)
+<img width="588" alt="Components-Design" src="https://github.com/user-attachments/assets/7fdc1e60-0ed8-4fa1-9b4a-abcebed0c193](https://github.com/user-attachments/assets/f3c0def3-bb0f-4e76-8bf8-ac85e6fb1280" />
 
 ## Live Demo
 
