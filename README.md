@@ -52,7 +52,7 @@
     |  ----            | ----               |
     | Vite             | build tool         |
     | npm              | package management |
-    | ESLint/Preitter  | codeing style      |
+    | ESLint/Preitter  | coding style      |
     | Git/GitHub       | version control    |
 
 - Third-Party Library
@@ -65,6 +65,7 @@
     | browser-image-compression   | reducing storage size      |
 
 - Backend
+
     | Tech                    | Description     |
     |  ----                   | ----            |
     | Firebase Authentication | member system   |
@@ -86,3 +87,11 @@
 ##### Easily edit online
 
 ![Easily edit online](https://github.com/user-attachments/assets/a2af0cf6-1f4a-4c54-8515-e2a4fd92363d)
+
+##### Theme Color
+
+![Theme Color](https://github.com/user-attachments/assets/5f6858d7-5dd2-46f9-8f2d-10f47c6641c0)
+
+#### Sharing
+
+<img width="1704" alt="Sharing QRCode" src="https://github.com/user-attachments/assets/357a61ed-67ac-4d9c-8614-357729a8f325" />
