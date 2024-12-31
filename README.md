@@ -21,15 +21,15 @@
 
 ## Table of Content
 
-- [Key Features](https://github.com/Penny0330/DoorTree#key-features)
-- [Core Tech](https://github.com/Penny0330/DoorTree#core-tech-stack)
-    - [FrontEnd](https://github.com/Penny0330/DoorTree#frontend)
-    - [Develop Tools](https://github.com/Penny0330/DoorTree#develop-tools)
-    - [Third-Party Library](https://github.com/Penny0330/DoorTree#third-party-library)
-    - [BackEnd](https://github.com/Penny0330/DoorTree#backEnd)
-- [Components Design](https://github.com/Penny0330/DoorTree/tree/develop?tab=readme-ov-file#components-design)
-- [Demo](https://github.com/Penny0330/DoorTree#live-demo)
-- [Contact](https://github.com/Penny0330/DoorTree#contact)
+- [Key Features](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#key-features)
+- [Core Tech](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#core-tech-stack)
+    - [Frontend](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#frontend)
+    - [Develop Tools](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#develop-tools)
+    - [Third-Party Library](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#third-party-library)
+    - [Backend](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#backend)
+- [Components Design](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#components-design)
+- [Demo](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#live-demo-1)
+- [Contact](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#contact)
 
 ## Key Features
 
@@ -48,40 +48,40 @@
 
 #### Frontend
 
-    | Tech         | Description      |
-    |  ----        | ----             |
-    | Nuxt3        | framework        |
-    | Vue3         | composition API  |
-    | TypeScript   | type system      |
-    | Tailwindcss  | styling          |
-    | Pinia        | state management |
+| Tech         | Description      |
+|  ----        | ----             |
+| Nuxt3        | framework        |
+| Vue3         | composition API  |
+| TypeScript   | type system      |
+| Tailwindcss  | styling          |
+| Pinia        | state management |
 
 #### Develop Tools
 
-    | Tech             | Description        |
-    |  ----            | ----               |
-    | Vite             | build tool         |
-    | npm              | package management |
-    | ESLint/Preitter  | coding style      |
-    | Git/GitHub       | version control    |
+| Tech             | Description        |
+|  ----            | ----               |
+| Vite             | build tool         |
+| npm              | package management |
+| ESLint/Preitter  | coding style       |
+| Git/GitHub       | version control    |
 
 #### Third-Party Library
 
-    | Tech                        | Description                |
-    |  ----                       | ----                       |
-    | vuedraggable                | drag-and-drop              |
-    | nanoid                      | unique string ID generator |
-    | qrcode                      | qrcode generator           |
-    | browser-image-compression   | reducing storage size      |
+| Tech                        | Description                |
+|  ----                       | ----                       |
+| vuedraggable                | drag-and-drop              |
+| nanoid                      | unique string ID generator |
+| qrcode                      | qrcode generator           |
+| browser-image-compression   | reducing storage size      |
 
 #### Backend
 
-    | Tech                    | Description     |
-    |  ----                   | ----            |
-    | Firebase Authentication | member system   |
-    | Firebase FireStore      | database        |
-    | Cloudinary              | image Storage   |
-    | Vercel                  | deployment      |
+| Tech                    | Description     |
+|  ----                   | ----            |
+| Firebase Authentication | member system   |
+| Firebase FireStore      | database        |
+| Cloudinary              | image Storage   |
+| Vercel                  | deployment      |
     
 
 ## Components Design
