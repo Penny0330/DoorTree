@@ -28,7 +28,7 @@
     - [Third-Party Library](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#third-party-library)
     - [Backend](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#backend)
 - [Components Design](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#components-design)
-- [Demo](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#live-demo-1)
+- [Demo](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#demo)
 - [Contact](https://github.com/Penny0330/DoorTree?tab=readme-ov-file#contact)
 
 ## Key Features
@@ -44,7 +44,7 @@
 - Simplified Sharing Options
    > Quickly share your page with a unique link or automatically generated `QR code`. 
 
-<div style="text-align: right;">
+<div align="end">
   <a href="https://github.com/Penny0330/DoorTree?tab=readme-ov-file#table-of-content">
     <img width="20" alt="Components-Design" src="https://github.com/user-attachments/assets/1fb39739-0eb1-46ef-9113-bacf9f66b731" />
   </a>
@@ -89,7 +89,7 @@
 | Cloudinary              | image Storage   |
 | Vercel                  | deployment      |
 
-<div style="text-align: right;">
+<div align="end">
   <a href="https://github.com/Penny0330/DoorTree?tab=readme-ov-file#table-of-content">
     <img width="20" alt="Components-Design" src="https://github.com/user-attachments/assets/1fb39739-0eb1-46ef-9113-bacf9f66b731" />
   </a>
@@ -100,13 +100,13 @@
 
 <img width="588" alt="Components-Design" src="https://github.com/user-attachments/assets/7fdc1e60-0ed8-4fa1-9b4a-abcebed0c193](https://github.com/user-attachments/assets/f3c0def3-bb0f-4e76-8bf8-ac85e6fb1280" />
 
-<div style="text-align: right;">
+<div align="end">
   <a href="https://github.com/Penny0330/DoorTree?tab=readme-ov-file#table-of-content">
     <img width="20" alt="Components-Design" src="https://github.com/user-attachments/assets/1fb39739-0eb1-46ef-9113-bacf9f66b731" />
   </a>
 </div>
 
-## Live Demo
+## Demo
 
 ##### Create customizable URLs
 
@@ -124,7 +124,7 @@
 
 <img width="1704" alt="Sharing QRCode" src="https://github.com/user-attachments/assets/357a61ed-67ac-4d9c-8614-357729a8f325" />
 
-<div style="text-align: right;">
+<div align="end">
   <a href="https://github.com/Penny0330/DoorTree?tab=readme-ov-file#table-of-content">
     <img width="20" alt="Components-Design" src="https://github.com/user-attachments/assets/1fb39739-0eb1-46ef-9113-bacf9f66b731" />
   </a>
