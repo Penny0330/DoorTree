@@ -21,6 +21,16 @@
 
 ## Table of Content
 
+- [Key Features](https://github.com/Penny0330/DoorTree#key-features)
+- [Core Tech](https://github.com/Penny0330/DoorTree#core-tech-stack)
+    - [FrontEnd](https://github.com/Penny0330/DoorTree#frontend)
+    - [Develop Tools](https://github.com/Penny0330/DoorTree#develop-tools)
+    - [Third-Party Library](https://github.com/Penny0330/DoorTree#third-party-library)
+    - [BackEnd](https://github.com/Penny0330/DoorTree#backEnd)
+- [Components Design](https://github.com/Penny0330/DoorTree/tree/develop?tab=readme-ov-file#components-design)
+- [Demo](https://github.com/Penny0330/DoorTree#live-demo)
+- [Contact](https://github.com/Penny0330/DoorTree#contact)
+
 ## Key Features
 
 - WYSIWYG Editor
@@ -36,7 +46,7 @@
 
 ## Core Tech Stack
 
-- Frontend
+#### Frontend
 
     | Tech         | Description      |
     |  ----        | ----             |
@@ -46,7 +56,7 @@
     | Tailwindcss  | styling          |
     | Pinia        | state management |
 
-- Develop Tools
+#### Develop Tools
 
     | Tech             | Description        |
     |  ----            | ----               |
@@ -55,7 +65,7 @@
     | ESLint/Preitter  | coding style      |
     | Git/GitHub       | version control    |
 
-- Third-Party Library
+#### Third-Party Library
 
     | Tech                        | Description                |
     |  ----                       | ----                       |
@@ -64,7 +74,7 @@
     | qrcode                      | qrcode generator           |
     | browser-image-compression   | reducing storage size      |
 
-- Backend
+#### Backend
 
     | Tech                    | Description     |
     |  ----                   | ----            |
@@ -95,3 +105,8 @@
 #### Sharing
 
 <img width="1704" alt="Sharing QRCode" src="https://github.com/user-attachments/assets/357a61ed-67ac-4d9c-8614-357729a8f325" />
+
+## Contact
+
+-   👧 Pei-Yi Lin
+-   📫 penny860330@gmail.com
