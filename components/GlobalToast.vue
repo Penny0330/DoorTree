@@ -30,10 +30,10 @@ const transformType = {
 
 <template>
   <div
-    class="fixed z-40 transform -translate-x-1/2 top-[30px] left-1/2 text-white py-2 px-4 rounded shadow-md w-max flex gap-2 items-center"
+    class="fixed z-40 transform -translate-x-1/2 top-[30px] left-1/2 text-white py-2 px-4 rounded shadow-md w-max flex gap-2 items-center max-w-[90%]"
     :class="transformType[props.type].bgColor"
   >
     <component :is="transformType[props.type].icon" class="w-5 h-5" />
-    <span>{{ props.message }}</span>
+    <span class="max-w-[90%]">{{ props.message }}</span>
   </div>
 </template>

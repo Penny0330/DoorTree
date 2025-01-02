@@ -36,7 +36,11 @@ export function useAuth() {
       await initDashboardData(userCredential.user.uid)
       handleAuthSuccess(userCredential.user.uid)
     } catch (error) {
-      showGlobalToast({ message: 'Signup failed!', type: 'error' })
+      showGlobalToast({
+        message: `Signup failed! ${error}`,
+        type: 'error',
+        time: 5000,
+      })
       console.error('Error signing in:', error)
     } finally {
       isLoading.value = false
