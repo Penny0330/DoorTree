@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import QRCode from 'qrcode'
+import { toDataURL } from 'qrcode'
 import ErrorPage from '../error.vue'
 import { BlockTypeComponent } from '@/components/block/index'
-import type { EditDetail } from '@/types/MainType'
+import type { EditDetail, BlockType } from '@/types/MainType'
 import { transferBgClass, transformSection } from '@/pages/Edit/transform'
 
 definePageMeta({
@@ -62,13 +62,13 @@ const getData = async () => {
   }
 }
 
-const blockComponent = (type: string) => {
+const blockComponent = (type: BlockType) => {
   return BlockTypeComponent[type] || null
 }
 
 const handleQRCode = async () => {
   try {
-    QRCodeImage.value = await QRCode.toDataURL(pathUrl.value)
+    QRCodeImage.value = await toDataURL(pathUrl.value)
   } catch (error) {
     console.error('handleQRCode: ', error)
   }

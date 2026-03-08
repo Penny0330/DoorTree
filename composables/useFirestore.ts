@@ -10,9 +10,10 @@ import {
   getDocs,
   query,
   where,
+  type DocumentData,
+  Firestore,
 } from 'firebase/firestore'
 
-import type { Firestore } from 'firebase/firestore'
 import type { EditDetail } from '@/types/MainType'
 
 export const useFirestore = () => {
@@ -20,12 +21,12 @@ export const useFirestore = () => {
 
   // create
   const setDocument = async (
-    collection: string,
+    collectionName: string,
     id: string,
-    data: object,
+    data: DocumentData,
   ): Promise<void> => {
     try {
-      const docRef = doc($db, collection, id)
+      const docRef = doc($db, collectionName, id)
       await setDoc(docRef, data)
     } catch (e) {
       console.error('Error setDocument: ', e)
@@ -33,14 +34,17 @@ export const useFirestore = () => {
   }
 
   // get
-  const getDocument = async (collection: string, id: string) => {
+  const getDocument = async (
+    collectionName: string,
+    id: string,
+  ): Promise<DocumentData | undefined> => {
     try {
-      const docRef = doc($db, collection, id)
+      const docRef = doc($db, collectionName, id)
       const docSnapshot = await getDoc(docRef)
 
       if (!docSnapshot.exists()) {
         console.warn('No such document!')
-        return
+        return undefined
       }
 
       return docSnapshot.data()
@@ -49,11 +53,11 @@ export const useFirestore = () => {
     }
   }
 
-  // update:
+  // update
   const updateDocument = async (
     collectionName: string,
     docId: string,
-    newItem: any,
+    newItem: DocumentData,
   ): Promise<void> => {
     try {
       const docRef = doc($db, collectionName, docId)
@@ -68,7 +72,7 @@ export const useFirestore = () => {
     collectionName: string,
     docId: string,
     arrayField: string,
-    newItem: any,
+    newItem: unknown,
   ): Promise<void> => {
     try {
       const docRef = doc($db, collectionName, docId)
@@ -98,7 +102,7 @@ export const useFirestore = () => {
     collectionName: string,
     docId: string,
     arrayField: string,
-    newItem: any,
+    newItem: unknown,
   ): Promise<void> => {
     try {
       const docRef = doc($db, collectionName, docId)

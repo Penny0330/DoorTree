@@ -1,6 +1,25 @@
 import type { SectionItem, BlockType } from '@/types/MainType'
 import { sectionCreators } from '@/pages/Edit/modal/index'
 
+interface LogoItem {
+  id: string
+  type: string
+  link: string
+  icon?: string
+  toolTip?: string
+  placeholder?: string
+}
+
+interface SectionWithLogoList extends Omit<SectionItem, 'type'> {
+  type: 'LOGO_WALL'
+  logoList: LogoItem[]
+}
+
+type ColorType = 'text' | 'bg' | 'border'
+type ColorMap = Record<string, string>
+
+type ClassMap = Partial<Record<ColorType, ColorMap>>
+
 export function useEditModal() {
   const showEditModal = ref<boolean>(false)
 
@@ -66,16 +85,52 @@ export const tagTextAlignOptions = [
   { value: 'right-4', label: 'Right' },
 ]
 
-type ClassMap = {
-  bg: Record<string, string>
-  text?: Record<string, string>
-  border?: Record<string, string>
+export const transLogoList = (logoList: LogoItem[]): LogoItem[] => {
+  return logoList.map((element) => {
+    const matchedIcon = iconOptions.find((icon) => icon.type === element.type)
+
+    return {
+      ...element,
+      ...matchedIcon,
+    }
+  })
 }
 
-export const transferBgClass = (
-  type: 'text' | 'bg' | 'border',
-  color: string,
-) => {
+export const transformSection = (section: SectionItem[]): SectionItem[] => {
+  return section.map((item) => {
+    if (item.type === 'LOGO_WALL') {
+      return {
+        ...item,
+        logoList: transLogoList((item as SectionWithLogoList).logoList),
+      }
+    }
+    return item
+  })
+}
+
+function stripConvertedData(
+  logoList: LogoItem[],
+): Pick<LogoItem, 'id' | 'type' | 'link'>[] {
+  return logoList.map(({ id, type, link }) => ({
+    id,
+    type,
+    link,
+  }))
+}
+
+export function transferSaveData(section: SectionItem[]): SectionItem[] {
+  return section.map((item) => {
+    if (item.type === 'LOGO_WALL') {
+      return {
+        ...item,
+        logoList: stripConvertedData((item as SectionWithLogoList).logoList),
+      }
+    }
+    return item
+  })
+}
+
+export const transferBgClass = (type: ColorType, color: string): string => {
   const classMap: ClassMap = {
     bg: {
       white: 'bg-white',
@@ -88,13 +143,10 @@ export const transferBgClass = (
     },
   }
 
-  return classMap[type]?.[color] || ''
+  return classMap[type]?.[color] ?? ''
 }
 
-export const transferThemeClass = (
-  type: 'text' | 'bg' | 'border',
-  color: string,
-) => {
+export const transferThemeClass = (type: ColorType, color: string): string => {
   const classMap: ClassMap = {
     text: {
       default: 'text-main-blue',
@@ -128,51 +180,7 @@ export const transferThemeClass = (
     },
   }
 
-  return classMap[type]?.[color] || ''
-}
-
-export const transLogoList = (logoList: any[]): any[] => {
-  return logoList.map((element) => {
-    const matchedIcon = iconOptions.find((icon) => icon.type === element.type)
-
-    return {
-      ...element,
-      ...matchedIcon,
-    }
-  })
-}
-
-export const transformSection = (section: any[]) => {
-  return section.map((item) => {
-    if (item.type === 'LOGO_WALL') {
-      return {
-        ...item,
-        logoList: transLogoList(item.logoList),
-      }
-    }
-    return item
-  })
-}
-
-function stripConvertedData(logoList: any[]): any[] {
-  // 保留要的參數
-  return logoList.map(({ id, type, link }) => ({
-    id,
-    type,
-    link,
-  }))
-}
-
-export function transferSaveData(section: any[]): any[] {
-  return section.map((item) => {
-    if (item.type === 'LOGO_WALL') {
-      return {
-        ...item,
-        logoList: stripConvertedData(item.logoList),
-      }
-    }
-    return item
-  })
+  return classMap[type]?.[color] ?? ''
 }
 
 export const iconOptions = [

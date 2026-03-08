@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import { nanoid } from 'nanoid'
-import type { EditDetail, SectionItem } from '@/types/MainType'
+import type { EditDetail, SectionItem, BlockType } from '@/types/MainType'
 import type { DashboardItem } from '@/types/DashboardType'
 
 const generateNumber = (): number => Math.floor(Math.random() * 1000) + 1
@@ -153,7 +153,7 @@ const createImageRectangleSection = (): SectionItem => {
   }
 }
 
-export const sectionCreators: Record<string, () => SectionItem> = {
+export const sectionCreators: Record<BlockType, () => SectionItem> = {
   TEXT: createTextSection,
   DIVIDER: createDividerSection,
   BUTTON: createButtonSection,

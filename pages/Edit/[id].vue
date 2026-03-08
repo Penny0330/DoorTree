@@ -259,7 +259,7 @@ const onChangeSection = async () => {
   await handleUpdate()
 }
 
-const blockComponent = (type: string) => {
+const blockComponent = (type: BlockType) => {
   return BlockTypeComponent[type] || null
 }
 

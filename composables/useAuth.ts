@@ -16,7 +16,7 @@ export function useAuth() {
   const showGlobalToast = useShowGlobalToast()
 
   const email = ref<string>('test@test.com')
-  const password = ref<any>('testtest')
+  const password = ref<string>('testtest')
   const isLoading = ref<boolean>(false)
 
   const handleAuthSuccess = (uid: string) => {
@@ -83,7 +83,6 @@ export function useAuth() {
   }
 
   const handleLoginUseGoogle = async () => {
-    console.log(process.env.NODE_ENV)
     isLoading.value = true
     const provider = new GoogleAuthProvider()
     try {
@@ -92,7 +91,8 @@ export function useAuth() {
       await initDashboardData(user.uid)
       handleAuthSuccess(user.uid)
     } catch (error) {
-      console.log('error', error)
+      showGlobalToast({ message: 'Google login failed!', type: 'error' })
+      console.error('Error Google login:', error)
     } finally {
       isLoading.value = false
     }

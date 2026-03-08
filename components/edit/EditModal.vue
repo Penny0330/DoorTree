@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { settingTypeComponent } from './setting/index'
+import type { BlockType } from '@/types/MainType'
 
 const props = defineProps({
   showEditModal: {
@@ -31,7 +32,7 @@ const props = defineProps({
 defineEmits(['onSave', 'onPreview', 'onCancel', 'onSave'])
 
 const settingComponent = computed(
-  () => settingTypeComponent[props.type] || null,
+  () => settingTypeComponent[props.type as BlockType | 'Profile'] || null,
 )
 </script>
 

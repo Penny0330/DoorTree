@@ -8,16 +8,16 @@ export function useUploadImage() {
       maxWidthOrHeight: 1024, // 最大寬高
       useWebWorker: true, // 使用 Web Worker 加速
     }
-    let compressedFile: File | null = null
+
+    let fileToUpload: File = file
     try {
-      compressedFile = await imageCompression(file, options)
-      console.log('壓縮後的文件:', compressedFile)
+      fileToUpload = await imageCompression(file, options)
     } catch (error) {
-      console.error('壓縮圖片失敗:', error)
+      console.error('壓縮圖片失敗，將使用原始檔案上傳:', error)
     }
 
     const formData = new FormData()
-    formData.append('file', compressedFile as File)
+    formData.append('file', fileToUpload)
     formData.append('upload_preset', 'rf8vjm9x')
 
     try {

@@ -1,5 +1,5 @@
 export interface GlobalToastOptions {
-  message: string | ''
+  message: string
   type: 'success' | 'error' | 'info' // default: 'info'
   time?: number // default: 2000
 }

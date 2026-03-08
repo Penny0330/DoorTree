@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { transferBgClass } from '@/pages/Edit/transform'
 import { BlockTypeComponent } from '@/components/block/index'
+import type { BlockType } from '@/types/MainType'
 
-const props = defineProps({
+defineOptions({ name: 'EditPreview' }) // 指定元件名稱
+
+defineProps({
   showPreview: {
     type: Boolean,
     default: false,
@@ -27,7 +30,7 @@ const props = defineProps({
 
 defineEmits(['onSave', 'onPreview', 'onCancel', 'onSave'])
 
-const blockComponent = (type: string) => {
+const blockComponent = (type: BlockType) => {
   return BlockTypeComponent[type] || null
 }
 </script>

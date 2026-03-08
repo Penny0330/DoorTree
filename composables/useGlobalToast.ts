@@ -13,13 +13,12 @@ export function useGlobalToast() {
   }: GlobalToastOptions) => {
     toastMessage.value = message
     toastType.value = type
+    toastTime.value = time
     showToast.value = true
 
-    if (time) {
-      setTimeout(() => {
-        showToast.value = false
-      }, time)
-    }
+    setTimeout(() => {
+      showToast.value = false
+    }, time)
   }
 
   return {

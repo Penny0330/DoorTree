@@ -1,15 +1,38 @@
 // 共同基礎類型
 interface BaseSection {
   type: string
+  id: string
   isShow: boolean
+}
+
+interface ImageTag {
+  text: string
+  textAlign: 'left-4' | 'right-4'
+  bgColor: string
+}
+
+interface ImageDescription {
+  text: string
+  textAlign: 'text-left' | 'text-right'
+}
+
+interface BaseImageSection extends BaseSection {
+  link: string
+  previewImage?: string
+  previewImageFile?: File
+  image: string
+  tag: ImageTag
+  description: ImageDescription
+}
+
+interface FontSizeStyle {
+  fontSize: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
 }
 
 interface TextSection extends BaseSection {
   type: 'TEXT'
-  id: string
   text: string
-  style: {
-    fontSize: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
+  style: FontSizeStyle & {
     isBold: boolean
     isUnderline: boolean
     isItalic: boolean
@@ -20,7 +43,6 @@ interface TextSection extends BaseSection {
 
 interface DividerSection extends BaseSection {
   type: 'DIVIDER'
-  id: string
   style: {
     type: 'border-solid' | 'border-dashed' | 'border-dotted' | 'border-double'
     width: 'border-b' | 'border-b-2' | 'border-b-4' | 'border-b-8'
@@ -30,20 +52,16 @@ interface DividerSection extends BaseSection {
 
 interface ButtonSection extends BaseSection {
   type: 'BUTTON'
-  id: string
   text: string
   link: string
   showDescription: boolean
   description: string
   isFill: boolean
-  style: {
-    fontSize: 'text-base' | 'text-xl' | 'text-3xl' | 'text-4xl'
-  }
+  style: FontSizeStyle
 }
 
 interface LogoWallSection extends BaseSection {
   type: 'LOGO_WALL'
-  id: string
   logoList: Array<{
     id: string
     link: string
@@ -54,61 +72,27 @@ interface LogoWallSection extends BaseSection {
   }>
 }
 
-interface ImageSingleSection extends BaseSection {
+interface ImageSingleSection extends BaseImageSection {
   type: 'IMAGE_SINGLE'
+}
+
+interface ImageDoubleItem {
   id: string
   link: string
-  previewImage?: string
-  previewImageFile?: File
+  previewImage?: string | null
+  previewImageFile?: File | null
   image: string
-  tag: {
-    text: string
-    textAlign: 'left-4' | 'right-4'
-    bgColor: string
-  }
-  description: {
-    text: string
-    textAlign: 'text-left' | 'text-right'
-  }
+  tag: ImageTag
+  description: ImageDescription
 }
 
 export interface ImageDoubleSection extends BaseSection {
   type: 'IMAGE_DOUBLE'
-  id: string
-  imageList: Array<{
-    id: string
-    link: string
-    previewImage?: string | null
-    previewImageFile?: File | null
-    image: string
-    tag: {
-      text: string
-      textAlign: 'left-4' | 'right-4'
-      bgColor: string
-    }
-    description: {
-      text: string
-      textAlign: 'text-left' | 'text-right'
-    }
-  }>
+  imageList: Array<ImageDoubleItem>
 }
 
-interface ImageRectangleSection extends BaseSection {
+interface ImageRectangleSection extends BaseImageSection {
   type: 'IMAGE_RECTANGLE'
-  id: string
-  link: string
-  previewImage?: string
-  previewImageFile?: File
-  image: string
-  tag: {
-    text: string
-    textAlign: 'left-4' | 'right-4'
-    bgColor: string
-  }
-  description: {
-    text: string
-    textAlign: 'text-left' | 'text-right'
-  }
 }
 
 export type SectionItem =
@@ -119,6 +103,8 @@ export type SectionItem =
   | ImageSingleSection
   | ImageDoubleSection
   | ImageRectangleSection
+
+export type BlockType = SectionItem['type']
 
 export interface EditDetail {
   id: string
@@ -142,16 +128,6 @@ export interface EditModalParams {
   type: string
   idx: number
 }
-
-// 增加區塊按鈕
-export type BlockType =
-  | 'TEXT'
-  | 'DIVIDER'
-  | 'BUTTON'
-  | 'LOGO_WALL'
-  | 'IMAGE_SINGLE'
-  | 'IMAGE_DOUBLE'
-  | 'IMAGE_RECTANGLE'
 
 export type AddBlockButton = {
   type: BlockType

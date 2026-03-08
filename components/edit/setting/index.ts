@@ -1,3 +1,4 @@
+import type { Component } from 'vue'
 import Profile from './ProfileSetting.vue'
 import TEXT from './TextSetting.vue'
 import DIVIDER from './DividerSetting.vue'
@@ -6,18 +7,9 @@ import LOGO_WALL from './LogoWallSetting.vue'
 import IMAGE_SINGLE from './ImageSingleSetting.vue'
 import IMAGE_DOUBLE from './ImageDoubleSetting.vue'
 import IMAGE_RECTANGLE from './ImageRectangleSetting.vue'
+import type { BlockType } from '@/types/MainType'
 
-export const settingTypeComponent: Record<
-  string,
-  | typeof Profile
-  | typeof TEXT
-  | typeof DIVIDER
-  | typeof BUTTON
-  | typeof LOGO_WALL
-  | typeof IMAGE_SINGLE
-  | typeof IMAGE_DOUBLE
-  | typeof IMAGE_RECTANGLE
-> = {
+export const settingTypeComponent: Record<BlockType | 'Profile', Component> = {
   Profile,
   TEXT,
   DIVIDER,
