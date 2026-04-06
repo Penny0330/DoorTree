@@ -98,7 +98,7 @@
 
 ## Components Design
 
-<img width="588" alt="Components-Design" src="https://github.com/user-attachments/assets/7fdc1e60-0ed8-4fa1-9b4a-abcebed0c193](https://github.com/user-attachments/assets/f3c0def3-bb0f-4e76-8bf8-ac85e6fb1280" />
+<img width="529" height="714" alt="截圖 2026-04-06 晚上10 52 49" src="https://github.com/user-attachments/assets/cab440f1-5be6-41d3-8b60-d388b1e24a50" />
 
 <div align="end">
   <a href="https://github.com/Penny0330/DoorTree?tab=readme-ov-file#table-of-content">
